@@ -1,0 +1,8 @@
+DLC: Touhou Project
+Series: Touhou Project
+Folder: Touhou/EoS
+Prefix: TH/EoS
+SetName: Touhou Project 6 : Embodiment of Scarlet Devil
+Folder: Touhou/PCB
+Prefix: TH/PCB
+SetName: Touhou Project 7 : Perfect Cherry Blossom

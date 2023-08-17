@@ -1,0 +1,663 @@
+Character: AK/C01-001
+Name "Live in the Moment" Yayoi
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music 
+Trait2 Frog
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*GlobalPower(500,Frog|Family|AmiKoshimizu)
+*Act1RestSelfSearchBrainstorm(Frog|Family|AmiKoshimizu)
+EndCard
+
+Character: AK/C01-002
+Name Hiro, Child of Fate
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Parasite
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Auto: OnPlay
+{
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetSelf
+        GainPower 3000
+    }
+}
+Text Auto: When this card is placed on the stage from your hand, put the top 2 cards of your deck into your waiting room. If there is a climax among those cards, this card gets +3000 power until end of turn.
+Auto: OnPlay
+{
+    PayCost 1 Clock
+    {
+        SearchWaitingRoom IsCharacter && Compare ThatCardsLevel 1 OrLess
+    }
+}
+Text Auto: [(1) Put the top card of your deck into clock] When this is placed on the stage from hand, you may pay cost. If you do, choose a level 1 or lower character in your waiting room and put it into your hand.
+EndCard
+
+Character: AK/C01-003
+Name Shiori, My Wish
+Color Y
+Level 3
+Cost 2
+Power 9500
+Soul 2
+Trigger Soul
+Trait1 Landosol
+Trait2 Guild
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Cont: GiveSelf
+{
+    If MyTurn && StageContains 4 Other && HasTrait Landosol|AmiKoshimizu
+    {
+        GainPower 5000
+        GainSpecialEffect NoBackupOnAttack
+        GainSpecialEffect NoEventsOnAttack
+    }
+}
+Text Cont: During your turn, if you have 4 or more other ::Landosol:: and/or ::AmiKoshimizu:: characters, this card gets +5000 power and the following ability. "Cont: In battles involving this card, your opponent cannot play events or BACKUP from hand."
+*MusashiEffect
+EndCard
+
+Character: AK/C01-004
+Name Yukiko, Young Proprietress
+Color R
+Level 3
+Cost 2
+Power 9500
+Soul 2
+Trigger Soul
+Trait1 Fan
+Trait2 Yukata
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Auto: OnAttack
+{
+    TargetTop Deck
+    Reveal
+    IfTarget HasTrait Fan|Yukata|AmiKoshimizu
+    {
+        Burn 1
+    }
+}
+Text Auto: When this card attacks, reveal the top card of your deck. If that card is a ::Fan::, ::Yukata:: and/or ::AmiKoshimizu:: character, deal 1 damage to your opponent. (Damage Cancel may occur)
+*HandEncore
+EndCard
+
+Character: AK/C01-005
+Name Mizuki, Drunk? Staff
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 LycoReco 
+Trait2 Glasses
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Auto: OnPlay
+{
+    TargetLocation OpponentCenterStage
+    NarrowTargets CanBeChosen
+    If HasTarget
+    {
+        ChooseCharacterFromTargets Choose a character to give -1000 power until end of turn.
+        LosePower 1000
+    }
+}
+Text Auto: When this card is placed on the stage from hand, choose a character in your opponent's center stage and that character gets -1000 power until end of turn.
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost Discard 1 Any
+    {
+        *Check4Add1Level1OrHigher
+    }
+}
+Text Auto: [Put 1 card from your hand into waiting room] When this card is placed into waiting room from the stage, you may pay cost. If you do, look at up to the top 4 cards of your deack, choose up to 1 level 1 or higher card among them, reveal it to your opponent, put it into your hand and put the rest into waiting room. (Climax cards are considered to be Level 0 for this effect)
+EndCard
+
+Character: AK/C01-006
+Name Mizuki in a Pinch
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 LycoReco
+Trait2 Glasses
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Auto: StartOpponentAttackPhase
+{
+    PayCost 1
+    {
+        TargetLocation Backstage
+        If Compare TargetCount 1 OrLess
+        {
+            TargetSelf
+            Question Move this card to an open position of your backstage?
+            If Yes
+            {
+                MoveToOpenPosition False True
+            }
+        }
+    }
+}
+Text Auto: [(1)] At the start of your opponent's attack phase, you may pay the cost. If you do, move this card to an open position of your backstage.
+Auto: StartOpponentAttackPhase
+{
+    PayCost Discard 1 Any
+    {
+        TargetSelf
+        SaveTargets
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to put as marker until your next draw phase.
+        MarkerTargetsUnderSavedTarget_FaceUp
+        ScheduleEffect StartDrawPhase
+        {
+            Effect:
+            {
+                TargetLocation Marker
+                If HasTarget
+                {
+                    ChooseCardsFromTargets 1 1 IsCharacter
+                    PlaceOnStage False True True False
+                }
+            }
+        }
+    }
+}
+Text Auto: [Put 1 card from hand into waiting room] At the start of your opponent's attack phase, you may pay the cost. If you do, choose 1 of your other characters and put it face-up underneath this card as marker. At the start of your next draw phase, choose 1 of the markers underneath this card that is a character and put it in any position on the stage.
+EndCard
+
+Character: AK/C01-007
+Name Yayoi Takatsuki, Autumn-Colored High Five
+Color Y
+Level 3
+Cost 2
+Power 9000
+Soul 2
+Trigger Soul
+Trait1 Music
+Trait2 Family
+Combo Deep, Deep Blue
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Music|AmiKoshimizu
+    {
+        GainPower 2000
+    }
+}
+Text Cont: If you have 2 or more other ::Music:: and/or ::AmiKoshimizu::, this card gets +2000 power.
+Auto: OnEndOfAttack
+{
+    If Climax Deep, Deep Blue && StageContains 2 Other && HasTrait Music|AmiKoshimizu
+    {
+        PayCost 3 Discard 1 HasTrait Music|AmiKoshimizu
+        {
+            TargetSelf
+            Stand
+            TargetLocation OpponentWaitingRoom
+            Message Choose up to 3 cards to put into your opponent's deck.
+            ChooseCardsFromTargets 0 3 Any
+            MoveCard OpponentDeck
+            ShuffleLocation OpponentDeck
+        }
+    }
+}
+TimesPerTurn 1
+Text Auto: CxCombo [(3) Put 1 ::Music:: and/or ::AmiKoshimizu:: character from hand into waiting room] This ability activates up to once per turn. At the end of this card's attack, if "Deep, Deep Blue" is in your climax area and you have 2 or more other ::Music:: and/or ::AmiKoshimizu:: characters, you may pay cost. If you do, stand this card, choose up to 3 cards in your opponent's waiting room, put them into your opponent's deck and your opponent shuffle their library.
+EndCard
+
+Character: AK/C01-008
+Name Yayoi Takatsuki, Just like a Elder Sister
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music 
+Trait2 Family
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*OnPlayGivePower(1000, Music|AmiKoshimizu)
+*YellowLevel0Bomb
+EndCard
+
+Character: AK/C01-009
+Name Mizuki, Something She's Unwilling to Yield
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 LycoReco
+Trait2 Glasses
+Combo Proudly Lying
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Auto: OnSpecificClimaxPlay Proudly Lying
+{
+    If StageContains 4 Other && HasTrait LycoReco|Weapon|AmiKoshimizu
+    {
+        *OptionalDraw
+        SearchLocationForTargets Hand 1 1 Any
+        MoveCard Stock
+    }
+}
+Text Auto: CxCombo When "Proudly Lying" is placed in your climax area, if you have 4 or more other ::LycoReco::, ::Weapon:: and/or ::AmiKoshimizu:: characters, draw up to 1 and put a card from your hand into stock.
+Act: 1 RestSelf
+{
+    TargetTop Deck
+    Reveal
+    IfTarget IsEvent || HasTrait LycoReco|Weapon|AmiKoshimizu
+    {
+        MoveCard Hand
+    }
+}
+Text Act:[(1) Rest this card] Reveal the top card of your deck. If that card is either a ::LycoReco::, ::Weapon:: and/or ::AmiKoshimizu:: character or an event card, put it in your hand. (Otherwise put it back where it was)
+EndCard
+
+Character: AK/C01-010
+Name Mizuki, Ex-DA
+Color Y
+Level 3
+Cost 2
+Power 10000
+Soul 2
+Trigger Soul
+Trait1 LycoReco
+Trait2 Glasses
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*OnPlayGainPowerForEach(1000,LycoReco|Weapon|AmiKoshimizu)
+Auto: OnPlay
+{
+    PayCost 1
+    {
+        SearchWaitingRoom IsClimax
+    }
+}
+Text Auto:[(1)] When this card is placed on the stage from hand, you may pay the cost. If you do, choose a climax card in your waiting room and put it into hand.
+EndCard
+
+Character: AK/C01-011
+Name Mizuki, Drink After Work
+Color Y
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trigger Soul
+Trait1 LycoReco
+Trait2 Glasses
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*OnPlayGainPower(3000)
+Auto: OnAttack
+{
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 2 Exactly
+    {
+        TargetSelf
+        GainPower 6000
+    }
+}
+Text Auto: When this card attacks, if the character facing this is level 2, this card gets +6000 until end of turn.
+EndCard
+
+Character: AK/C01-012
+Name Mizuki, Place of Encounters
+Color R
+Level 2
+Cost 1
+Power 4500
+Soul 1
+Trigger Soul
+Trait1 LycoReco
+Trait2 Glasses
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*ClimaxExchange
+*RedLevel2Bomb
+EndCard
+
+Character: AK/C01-013
+Name M@STERS OF IDOL WORLD!! Yayoi Takatsuki
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Frog
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*EarlyPlayInClock(Acting in a Commercial\, Yayoi)
+*GainPowerForEachOther(500,Music|AmiKoshimizu)
+*Healer
+EndCard
+
+Character: AK/C01-014
+Name Acting in a Commercial, Yayoi
+Color Y
+Level 0
+Cost 0
+Power 500
+Trait1 Music
+Trait2 Frog
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*GlobalPower(500,Music|AmiKoshimizu)
+Auto: OnAttack
+{
+	PayCost SendFromWaitingRoom 2 Deck IsCharacter
+	{
+		ShuffleLocation Deck
+		TargetSelf
+		GainSoul 1
+	}
+}
+Text Auto: ［Return two characters in your waiting room to your deck. Shuffle your deck afterwards］ When this card attacks, you may pay the cost. If you do, this card gains +1 soul until end of turn.
+EndCard
+
+Character: AK/C01-015
+Name Yang: Framed
+Color Y
+Level 0
+Cost 0
+Power 2000
+Trait1 Remnant
+Trait2 RWBY
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*GainPowerWithEnoughCharacters(1000,2,Remnant|AmiKoshimizu)
+*DropSearch(Remnant|AmiKoshimizu)
+EndCard
+
+Character: AK/C01-018
+Name Shiori, Promise of Two People
+Color Y
+Level 1
+Cost 0
+Power 4500
+Trait1 Landosol
+Trait2 Guild
+Combo Irreplaceable Time
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Auto: OnAttack
+{
+    If StageContains 1 Other && HasTrait Landosol|AmiKoshimizu
+    {
+        TargetSelf
+        GainPower 1500
+    }
+}
+Quick
+Text Auto: When this card attacks, if you have another ::Landosol:: and/or ::AmiKoshimizu:: character, this card gets +1500 power until end of turn.
+Auto: OnAttack
+{
+    If Climax Irreplaceable Time
+    {
+        TargetTop Deck
+        Reveal
+        IfTarget HasTrait Landosol|AmiKoshimizu
+        {
+            MoveCard Stock
+            TargetSelf
+            *GainBounceWhenFrontalAttacked
+        }
+    }
+}
+Text Auto: CxCombo When this card attacks, if "Irreplaceable Time" is in your climax area, reveal the top card of your deck. If that card is a ::Landosol:: and/or ::AmiKoshimizu:: character, put that card into stock and this card gets the following ability until the next end of your Opponent's turn. "Auto: When this card is frontam attacked, you may return this card to your hand." 
+EndCard
+
+Climax: AK/C01-016
+Name Proudly Lying
+*ChoiceClimax
+EndCard
+
+Climax: AK/C01-017
+Name Deep, Deep Blue
+*ChoiceClimax
+EndCard
+
+Climax: AK/C01-019
+Name Irreplaceable Time
+*WindClimax
+EndCard
+
+Character: AK/C01-020
+Name Yang: Vytal Festival
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Remnant
+Trait2 RWBY
+Combo Falling Into a Trap
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*OnPlayCheck3
+Auto: OnSpecificClimaxPlay Falling Into a Trap
+{
+	If InLocation CenterStage
+	{
+		TargetLocation Stage
+		NarrowTargets Other
+		ChooseCharacterFromTargets
+		GainEffect
+		{
+			Auto: OnDamageCancel
+			{
+				*OptionalBurn(2)
+			}
+			TimesPerTurn 1
+			Text Auto: This ability activates up to 1 time per turn. When damage dealt by this card is canceled, you may deal 2 damage to your opponent.
+		}
+	}
+}
+Text Auto: CxCombo When "Falling Into a Trap" is placed on your climax area, if this card is in your center stage, choose 1 of your other characters, it gets the following ability until end of turn. "Auto: This ability activates up to 1 time per turn. When damage dealt by this card is canceled, you may deal 2 damage to your opponent." 
+EndCard
+
+Character: AK/C01-021
+Name Encounter with Senketsu, Ryuko
+Color R
+Level 0
+Cost 0
+Power 2000
+Trait1 Clothes
+Trait2 Weapon
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+Auto: OnReversed
+{
+	PayCost 1 Discard 1 Any SendSelf Memory
+	{
+		SearchLocationForTargets WaitingRoom 1 1 NameEquals "Rampage" Ryuko
+		ChangeRested
+	}
+}
+Text Auto: [(1) Put a card from your hand into your waiting room & Put this card into your memory] When this card becomes reversed in battle, you may pay the cost. If you do, choose a card named ""Rampage" Ryuko" in your waiting room, and put it on the stage position that this card was on as resting.
+Auto: OnOpponentHealToWaitingRoom|OnHealToWaitingRoom
+{
+	IfOther MyCard
+	{
+		TargetLocation Stock
+		SetXValue TargetCount
+		If Compare X 2 OrMore
+		{
+			Question Put the top two cards of your stock into your waiting room? If you do not, you will put the top card of your deck into your clock.
+			If Yes
+			{
+				TargetTop Stock 2
+				MoveCard WaitingRoom
+			}
+			Else
+			{
+				TargetTop Deck 1
+				MoveCard Clock
+			}
+		}
+		Else
+		{
+			TargetTop Deck 1
+			MoveCard Clock
+		}
+	}
+	Else
+	{
+		TargetLocation OpponentStock
+		SetXValue TargetCount
+		If Compare X 2 OrMore
+		{
+			OpponentQuestion Put the top two cards of your stock into your waiting room? If you do not, you will put the top card of your deck into your clock.
+			If Yes
+			{
+				TargetTop OpponentStock 2
+				MoveCard OpponentWaitingRoom
+			}
+			Else
+			{
+				TargetTop OpponentDeck 1
+				MoveCard OpponentClock
+			}
+		}
+		Else
+		{
+			TargetTop OpponentDeck 1
+			MoveCard OpponentClock
+		}
+	}
+}
+InMemory
+Text Auto: MEMORY If this card is in your memory, when your card or your opponent's card in the clock is put into the waiting room due to respective card effects, that player may put the top two cards from stock into the waiting room. If not, that player puts the top card of the deck into the clock.
+EndCard
+
+Character: AK/C01-022
+Name "Rampage" Ryuko
+Color R
+Level 1
+Cost 1
+Power 7500
+Trait1 Clothes
+Trait2 Weapon
+Cont: GiveSelfEverywhere 
+{
+    GainTrait AmiKoshimizu
+    GainName AmiKoshimizu
+}
+*CannotSideAttack
+Auto: OnPlay|PlacedBy Encounter with Senketsu, Ryuko
+{
+	Question Reveal the top card of your deck?
+	If Yes
+	{
+		TargetTop Deck 1
+		Reveal
+		If Compare TargetCardsLevel 0 OrLess
+		{
+			Question Put the revealed card into your stock?
+			If Yes
+			{
+				MoveCard Stock
+			}
+		}
+	}
+}
+Text Auto: When this card is placed on the stage from your hand or by the Auto: effect of "Encounter with Senketsu, Ryuko", you may reveal the top card of your deck. If that card is a level 0 or lower character, you may put that card into your stock.
+Auto: OnReversed
+{
+    If OnStage
+    {
+        TargetSelf
+        MoveCardToBottom Deck
+    }
+}
+Text Auto: When this card becomes reversed in battle, put this card at the bottom of your deck.
+EndCard
+
+
+
+
+
+
+
+
+
+
+
+
+
+

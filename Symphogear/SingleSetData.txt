@@ -1,0 +1,19 @@
+Series: Senki Zesshou Symphogear
+Folder: Symphogear/W19
+Prefix: SG/W19
+SetName: Senki Zesshou Symphogear
+Folder: Symphogear/W27
+Prefix: SG/W27
+SetName: Senki Zesshou Symphogear G
+Folder: Symphogear/W39
+Prefix: SG/W39
+SetName: Senki Zesshou Symphogear GX
+Folder: Symphogear/W52
+Prefix: SG/W52
+SetName: Senki Zesshou Symphogear XD Unlimited
+Folder: Symphogear/W70
+Prefix: SG/W70
+SetName: Senki Zesshou Symphogear AXZ
+Folder: Symphogear/W89
+Prefix: SG/W89
+SetName: Senki Zesshou Symphogear XV

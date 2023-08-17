@@ -1,0 +1,2358 @@
+Character: SG/W27-001
+Name Hibiki, Gathered Power
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Cont: GiveAll
+{
+	If Other && InLocation MiddleCenterStage
+    {
+        GainPower 500
+    }
+}
+Text Cont:Your other Character in the Front Row Center Slot gains +500 Power.
+*Act1Rest2SearchBrainstorm(Music)
+EndCard
+
+Character: SG/W27-001R
+Name Hibiki, Gathered Power
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Cont: GiveAll
+{
+	If Other && InLocation MiddleCenterStage
+    {
+        GainPower 500
+    }
+}
+Text Cont:Your other Character in the Front Row Center Slot gains +500 Power.
+*Act1Rest2SearchBrainstorm(Music)
+EndCard
+
+Character: SG/W27-002
+Name "Offensive Spear: Gungnir" Hibiki
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Cont: GiveSelf
+{
+	If StageContains 3 HasTrait Music && Other
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 3 or more other ::Music:: Characters, this gains +1000 Power.
+*HexProof
+Auto: OnPlay|PlacedBy Gungnir
+{
+	GainEffect
+	{
+		*OnCancelBurn1
+	}
+}
+TimesPerTurn 1
+Text Auto:This ability activates up to once per turn. During the turn this is placed from hand or via the effect of "Gungnir" to the Stage, when the Damage dealt by this is Cancelled, you may deal 1 Damage to your Opponent. (Damage Cancel can occur)
+EndCard
+
+Character: SG/W27-002SP
+Name "Offensive Spear: Gungnir" Hibiki
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Cont: GiveSelf
+{
+	If StageContains 3 HasTrait Music && Other
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 3 or more other ::Music:: Characters, this gains +1000 Power.
+*HexProof
+Auto: OnPlay|PlacedBy Gungnir
+{
+	GainEffect
+	{
+		*OnCancelBurn1
+	}
+}
+TimesPerTurn 1
+Text Auto:This ability activates up to once per turn. During the turn this is placed from hand or via the effect of "Gungnir" to the Stage, when the Damage dealt by this is Cancelled, you may deal 1 Damage to your Opponent. (Damage Cancel can occur)
+EndCard
+
+Character: SG/W27-003
+Name Hibiki in Swimsuits
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Swimsuit
+*500Assist
+Act: 1 Rest 1 HasTrait Music && Other
+{
+	TargetLocation Stage
+	NarrowTargets HasTrait Music
+	ChooseCharacterFromTargets Choose a character to give +1 level and +1500 power for the turn.
+	GainPower 1500
+	GainLevel 1
+}
+Text Act:[(1) Rest 1 of your other ::Music:: Characters] Choose 1 of your ::Music:: Characters, and that Character gains +1 Level and +1500 Power for the turn.
+EndCard
+
+Character: SG/W27-003S
+Name Hibiki in Swimsuits
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Swimsuit
+*500Assist
+Act: 1 Rest 1 HasTrait Music && Other
+{
+	TargetLocation Stage
+	NarrowTargets HasTrait Music
+	ChooseCharacterFromTargets Choose a character to give +1 level and +1500 power for the turn.
+	GainPower 1500
+	GainLevel 1
+}
+Text Act:[(1) Rest 1 of your other ::Music:: Characters] Choose 1 of your ::Music:: Characters, and that Character gains +1 Level and +1500 Power for the turn.
+EndCard
+
+Character: SG/W27-004
+Name Miku, Imprisoned
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Auto: OnAttack
+{
+	TargetLocation Stage
+	NarrowTargets NameContains Hibiki
+	GainPower 500
+}
+Text Auto:When this attacks, all your other Characters with "Hibiki" in name gain +500 Power for the turn.
+*Bond1('Always Helping Others' Hibiki)
+EndCard
+
+Character: SG/W27-005
+Name Hibiki, Entrusted Song
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Auto: OnPlay
+{
+	PayCost 1
+	{
+		SearchWaitingRoom NameEquals Gungnir
+	}
+}
+Text Auto:[(1)] When this is placed from hand to the Stage, you may pay cost. If so, choose a "Gungnir" in your Waiting Room and return it to your hand.
+EndCard
+
+Character: SG/W27-006
+Name Miku, Student at Lydian
+Color Y
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Cont: GiveAll
+{
+	If Other && HasTrait Music
+	{
+		GainPower 500
+	}
+}
+Text Cont:All your other ::Music:: Characters gain +500 Power.
+Act: 1 Rest 2 HasTrait Music
+{
+	TargetLocation OpponentStage
+	NarrowTargets Compare ThatCardsLevel 0 OrLess && CanBeChoosen
+	ChooseCharacterFromTargets Choose an opponent's character to put in stock.
+	MoveCard Stock
+}
+Text Act:[(1) Rest 2 of your ::Music:: Characters] Choose 1 of your Opponent's Level 0 or lower Characters and put it in stock.
+EndCard
+
+Character: SG/W27-006S
+Name Miku, Student at Lydian
+Color Y
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Cont: GiveAll
+{
+	If Other && HasTrait Music
+	{
+		GainPower 500
+	}
+}
+Text Cont:All your other ::Music:: Characters gain +500 Power.
+Act: 1 Rest 2 HasTrait Music
+{
+	TargetLocation OpponentStage
+	NarrowTargets Compare ThatCardsLevel 0 OrLess
+	ChooseCharacterFromTargets Choose an opponent's character to put in stock.
+	MoveCard Stock
+}
+Text Act:[(1) Rest 2 of your ::Music:: Characters] Choose 1 of your Opponent's Level 0 or lower Characters and put it in stock.
+EndCard
+
+Character: SG/W27-007
+Name "Superb Song" Hibiki
+Color Y
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Music
+Combo Superb Song Combination Arts
+Auto: OnAttack
+{
+	If Climax Superb Song Combination Arts && StageContains 4 NameContains Hibiki && Other
+	{
+		TargetSelf
+		GainPower 3000
+		BlockOpponentEncore
+	}
+}
+Text Auto:When this attacks, if "Superb Song Combination Arts" is in the Climax Zone and you have 4 or more other Characters with "Hibiki" in name, for the turn, this gains +3000 Power and your Opponent cannot use "[A] ENCORE". (This includes "[A] ENCORE [(3)]" provided by the rules)
+EndCard
+
+Character: SG/W27-008
+Name Shiori Terashima
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Auto: OnAttack
+{
+	TargetLocation Stage
+	NarrowTargets Other
+	AIChoice GainPower 1500
+	ChooseCharacterFromTargets Choose a character to give +1500 power.
+	GainPower 1500
+}
+Text Auto:When this attacks, choose 1 of your other Characters, and that Character gains +1500 Power for the turn.
+EndCard
+
+Character: SG/W27-009
+Name Miku, Will to Live
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Auto: OnPlay
+{
+	TargetSelf
+	GainPower 1500
+}
+Text Auto:When this is placed from hand to the Stage, this gains +1500 Power for the turn.
+EndCard
+
+Character: SG/W27-010
+Name "Berserk" Hibiki
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Auto: OnAttack
+{
+	TargetTop Deck 1
+	MoveCard Clock
+	TargetSelf
+	GainPower 3500
+}
+Text Auto:When this attacks, put the top card of your Library in your Clock, and this gains +3500 Power for the turn.
+EndCard
+
+Character: SG/W27-011
+Name Miku, Bearer of Consumables
+Color Y
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Music
+*HandEncore
+EndCard
+
+Character: SG/W27-012
+Name "X-Drive Mode" Hibiki
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Vitalization
+Auto: OnAttack
+{
+	If Climax Vitalization
+	{
+		TargetLocation Stage
+		NarrowTargets HasTrait Music
+		SetXValue TargetCount
+		MultiplyXValue 2000
+		TargetSelf
+		GainPower X
+	}
+}
+Text Auto:When this attacks, if "Vitalization" is in the Climax Zone, this gains +X Power for the turn. X = 2000 times # of your ::Music:: Characters.
+Auto: OnReverseOpponent
+{
+	TargetBattleOpponent
+	If Compare ThatCardsLevel 2 OrMore
+	{
+		PayCost 1
+		{
+			SearchDeck HasTrait Music
+		}
+	}
+}
+Text Auto:[(1)] When a Level 2 or higher Battle Opponent of this becomes Reversed, you may pay cost. If so, search your Library for up to 1 ::Music:: Character, reveal it, put it in your hand, and shuffle your Library.
+EndCard
+
+Character: SG/W27-013
+Name Miku, Worrying
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Combo Miku's Wish
+Auto: OnAttack
+{
+	If Climax Miku's Wish
+	{
+		TargetLocation Stage
+		NarrowTargets Other
+		ChooseCharacterFromTargets Choose 1 other character to return to hand.
+		Bounce
+		TargetSelf
+		GainPower 3000
+	}
+}
+Text Auto:When this attacks, if "Miku's Wish" is in the Climax Zone, choose up to 1 of your other Characters and return it to your hand, and this gains +3000 Power for the turn.
+Auto: OnTriggerCheckClimax
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose 1 other character to return to hand.
+	GainPower 2000
+}
+Text Auto:When your Character's Trigger Check reveals a Climax card, this gains +2000 Power for the turn.
+EndCard
+
+Character: SG/W27-014
+Name Hibiki, Looking Straight
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 2500
+Soul 2
+Trait1 Music
+*1500Assist
+Auto: OnPlay
+{
+	If StageContains 3 NameContains Hibiki && Other
+	{
+		TargetTop Deck 1
+		MoveCard Stock
+	}
+}
+Text Auto:When this is palced from hand to the Stage, if you have 3 or more other Characters with "Hibiki" in name, you may put the top card of your Library in your Stock.
+EndCard
+
+Character: SG/W27-015
+Name Miku, For the Warm World
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Combo Liuxing
+Auto: OnPlay
+{
+	*CheckAndAdd(3)
+}
+Text Auto:When this is placed from hand to the Stage, look at up to 3 cards from top of your Library and choose up to 1 of them and put in your hand. Put the rest in the Waiting Room.
+Auto: OnSpecificClimaxPlay Liuxing
+{
+	If InLocation CenterStage
+	{
+		TargetLocation OpponenCenterStage
+		NarrowTargets Compare ThatCardsLevel 3 OrLess && CanBeChoosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose an opponent's character to put in stock.
+			ForEachTarget
+			{
+				Message Choose a character in waiting room to place on stage.
+				OpponentSearchLocationForTargets WaitingRoom 0 1 IsCharacter && Compare ThatCardsLevel 1 OrLower
+				If HasTarget
+				{
+					OpponentPlaceOnStage false true true false
+				}
+			}
+		}
+	}
+}
+Text Auto:When "Liuxing" is placed in your Climax Zone, if this is in the Front Row, you may choose a Level 3 or lower Character in your Opponent's Front Row and put it in Stock. If so, your Opponent choose up to 1 Level 1 or lower Character in their Waiting Room and put it in any Slot on the Stage.
+EndCard
+
+Character: SG/W27-015SP
+Name Miku, For the Warm World
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Combo Liuxing
+Auto: OnPlay
+{
+	*CheckAndAdd(3)
+}
+Text Auto:When this is placed from hand to the Stage, look at up to 3 cards from top of your Library and choose up to 1 of them and put in your hand. Put the rest in the Waiting Room.
+Auto: OnSpecificClimaxPlay Liuxing
+{
+	If InLocation CenterStage
+	{
+		TargetLocation OpponenCenterStage
+		NarrowTargets Compare ThatCardsLevel 3 OrLess && CanBeChoosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose an opponent's character to put in stock.
+			ForEachTarget
+			{
+				Message Choose a character in waiting room to place on stage.
+				OpponentSearchLocationForTargets WaitingRoom 0 1 IsCharacter && Compare ThatCardsLevel 1 OrLower
+				If HasTarget
+				{
+					OpponentPlaceOnStage false true true false
+				}
+			}
+		}
+	}
+}
+Text Auto:When "Liuxing" is placed in your Climax Zone, if this is in the Front Row, you may choose a Level 3 or lower Character in your Opponent's Front Row and put it in Stock. If so, your Opponent choose up to 1 Level 1 or lower Character in their Waiting Room and put it in any Slot on the Stage.
+EndCard
+
+Character: SG/W27-016
+Name Hibiki at the Fall Cherry Blossom Festival
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Cont: GiveSelf
+{
+	If InLocation MiddleCenterStage
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If this is in the Front Row Center Slot, this gains +1000 Power.
+EndCard
+
+Character: SG/W27-017
+Name Miku, Date After A Long While
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Auto: OnOtherAttacks
+{
+	TargetSelf
+	GainPower 1000
+}
+Text Auto:When your other ::Music:: Character attacks, this gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W27-018
+Name Kuriyo Andou
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Act: 2
+{
+	TargetSelf
+	GainPower 3000
+	GainSoul 1
+}
+Text Act:[(2)] This gains +3000 Power and +1 Soul for the turn.
+EndCard
+
+Character: SG/W27-019
+Name Miku Released
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+EndCard
+
+Character: SG/W27-020
+Name "Always Helping Others" Hibiki
+Color Y
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Backup 1500
+EndCard
+
+Character: SG/W27-021
+Name "Fusion Case No. 1" Hibiki
+Color Y
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+EndCard
+
+Character: SG/W27-022
+Name Yumi Itaba
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Music
+Cont: GiveSelf
+{
+	If MyTurn
+	{
+		GainPower 1000
+	}
+}
+Text Cont:During your turn, this gains +1000 Power.
+EndCard
+
+Character: SG/W27-023
+Name Miku, Power of "Purging Misfortune"
+Color Y
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+EndCard
+
+Event: SG/W27-024
+Name Gungnir
+Color Y
+Level 2
+Cost 1
+Effect: 
+{
+	PayCost Send 1 Clock NameContains Hibiki && Compare ThatCardsLevel 2 OrMore
+    {
+		Message Choose a ""Offensive Spear: Gungnir" Hibiki" in your Waiting Room and put it in any Slot on the Stage.
+		SearchLocationForTargets WaitingRoom 0 1 NameEquals "Offensive Spear: Gungnir" Hibiki
+		PlaceOnStage false true true false
+		BlockOpponentEncore
+    }
+	TargetSelf
+	MoveCard Memory
+}
+Text You may choose 1 of your Level 2 or higher Characters with "Hibiki" in name and put it in Clock. If so, choose 1 '"Offensive Spear: Gungnir" Hibiki' in your Waiting Room and put it in any Slot on the stage, and your Opponent cannot use "[A] ENCORE" for the turn. (This includes "[A] ENCORE [(3)]" provided by the rules). Send this to Memory. 
+EndCard
+
+Event: SG/W27-025
+Name Shooting Star for the Two
+Color Y
+Level 2
+Cost 0
+Effect: 
+{
+	PayCost Rest 2 Any
+	{
+		Message Choose up to 1 «Music» character.
+		SearchDeck HasTrait Music
+	}
+}
+Text Choose 2 of your Standing Characters and Rest them. If so, search your Library for up to 1 ::Music:: Character, reveal it, and put it in your hand. Shuffle your Library.
+EndCard
+
+Event: SG/W27-026
+Name Shen Shou Jing
+Color Y
+Level 2
+Cost 1
+Effect: 
+{
+	TargetLocation OpponenCenterStage
+	NarrowTargets Compare ThatCardsLevel 2 OrLess && CanBeChoosen
+	If HasTarget
+	{
+		ChooseCharacterFromTargets Choose an opponent's character to put in stock.
+		MoveCard Stock
+	}
+}
+Text Choose a Level 2 or lower Character in your Opponent's Front Row and put it in Stock.
+EndCard
+
+Climax: SG/W27-027
+Name Superb Song Combination Arts
+Color Y
+*DrawClimax
+EndCard
+
+Climax: SG/W27-028
+Name Liuxing
+*YellowStockSoul
+EndCard
+
+Climax: SG/W27-029
+Name Vitalization
+*ShotClimax
+EndCard
+
+Climax: SG/W27-030
+Name Miku's Wish
+*WindClimax
+EndCard
+
+Character: SG/W27-031
+Name Kirika Akatsuki
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 NameContains Shirabe && Other
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another Character with "Shirabe" in name, this gains +1500 Power.
+EndCard
+
+Character: SG/W27-031S
+Name Kirika Akatsuki
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 NameContains Shirabe && Other
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another Character with "Shirabe" in name, this gains +1500 Power.
+EndCard
+
+Character: SG/W27-032
+Name Shirabe Tsukuyomi
+Color G
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 NameContains Kirika && Other
+	{
+		GainPower 1000
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont:If you have another Character with "Kirika" in name, this gains +1000 Power and "[A] ENCORE [Discard a Character card from your hand to the Waiting Room]".
+EndCard
+
+Character: SG/W27-032S
+Name Shirabe Tsukuyomi
+Color G
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 NameContains Kirika && Other
+	{
+		GainPower 1000
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont:If you have another Character with "Kirika" in name, this gains +1000 Power and "[A] ENCORE [Discard a Character card from your hand to the Waiting Room]".
+EndCard
+
+Character: SG/W27-033
+Name "X-Drive Mode" Kirika
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Final Oppression: Neverland
+*OnPlayGivePower(1500, Music)
+Auto: OnAttack
+{
+	If Climax Final Oppression: Neverland
+	{
+		PayCost 1
+		{
+			TargetSelf
+			GainPower 1000
+			GainEffect
+			{
+				Auto: OnReverseOpponent
+				{
+					TargetBattleOpponent
+					If Compare ThatCardsLevel 2 OrMore
+					{
+						Question Put the battle opponent to clock ?
+						If Yes
+						{
+							MoveCard OpponentClock
+						}
+					}
+				}
+				Text Auto:When a Level 2 or higher Battle Opponent of this becomes Reversed, you may put that Character in Clock.
+			}
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "Final Oppression: Neverland" is in the Climax Zone, you may pay cost. If so, this gains +1000 Power and the following ability for the turn. "[A] When a Level 2 or higher Battle Opponent of this becomes Reversed, you may put that Character in Clock."
+EndCard
+
+Character: SG/W27-034
+Name "Receptor Children" Kirika
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+	If LocationContains Level 1 NameEquals Shirabe Tsukuyomi && LocationContains Level 1 NameEquals Kirika Akatsuki
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:EXPERIENCE If "Shirabe Tsukuyomi" and "Kirika Akatsuki" are in your Level Zone, this gets -1 Level while in your hand.
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && NameEquals "Receptor Children" Shirabe
+	SetXValue TargetCount
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:For each of your other '"Receptor Children" Shirabe', this gains +1000 Power.
+Auto: OnPlay
+{
+	SearchDeck HasTrait Music
+}
+Text Auto:When this is placed from hand to the Stage, search your Library for up to 1 ::Music:: Character, reveal it, and put it in your hand. Shuffle your Library.
+EndCard
+
+Character: SG/W27-034SP
+Name "Receptor Children" Kirika
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+	If LocationContains Level 1 NameEquals Shirabe Tsukuyomi && LocationContains Level 1 NameEquals Kirika Akatsuki
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:EXPERIENCE If "Shirabe Tsukuyomi" and "Kirika Akatsuki" are in your Level Zone, this gets -1 Level while in your hand.
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && NameEquals "Receptor Children" Shirabe
+	SetXValue TargetCount
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:For each of your other '"Receptor Children" Shirabe', this gains +1000 Power.
+Auto: OnPlay
+{
+	SearchDeck HasTrait Music
+}
+Text Auto:When this is placed from hand to the Stage, search your Library for up to 1 ::Music:: Character, reveal it, and put it in your hand. Shuffle your Library.
+EndCard
+
+Character: SG/W27-035
+Name "Receptor Children" Shirabe
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+	If StageContains 1 NameEquals "Receptor Children" Kirika
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:If you have '"Receptor Children" Kirika', this gets -1 Level while in your hand.
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && NameEquals "Receptor Children" Kirika
+	SetXValue TargetCount
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:For each of your other '"Receptor Children" Kirika', this gains +1000 Power.
+*Healer
+EndCard
+
+Character: SG/W27-035SP
+Name "Receptor Children" Shirabe
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+	If StageContains 1 NameEquals "Receptor Children" Kirika
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:If you have '"Receptor Children" Kirika', this gets -1 Level while in your hand.
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && NameEquals "Receptor Children" Kirika
+	SetXValue TargetCount
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:For each of your other '"Receptor Children" Kirika', this gains +1000 Power.
+*Healer
+EndCard
+
+Character: SG/W27-036
+Name Kirika, Jumping in
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*BondClock(Shirabe Tsukuyomi)
+EndCard
+
+Character: SG/W27-037
+Name Dr. Ver
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Science
+Trait2 Glasses
+Auto: OnPlay
+{
+	PayCost 2
+	{
+		Message Choose up to 1 of either "Nephilim Nova", "Noise", or "Solomon's Cane"
+		SearchDeck NameEquals NephilimNova | Noise | Solomon's Cane
+	}
+}
+Text Auto:[(2)] When this is placed from hand to the Stage, you may pay cost. If so, search your library for up to 1 of either "Nephilim Nova", "Noise", or "Solomon's Cane", reveal it, and put it in your hand. Shuffle your Library.
+EndCard
+
+Character: SG/W27-038
+Name Kirika, Bright And Energetic
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If LocationContainsOrLess Stock 3 Any
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If there are 3 or fewer cards in your Stock, this gains +1000 Power.
+EndCard
+
+Character: SG/W27-039
+Name Kirika & Shirabe, Friendly Two
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: Assist
+{
+    TargetLocation Stage
+    NarrowTargets With ASSIST
+    SetXValue TargetCount
+    MultiplyXValue 500
+    GainPower X
+}
+Text Cont:ASSIST All your Characters in front of this gain +X Power. X = 500 times # of your Characters with ASSIST.
+Tag Backstage
+*ClockShift(1,green)
+EndCard
+
+Character: SG/W27-040
+Name Shirabe, Jumping in
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*500Assist
+Act: 1 RestSelf
+{
+	TargetSelf
+	Bounce
+}
+Text Act:[(1) Rest this] Return this to your hand.
+EndCard
+
+Character: SG/W27-041
+Name Shirabe, Disguise With Glasses
+Color G
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W27-042
+Name Professor Nastassja
+Color G
+Level 0
+Cost 0
+Power 3500
+Soul 1
+Trait1 Science
+Trait2 Eye Patch
+Auto: OnReversed
+{
+	TargetTop Deck 1
+	MoveCard Clock
+}
+Text Auto:When this becomes Reversed in battle, put the top card of your Library in your Clock.
+*HandEncore
+EndCard
+
+Character: SG/W27-043
+Name Noise
+Color G
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Noise
+Army
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && HasTrait Noise
+	SetXValue TargetCount
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:For each of your other ::Noise:: Characters, this gains +1000 Power.
+EndCard
+
+Character: SG/W27-044
+Name "X-Drive Mode" Shirabe
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Final Omega Form: Dystopia
+Auto: OnAttack
+{
+	If Climax Final Omega Form: Dystopia
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChoosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose an opponent's character to give -2000 power for the turn
+			LosePower 2000
+		}
+	}
+}
+Text Auto:When this attacks, if "Final Omega Form: Dystopia" is in the Climax Zone, choose a Character in your Opponent's Front Row, and that Character gets -2000 Power for the turn.
+*ClockEncore
+EndCard
+
+Character: SG/W27-045
+Name Shirabe, Quiet Girl
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Backup 3000
+EndCard
+
+Character: SG/W27-046
+Name Nephilim Nova
+Color G
+Level 2
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 No Traits
+Cont: GiveSelf
+{
+	SetXValue MarkersUnderThis
+	GainLevel X
+	MultiplyXValue 1500
+	GainPower X
+}
+Text Cont:For each Marker under this, this gains +1 Level and +1500 Power.
+Auto: OnReverseOpponent
+{
+	Question Put the top card of your deck as marker ?
+	If Yes
+	{
+		TargetTop Deck 1
+		Marker_FaceDown
+	}
+}
+Text Auto:When the Battle Opponent of this becomes Reversed, you may put the top card of your Library under this as Marker.
+EndCard
+
+Event: SG/W27-047
+Name Awakening of Fine
+Color G
+Level 1
+Cost 0
+Counter
+Effect: 
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +3000 Power for the turn.
+	GainPower 3000
+	TargetSelf
+	MoveCard Clock
+}
+Text Choose up to 1 of your Characters, and that Character gains +3000 Power for the turn. Put this in your Clock.
+EndCard
+
+Event: SG/W27-048
+Name Solomon's Cane
+Color G
+Level 2
+Cost 1
+Requirement StageContains 1 NameEquals Dr. Ver
+Effect: 
+{
+	Message Choose up to 4 ::Noise:: characters to place on stage.
+	SearchLocationForTargets Deck 0 4 HasTrait Noise
+	RevealTargets
+	PlaceOnStage False True True false
+	ShuffleLocation Deck
+}
+Text If you don't have a "Dr. Ver", you cannot play this from your hand. Search your Library for up to 4 Cost 0 or lower ::Noise:: Characters and put them in separate Slots on the Stage. Shuffle your Library.
+EndCard
+
+Climax: SG/W27-049
+Name Final Oppression: Neverland
+*BarClimax
+EndCard
+
+Climax: SG/W27-050
+Name Final Omega Form: Dystopia
+Color G
+*DrawClimax
+EndCard
+
+Character: SG/W27-051
+Name "Burst Spear: Gungnir" Maria
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo HORIZON†SPEAR
+*GainPowerForEachOther(500, Music)
+Auto: OnAttack
+{
+	If Climax HORIZON†SPEAR
+	{
+		PayCost 1
+		{
+			SearchWaitingRoom Any
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "HORIZON†SPEAR" is in the Climax Zone, you may pay cost. If so, choose a Character in your Waiting Room and return it to your hand.
+EndCard
+
+Character: SG/W27-051S
+Name "Burst Spear: Gungnir" Maria
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo HORIZON†SPEAR
+*GainPowerForEachOther(500, Music)
+Auto: OnAttack
+{
+	If Climax HORIZON†SPEAR
+	{
+		PayCost 1
+		{
+			SearchWaitingRoom Any
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "HORIZON†SPEAR" is in the Climax Zone, you may pay cost. If so, choose a Character in your Waiting Room and return it to your hand.
+EndCard
+
+Character: SG/W27-052
+Name Chris in Swimsuits
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*LevelAssist
+Auto: OnPlay
+{
+	PayCost 1
+	{
+		SearchWaitingRoom NameEquals Ichaival
+	}
+}
+Text Auto:[(1)] When this is placed from hand to the Stage, you may pay cost. If so, choose an "Ichaival" in your Waiting Room and return it to your hand.
+EndCard
+
+Character: SG/W27-053
+Name "Long Range Wide Area Attack" Chris
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ichaival
+	If HasTarget
+	{
+		GainPower 1000
+		GainEffect
+		{
+			Auto: OnOtherReversed
+			{
+				TargetSelf
+				GainPower 1000
+			}
+			Text Auto:When your other Characters becomes Reversed in battle, this gains +1000 Power for the turn.
+		}
+	}
+}
+Text Cont:RECOLLECTION If "Ichaival" is in your Memory, this gains +1000 Power and the following ability. "[A] When your other Characters becomes Reversed in battle, this gains +1000 Power for the turn."
+Auto: OnReverseOpponent
+{
+	If MyTurn
+	{
+		PayCost 1
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets Compare ThatCardsLevel 2 OrLess && CanBeChoosen
+			ChooseCharacterFromTargets Choose an opponent's character to put on top of the deck.
+			MoveCard OpponentDeck
+		}
+	}
+}
+Text Auto:[(1)] During your turn, when the Battle Opponent of this becomes Reversed, you may pay cost. If so, choose a Level 2 or lower Character in your Opponent's Front Row and put it on top of the Library.
+EndCard
+
+Character: SG/W27-053SP
+Name "Long Range Wide Area Attack" Chris
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ichaival
+	If HasTarget
+	{
+		GainPower 1000
+		GainEffect
+		{
+			Auto: OnOtherReversed
+			{
+				TargetSelf
+				GainPower 1000
+			}
+			Text Auto:When your other Characters becomes Reversed in battle, this gains +1000 Power for the turn.
+		}
+	}
+}
+Text Cont:RECOLLECTION If "Ichaival" is in your Memory, this gains +1000 Power and the following ability. "[A] When your other Characters becomes Reversed in battle, this gains +1000 Power for the turn."
+Auto: OnReverseOpponent
+{
+	If MyTurn
+	{
+		PayCost 1
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets Compare ThatCardsLevel 2 OrLess && CanBeChoosen
+			ChooseCharacterFromTargets Choose an opponent's character to put on top of the deck.
+			MoveCard OpponentDeck
+		}
+	}
+}
+Text Auto:[(1)] During your turn, when the Battle Opponent of this becomes Reversed, you may pay cost. If so, choose a Level 2 or lower Character in your Opponent's Front Row and put it on top of the Library.
+EndCard
+
+Character: SG/W27-054
+Name "Fine Reincarnate" Maria
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo Declaration of War
+Auto: OnPlay|PlacedBy CHANGE
+{
+	If Compare CardsInClock 1 OrMore
+	{
+		Question_Obvious Put the top card of your clock into the waiting room?
+		If Yes
+		{
+			Heal
+		}
+	}
+}
+Text Auto:When this is placed from hand to the Stage or via CHANGE to the Stage, you may put the top card of your Clock in the Waiting Room.
+Auto: OnAttack
+{
+	If Climax Declaration of War
+	{
+		PayCost 2
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets Compare ThatCardsLevel 3 OrLess && CanBeChoosen
+			ChooseCharacterFromTargets Choose an opponent's character to put on top of the deck.
+			MoveCard OpponentDeck
+		}
+	}
+}
+Text Auto:[(2)] When this attacks, if "Declaration of War" is in the Climax Zone, you may pay cost. If so, choose a Level 3 or lower Character in your Opponent's Front Row and put it on top of the Library.
+EndCard
+
+Character: SG/W27-054SP
+Name "Fine Reincarnate" Maria
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo Declaration of War
+Auto: OnPlay|PlacedBy CHANGE
+{
+	If Compare CardsInClock 1 OrMore
+	{
+		Question_Obvious Put the top card of your clock into the waiting room?
+		If Yes
+		{
+			Heal
+		}
+	}
+}
+Text Auto:When this is placed from hand to the Stage or via CHANGE to the Stage, you may put the top card of your Clock in the Waiting Room.
+Auto: OnAttack
+{
+	If Climax Declaration of War
+	{
+		PayCost 2
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets Compare ThatCardsLevel 3 OrLess && CanBeChoosen
+			ChooseCharacterFromTargets Choose an opponent's character to put on top of the deck.
+			MoveCard OpponentDeck
+		}
+	}
+}
+Text Auto:[(2)] When this attacks, if "Declaration of War" is in the Climax Zone, you may pay cost. If so, choose a Level 3 or lower Character in your Opponent's Front Row and put it on top of the Library.
+EndCard
+
+Character: SG/W27-055
+Name Chris, Own Role
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+	If StageContains 3 HasTrait Music && Other
+	{
+		Mill 3
+	}
+}
+Text Auto:When you use the BACKUP of this, if you have 3 or more ::Music:: Characters, put the top 3 cards of your Library in the Waiting Room.
+Backup 1000
+EndCard
+
+Character: SG/W27-055R
+Name Chris, Own Role
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+	If StageContains 3 HasTrait Music && Other
+	{
+		Mill 3
+	}
+}
+Text Auto:When you use the BACKUP of this, if you have 3 or more ::Music:: Characters, put the top 3 cards of your Library in the Waiting Room.
+Backup 1000
+EndCard
+
+
+Character: SG/W27-057
+Name "QUEENS of MUSIC" Maria
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*500Assist
+Act: 1
+{
+	Brainstorm 4
+	SetXValue BrainstormedClimax
+	Repeat X
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets Compare ThatCardsCost 0 OrLess && CanBeChoosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose an opponent's character to put in waiting room.
+			If HasTarget
+			{
+				MoveCard OpponentWaitingRoom
+			}
+		}
+	}
+}
+Text Act:BRAINSTORM [(1)] Flip over the top 4 cards of your Library and put them in the Waiting Room. For each Climax card revealed this way, choose up to 1 Cost 0 or lower Character in your Opponent's Front Row and put it in the Waiting Room.
+EndCard
+
+Character: SG/W27-057R
+Name "QUEENS of MUSIC" Maria
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*500Assist
+Act: 1
+{
+	Brainstorm 4
+	SetXValue BrainstormedClimax
+	Repeat X
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets Compare ThatCardsCost 0 OrLess && CanBeChoosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose an opponent's character to put in waiting room.
+			If HasTarget
+			{
+				MoveCard OpponentWaitingRoom
+			}
+		}
+	}
+}
+Text Act:BRAINSTORM [(1)] Flip over the top 4 cards of your Library and put them in the Waiting Room. For each Climax card revealed this way, choose up to 1 Cost 0 or lower Character in your Opponent's Front Row and put it in the Waiting Room.
+EndCard
+
+Character: SG/W27-058
+Name "X-Drive Mode" Maria
+Color R
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+	TargetTop Deck 1
+    Reveal
+    IfTarget Not HasTrait Music
+    {
+        MoveCard Clock
+    }
+}
+Text Auto:When this is placed from hand to the Stage, reveal the top card of your Library. If it's not a ::Music:: Character, put it in your Clock. (Otherwise put it back where it was)
+*HandEncore
+EndCard
+
+Character: SG/W27-059
+Name Chris, Shouldered Burden
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 3 HasTrait Music && Other
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 3 or more other ::Music:: Characters, this gains +1000 Power.
+Auto: OnPlay
+{
+	TargetSelf
+	GainPower 1500
+}
+Text Auto:When this is placed from hand to the Stage, this gains +1500 Power for the turn.
+EndCard
+
+Character: SG/W27-060
+Name Chris, Overwhelming Firepower
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo RED HOT BLAZE
+Auto: OnAttack
+{
+	If Climax RED HOT BLAZE && StageContains 4 NameContains Chris && Other
+	{
+		SearchWaitingRoom Any
+		TargetSelf
+		GainPower 3000
+	}
+}
+Text Auto:When this attacks, if "RED HOT BLAZE" is in the Climax Zone and you have 4 or more other Characters with "Chris" in name, choose a Character in your Waiting Room and return it to your hand, and this gains +3000 Power for the turn.
+EndCard
+
+Character: SG/W27-060S
+Name Chris, Overwhelming Firepower
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo RED HOT BLAZE
+Auto: OnAttack
+{
+	If Climax RED HOT BLAZE && StageContains 4 NameContains Chris && Other
+	{
+		SearchWaitingRoom Any
+		TargetSelf
+		GainPower 3000
+	}
+}
+Text Auto:When this attacks, if "RED HOT BLAZE" is in the Climax Zone and you have 4 or more other Characters with "Chris" in name, choose a Character in your Waiting Room and return it to your hand, and this gains +3000 Power for the turn.
+EndCard
+
+Character: SG/W27-061
+Name Maria, Songstress of the World
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnTriggerCheckClimax
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +2000 power for the turn.
+	GainPower 2000
+}
+Text Auto:When your Character's Trigger Check reveals a Climax card, choose 1 of your Characters, and that Character gains +2000 Power for the turn.
+Auto: OnOtherReversed
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +1000 power for the turn.
+	GainPower 1000
+}
+Text Auto:When your other Character in battle becomes Reversed, choose 1 of your Characters, and that Character gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W27-062
+Name Chris, Being Kiddish
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*RedLevel0Bomb
+Act: 1
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +1500 power for the turn.
+	GainPower 1500
+}
+Text Act:[(1)] Choose 1 of your Characters, and that Character gains +1500 Power for the turn.
+EndCard
+
+Character: SG/W27-063
+Name Maria, True Wish
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+	PayCost 2
+	{
+		SearchWaitingRoom HasTrait Music
+	}
+}
+Text Auto:[(2)] When this is placed from hand to the Stage, you may pay cost. If so, choose a ::Music:: Character in your Waiting Room and return it to your hand.
+*ClockShift(0,red)
+EndCard
+
+Character: SG/W27-064
+Name Chris, Loves Songs
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 3 Other && NameContains Chris
+	{
+		GainPower 2000
+	}
+}
+Text Cont:If you have 3 or more other Characters with "Chris" in name, this gains +2000 Power.
+EndCard
+
+Character: SG/W27-065
+Name Maria, the Other "Gungnir"
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: StartClimaxPhase
+{
+	PayCost 2 Discard 1 Any SendSelf WaitingRoom
+	{
+		*ChangeWaitingRoom("Fine Reincarnate" Maria)
+	}
+}
+Text Auto:CHANGE [(2) Discard a card from your hand to the Waiting Room, put this in the Waiting Room] At the start of your Climax Phase, you may pay cost. If so, choose a '"Fine Reincarnate" Maria' in your Waiting Room and put it in the Slot this was in.
+EndCard
+
+Character: SG/W27-066
+Name Chris in Gymnastics Cloth
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*500Assist
+EndCard
+
+Character: SG/W27-067
+Name Serena Cadenzavna Eve
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Auto: OnOtherAttacked
+{
+	TargetMyCharacterInBattle
+	IfTarget NameContains Maria
+	{
+		PayCost SendSelf WaitingRoom
+		{
+			TargetMyCharacterInBattle
+			GainPower 1500
+		}
+	}
+}
+Text Auto:[Put this in the Waiting Room] When your other Character with "Maria" in name is Front Attacked, you may pay cost. If so, choose 1 of your Characters in battle, and that Character gains +1500 Power for the turn.
+EndCard
+
+Character: SG/W27-068
+Name Chris, Chasing After
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Act: Rest 1 HasTrait Music
+{
+	TargetSelf
+	GainPower 1000
+}
+Text Act:[Rest 1 of your ::Music:: Characters] This gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W27-069
+Name Maria, Kind Girl
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W27-070
+Name "X-Drive Mode" Chris
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Key of Babylonia
+Auto: OnAttack
+{
+	If Climax Key of Babylonia
+	{
+		PayCost 1
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets Compare ThatCardsCost 0 OrLess && CanBeChoosen
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose an opponent's character to put in waiting room.
+				If HasTarget
+				{
+					MoveCard OpponentWaitingRoom
+				}
+			}
+			TargetSelf
+			GainPower 2000
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "Key of Babylonia" is in the Climax Zone, you may pay cost. If so, choose 1 of your Opponent's Level 0 or lower Characters and put it in the Waiting Room, and this gains +2000 Power for the turn.
+EndCard
+
+Character: SG/W27-071
+Name Maria, Determination to Follow Through
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Backup 2000
+EndCard
+
+Character: SG/W27-072
+Name Chris, Being True to Herself
+Color R
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W27-073
+Name Maria, Afte the Battle
+Color R
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Event: SG/W27-074
+Name Ichaival
+Color R
+Level 2
+Cost 2
+Effect: 
+{
+	PayCost Send 1 WaitingRoom NameContains Chris && Compare ThatCardsLevel 2 OrMore
+    {
+		Message Choose a ""Long Range Wide Area Attack" Chris" in your Waiting Room and put it in any Slot on the Stage.
+		SearchLocationForTargets WaitingRoom 0 1 NameEquals "Long Range Wide Area Attack" Chris
+		PlaceOnStage false true true false
+		*OptionalDraw
+		*OptionalDraw
+		Discard 1 Any
+    }
+	TargetSelf
+	MoveCard Memory
+}
+Text You may choose 1 of your Level 2 or higher Characters with "Chris" in name and put it in your Waiting Room. If so, choose up to 1 '"Long Range Wide Area Attack" Chris' in your hand and put it in any Slot on the Stage. Draw up to 2 cards, and discard a card from your hand to the Waiting Room. Send this to Memory.
+EndCard
+
+Event: SG/W27-075
+Name Thing Truly Wanted to be Done
+Color R
+Level 2
+Cost 2
+Effect: 
+{
+	SearchLocationForTargets WaitingRoom 0 2 Any
+}
+Text Choose up to 2 Characters in your Waiting Room and return them to your hand.
+EndCard
+
+Event: SG/W27-076
+Name Black Gungnir
+Color R
+Level 1
+Cost 0
+Effect: 
+{
+	TargetLocation Stage
+	NarrowTargets HasTrait Weapon
+	GainPower 1500
+}
+Text All your ::Weapon:: Characters gain +1500 Power for the turn.
+EndCard
+
+Climax: SG/W27-077
+Name HORIZON†SPEAR
+Color R
+*2SoulClimax
+EndCard
+
+Climax: SG/W27-078
+Name Declaration of War
+*DoorClimax
+EndCard
+
+Climax: SG/W27-079
+Name Key of Babylonia
+*RedStockSoul
+EndCard
+
+Climax: SG/W27-080
+Name RED HOT BLAZE
+Color R
+*DrawClimax
+EndCard
+
+Character: SG/W27-081
+Name Tsubasa, Strength Training
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: Assist
+{
+	If Not MyTurn
+	{
+		GainPower 500
+		GainLevel 1
+	}
+}
+Text Cont:ASSIST During your Opponent's turn, all your Characters in front of this gain +1 Level and +500 Power.
+Tag Backstage
+Auto: OnPlay
+{
+	PayCost 1
+	{
+		SearchWaitingRoom NameEquals Ame-no-Habakiri
+	}
+}
+Text Auto:[(1)] When this is placed from hand to the Stage, you may pay cost. If so, choose an "Ame-no-Habakiri" in your Waiting Room and return it to your hand.
+*ClockShift(1,blue)
+EndCard
+
+Character: SG/W27-082
+Name Tsubasa, Drawn Blade
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo Thousand Falling Tears
+Auto: OnPlay|PlacedBy Ame-no-Habakiri
+{
+	*OptionalHeal
+}
+Text Auto:When this is placed from hand to the Stage or via the effect of "Ame-no-Habakiri" to the Stage, you may put the top card of your Clock in the Waiting Room.
+Auto: OnAttack
+{
+	If Climax Thousand Falling Tears
+	{
+		PayCost 1
+		{
+			*OptionalDraw
+			TargetSelf
+			UntilEndOfOpponentsTurn
+			GainPower 3000
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "Thousand Falling Tears" is in the Climax Zone, you may pay cost. If so, draw a card, and this gains +3000 Power until the next end of your Opponent's turn.
+EndCard
+
+Character: SG/W27-082SP
+Name Tsubasa, Drawn Blade
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo Thousand Falling Tears
+Auto: OnPlay|PlacedBy Ame-no-Habakiri
+{
+	*OptionalHeal
+}
+Text Auto:When this is placed from hand to the Stage or via the effect of "Ame-no-Habakiri" to the Stage, you may put the top card of your Clock in the Waiting Room.
+Auto: OnAttack
+{
+	If Climax Thousand Falling Tears
+	{
+		PayCost 1
+		{
+			*OptionalDraw
+			TargetSelf
+			UntilEndOfOpponentsTurn
+			GainPower 3000
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "Thousand Falling Tears" is in the Climax Zone, you may pay cost. If so, draw a card, and this gains +3000 Power until the next end of your Opponent's turn.
+EndCard
+
+Character: SG/W27-083
+Name Tsubasa, Battle-Hardened
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If Not MyTurn && LocationContainsOrLess OpponentStage 3 Any
+	{
+		GainPower 1500
+		GainLevel 1
+	}
+}
+Text Cont:During your Opponent's turn, if your Opponent has 3 or fewer Characters, this gains +1 Level and +1500 Power.
+EndCard
+
+Character: SG/W27-083S
+Name Tsubasa, Battle-Hardened
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If Not MyTurn && LocationContainsOrLess OpponentStage 3 Any
+	{
+		GainPower 1500
+		GainLevel 1
+	}
+}
+Text Cont:During your Opponent's turn, if your Opponent has 3 or fewer Characters, this gains +1 Level and +1500 Power.
+EndCard
+
+Character: SG/W27-084
+Name "QUEENS of MUSIC" Tsubasa
+Color B
+Level 1
+Cost 0
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*CannotSideAttack
+EndCard
+
+Character: SG/W27-084R
+Name "QUEENS of MUSIC" Tsubasa
+Color B
+Level 1
+Cost 0
+Power 6000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*CannotSideAttack
+EndCard
+
+Character: SG/W27-085
+Name Genjurou, Hibiki's Master
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 No Traits
+Cont: GiveAll
+{
+	If NameContains Hibiki && InLocation MiddleCenterStage
+	{
+		GainPower 500
+	}
+}
+Text Cont:Your other Character with "Hibiki" in name in the Front Row Center Slot gains +500 Power.
+*SacrificeToSave(Any)
+EndCard
+
+Character: SG/W27-086
+Name Tsubasa, Confronting Chris
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+	If StageContains 2 Other && NameContains Tsubasa
+	{
+		*OptionalDraw
+		Discard 1 Any
+	}
+}
+Text Auto:When this is placed from hand to the Stage, if you have 2 or more other Characters with "Tsubasa" in name, draw a card, and discard a card from your hand to the Waiting Room.
+EndCard
+
+Character: SG/W27-087
+Name Tsubasa, Blade to Continue
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Act: Rest 2 HasTrait Music
+{
+	TargetSelf
+	GainLevel 1
+	GainPower 2000
+}
+Text Act:[Rest 2 of your ::Music:: Characters] This gains +1 Level and +2000 Power for the turn.
+EndCard
+
+Character: SG/W27-088
+Name Tsubasa, Feelings Not Wasted
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If Not MyTurn
+	{
+		TargetLocation Stage
+		NarrowTargets Other && HasTrait Music
+		SetXValue TargetCount
+		MultiplyXValue 500
+		GainPower X
+	}
+}
+Text Cont:During your Opponent's turn, for each of your other ::Music:: Characters, this gains +500 Power.
+EndCard
+
+Character: SG/W27-089
+Name Tsubasa, Singing on the Battlefield
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Flash of the Cavalry Blade
+Auto: OnAttack
+{
+	If Climax Flash of the Cavalry Blade && StageContains 4 Other && NameContains Tsubasa
+	{
+		PayCost
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets Compare ThatCardsCost 1 OrLess && CanBeChoosen
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose an opponent's character to put in bottom deck.
+				If HasTarget
+				{
+					MoveCardToBottom OpponentDeck
+				}
+			}
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "Flash of the Cavalry Blade" is in the Climax Zone and you have 4 or more other Characters with "Tsubasa" in name, you may pay cost. If so, choose 1 of your Opponent's Level 1 or lower Characters and put it on the bottom of the Library.
+EndCard
+
+Character: SG/W27-089S
+Name Tsubasa, Singing on the Battlefield
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Flash of the Cavalry Blade
+Auto: OnAttack
+{
+	If Climax Flash of the Cavalry Blade && StageContains 4 Other && NameContains Tsubasa
+	{
+		PayCost
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets Compare ThatCardsCost 1 OrLess && CanBeChoosen
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose an opponent's character to put in bottom deck.
+				If HasTarget
+				{
+					MoveCardToBottom OpponentDeck
+				}
+			}
+		}
+	}
+}
+Text Auto:[(1)] When this attacks, if "Flash of the Cavalry Blade" is in the Climax Zone and you have 4 or more other Characters with "Tsubasa" in name, you may pay cost. If so, choose 1 of your Opponent's Level 1 or lower Characters and put it on the bottom of the Library.
+EndCard
+
+Character: SG/W27-090
+Name Aoi Tomosato
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Operator
+*500Assist
+EndCard
+
+Character: SG/W27-091
+Name Sakuya Fujitaka
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Operator
+Act: 1
+{
+	*OptionalDraw
+	Discard 1 Any
+}
+Text Act:[(1)] Draw a card, and discard a card from your hand to the Waiting Room.
+EndCard
+
+Character: SG/W27-092
+Name Tsubasa, Preparation for the School Festival
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W27-093
+Name Shinji Ogawa
+Color B
+Level 1
+Cost 1
+Power 6500
+Soul 1
+Trait1 Ninja
+Trait2 Glasses
+*CharacterFacingThisCannotMove
+EndCard
+
+Character: SG/W27-094
+Name Tsubasa, Student at Lydian
+Color B
+Level 1
+Cost 1
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+EndCard
+
+Character: SG/W27-095
+Name Tsubasa in Gymnastics Cloth
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Backup 3000
+EndCard
+
+Event: SG/W27-096
+Name Ame-no-Habakiri
+Color B
+Level 2
+Cost 1
+Effect: 
+{
+	PayCost Send 1 WaitingRoom NameContains Tsubasa && Compare ThatCardsLevel 2 OrMore
+    {
+		Message Choose a "Tsubasa, Drawn Blade" in your Hand and put it in any Slot on the Stage.
+		SearchLocationForTargets Hand 0 1 NameEquals Tsubasa, Drawn Blade
+		PlaceOnStage false true true false
+		UntilEndOfOpponentsTurn
+		GainPower 3000
+    }
+}
+Text You may choose 1 of your Level 2 or higher Characters with "Tsubasa" in name and put it in your Waiting Room. If so, choose up to 1 "Tsubasa, Drawn Blade" in your hand and put it in any Slot on the Stage, and that Character gains +3000 Power until the next end of your Opponent's turn.
+EndCard
+
+Event: SG/W27-097
+Name Stories of Heroes
+Color B
+Level 1
+Cost 1
+Effect: 
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +3000 Power until the next end of your Opponent's turn
+	UntilEndOfOpponentsTurn
+	GainPower 3000
+	TargetSelf
+	MoveCard Memory
+}
+Text Choose 1 of your Characters, and that Character gains +3000 Power until the next end of your Opponent's turn. Send this to Memory.
+EndCard
+
+Event: SG/W27-098
+Name Words Kanade Left Behind
+Color B
+Level 2
+Cost 1
+Effect: 
+{
+	*OptionalDraw
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +2000 Power for the turn
+	GainPower 2000
+	TargetSelf
+	MoveCard Memory
+}
+Text Draw up to 1 card, choose 1 of your Characters, and that Character gains +2000 Power for the turn. Send this to Memory.
+EndCard
+
+Climax: SG/W27-099
+Name Thousand Falling Tears
+*BookClimax
+EndCard
+
+Climax: SG/W27-100
+Name Flash of the Cavalry Blade
+Color B
+*DrawClimax
+EndCard

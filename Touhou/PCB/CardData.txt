@@ -1,0 +1,3233 @@
+Character: TH/PCB-001
+Name Ran & Chen, Like a Familly
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Auto: OnPlay
+{
+    If StageContains 2 Other && HasTrait Gensokyo
+	{
+        *OptionalDraw
+        Discard 1 Any
+    }
+}
+Text Auto:When this card is placed on the stage from hand, if you have 2 or more other «Gensokyo» characters, draw up to 1 card and discard 1 card from your hand into waiting room.
+Auto: OnPlay
+{
+	PayCost HandClock Any
+	{
+		SearchDeck Compare ThatCardsLevel 1 OrLess && IsCharacter
+	}
+}
+Text Auto:[Put 1 card from your hand into your clock] When this card is placed on the stage from hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower character, reveal it to your opponent, put it in your hand and shuffle your deck.
+EndCard
+
+Character: TH/PCB-002
+Name Ran, The Charming Fox
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Cont: GiveAll
+{
+	If Other && InLocation MiddleCenterStage
+	{
+		GainPower 500
+	}
+}
+Text Cont:Your other character in the middle position of your center stage gets +500 power.
+Auto: OnClimaxPlay
+{
+	PayCost 1
+	{
+		*Check4Add1(Gensokyo)
+	}
+}
+Text Auto:[(1)] When a climax is placed into your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 «Gensokyo» character among them, add it to your hand and place the remaining cards into waiting room.
+EndCard
+
+Character: TH/PCB-003
+Name Ran Yakumo
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Combo Austerity Sign 「Eight Million Holy Boards」
+Auto: OnAttack
+{
+	If StageContains 1 Other && HasTrait Gensokyo|Intellect
+	{
+		TargetSelf
+		GainPower 1500
+	}
+} 
+Text Auto:When this card attacks, if you have another character with either «Gensokyo» or «Intellect», this card gets +1500 power until end of turn.
+Auto: OnReverseOpponent
+{
+	If Climax Austerity Sign 「Eight Million Holy Boards」
+	{
+		SearchDeck HasTrait Gensokyo
+	}
+}
+Text Auto:CxCombo When this card's battle opponent becomes reversed, if "Austerity Sign 「Eight Million Holy Boards」" is in your climax area, search your deck for up to 1 «Gensokyo» character, reveal it, put it in your hand and shuffle your deck.
+EndCard
+
+Character: TH/PCB-004
+Name Ran, Like a Mother
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Intellect
+Combo Shikigami 「Banquet of Twelve General Gods」
+*Healer
+Auto: OnAttack
+{
+	If Climax Shikigami 「Banquet of Twelve General Gods」 && StageContains 1 NameContains Chen
+	{
+		PayCost 2 Discard 1 Any
+		{
+			TargetLocation Stage
+			NarrowTargets NameContains Chen
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose a character with "Chen" to stand.
+				Stand
+			}
+		}
+	}
+}
+Text Auto:CxCombo [(2) Put 1 card from your hand into waiting room] This ability activates up to once per turn. When this card attacks, if "Shikigami 「Banquet of Twelve General Gods」" is in your climax area and you have another character with "Chen" in its card name, you may pay cost. If you do, choose 1 of your "Chen" and stand it.
+EndCard
+
+Character: TH/PCB-005
+Name Ran, Friendly Sign
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Auto: OnPlay
+{
+	Peek Deck 2
+	EndPeek
+}
+Text Auto:When this card is placed from hand to the stage, look at up to 2 cards from the top of your deck and put them back in the same order.
+*DropSearch(Gensokyo)
+EndCard
+
+Character: TH/PCB-006
+Name Ran, 9-Tailed Fox
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Combo Shikigami's Radiance 「Charming Siege From All Sides」
+Cont: GiveSelf
+{
+	TargetLocation Marker
+	SetXValue TargetCount
+	GainLevel X
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:This card gets +1 level and +1000 power for each marker this card has.
+Cont: GiveSelf
+{
+	GainSpecialEffect CannotBeChosen
+}
+Text Cont:This card cannot be chosen as the target of opponent's effects.
+Auto: OnReverseOpponent
+{
+	Question Look at the top card of your deck and put it in marker ?
+	If Yes 
+	{
+		PeekTop Deck
+		Marker_FaceDown
+	}
+}
+Text Auto:When this card's battle opponent becomes reversed, you may look at the top card of your deck. If you do, put that card face-down underneath this card as marker.
+Auto: OnSpecificClimaxPlay Shikigami's Radiance 「Charming Siege From All Sides」
+{
+	If StageContainsOrLess 1 Other && NameEquals Ran, 9-Tailed Fox
+	{
+		TargetTop Deck
+		Marker_FaceDown
+		*OptionalDraw
+	}
+}
+Text Auto:CxCombo When "Shikigami's Radiance 「Charming Siege From All Sides」" is placed in your climax area, if you have 1 or less other "Ran, 9-tailed Fox", put the top card of your deck underneath this card as marker and draw up to 1 card.
+Auto: OnAttack
+{
+	If Compare MyLevel 3 OrMore && Climax Shikigami's Radiance 「Charming Siege From All Sides」
+	{
+		PayCost 2
+		{
+			TargetLocation Marker
+			SetXValue 9
+			SubtractFromXValue TargetCount
+			Burn X
+		}
+	}
+}
+Text Auto:CxCombo [(2)] When this card attacks, if "Shikigami's Radiance 「Charming Siege From All Sides」" is in your climax area and you are level 3 or higher, you may pay the cost. If you do, deal X damage to your opponent, X = 9 - number of markers underneath this card.
+EndCard
+
+Character: TH/PCB-007
+Name Ran, Clear Intellect
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Combo 「Kokkuri-san's Contract」
+*GainPowerForEachOther(500, Intellect)
+Auto: OnSpecificClimaxPlay 「Kokkuri-san's Contract」
+{
+	If InLocation CenterStage
+	{
+		RevealOpponentHand
+		*OptionalDraw
+	}
+}
+Text Auto:CxCombo When "「Kokkuri-san's Contract」" is placed in your climax area, if this card is in your center stage, look at your opponent's hand and draw up to 1 card.
+EndCard
+
+Character: TH/PCB-008
+Name Ran, Under the Sky
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Gensokyo
+Trait2 Intellect
+*EarlyPlay4OrMore(Gensokyo|Intellect)
+Cont: GiveSelf
+{
+	If InLocation MiddleCenterStage
+	{
+		GainSoul 1
+	}
+}
+Text Cont:If this card is in the middle position of your center stage, this card gets +1 soul.
+*OnPlayCheckX(Gensokyo|Intellect)
+EndCard
+
+Character: TH/PCB-009
+Name Ran, Offensive Capacity
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Auto: OnAttack
+{
+	Mill 2
+	NarrowTargets IsClimax
+	If HasTarget
+	{
+		TargetSelf
+		GainSoul 2
+	}
+}
+Text Auto:When this card attacks, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +2 soul until end of turn.
+Auto: OnAttack
+{
+	PayCost Discard 2 Any
+	{
+		SearchWaitingRoom HasTrait Gensokyo
+		TargetSelf
+		GainSoul 1
+	}
+}
+Text Auto:[Put 2 cards from your hand into waiting room] When this cards attacks, you may pay the cost. If you do, choose a «Gensokyo» character in your waiting room, put it in your hand and this card gains +1 soul for the turn.
+EndCard
+
+Character: TH/PCB-010
+Name Ran, Chen's Master
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+*YellowEarlyPlayBomb
+EndCard
+
+Character: TH/PCB-011
+Name Ran, Under the Snow
+Color Y
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+*GainPowerForEachOther(500, Gensokyo)
+*ClockEncore
+EndCard
+
+Character: TH/PCB-012
+Name Ran, Yukari's Shikigami
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Act: 2 RestSelf
+{
+	SearchDeck HasTrait Gensokyo
+}
+Text Act:[(2) Rest this] Search your deck for up to 1 «Gensokyo» character, reveal it to your opponent, put it into your hand and shuffle your deck
+*Act1RestSelfSalvageBrainstorm(Gensokyo)
+EndCard
+
+Character: TH/PCB-013
+Name Ran, Member of the Yakumo Family
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+*RedLevel0Bomb
+EndCard
+
+Character: TH/PCB-014
+Name Ran, With her Guitar
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Cont: GiveSelf
+{
+	If MyTurn
+	{
+		GainPower 1000
+	}
+}
+Text Cont:During your turn, this card gets +1000 power.
+*MoveOtherToBackstageOnReverse
+EndCard
+
+Character: TH/PCB-015
+Name Ran, Close to Her Master
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Cont: GiveSelf
+{
+	If LocationContainsOrLess Stock 2 Any
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have 2 or fewer cards in your stock, this card gets +1500 power.
+EndCard
+
+Character: TH/PCB-016
+Name Ran, Childhood Style
+Color Y
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Combo Shikigami's Shot 「Ultimate Buddhist」
+Cont: GiveSelf
+{
+	If AllYourCharacters HasTrait Intellect
+	{
+		GainPower 4000
+	}
+}
+Text Cont:If all your characters are «Intellect», this card gets +4000 power.
+Auto: OnAttack
+{
+	If StageContains 3 HasTrait Intellect && Other
+	{
+		Peek Deck 2
+        If Compare TargetCount 1 OrMore
+        {
+            Message Choose a card to put on top of your deck.
+            ChooseCardsFromTargets 1 1 Any
+            MoveCard Deck
+            PutTheRestIntoTheWaitingRoom
+        }
+	}
+}
+Text Auto:When this card attacks, if you have 3 or more other «Intellect» characters, look at up to 2 cards from the top of your deck, choose 1 card among them, put it on top of your deck and put the rest into your waiting room.
+Auto: OnAttack
+{
+	If Climax Shikigami's Shot 「Ultimate Buddhist」
+	{
+		PayCost Discard 1 Any
+		{
+			Peek Deck 2
+            If Compare TargetCount 1 OrMore
+            {
+                Message Choose a card to put in your hand.
+                ChooseCardsFromTargets 1 1 Any
+                MoveCard Hand
+                PutTheRestIntoTheWaitingRoom
+            }
+		}
+	}
+}
+Text Auto:CxCombo [Put a card from your hand to the waiting room] When this card attacks, if "Shikigami's Shot 「Ultimate Buddhist」" is in your climax area, you may pay cost. If you do, put the top card of your deck in your stock, look at up to 2 cards from the top of your deck, choose up to 1 among them, put it in your hand and put the rest into your waiting room.
+EndCard
+
+Character: TH/PCB-017
+Name Ran, Embarassed Near Her Master
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Intellect
+Cont: GiveSelf
+{
+	If StageContains 1 Other && NameContains Yukari
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another character with "Yukari" in its card name, this card gets +1500 power.
+Act: Rest 1 HasTrait Gensokyo
+{
+	TargetSelf
+	GainPower 1000
+}
+Text Act:[rest 1 of your «Gensokyo» characters] This gets +1000 power until end of turn.
+EndCard
+
+Climax: TH/PCB-018
+Name Austerity Sign 「Eight Million Holy Boards」
+*ShotClimax
+EndCard
+
+Climax: TH/PCB-019
+Name Shikigami 「Banquet of Twelve General Gods」
+*YellowStockSoul
+EndCard
+
+Climax: TH/PCB-020
+Name Shikigami's Radiance 「Charming Siege From All Sides」
+*ShotClimax
+EndCard
+
+Climax: TH/PCB-021
+Name Shikigami's Shot 「Ultimate Buddhist」
+*WindClimax
+EndCard
+
+Climax: TH/PCB-022
+Name 「Kokkuri-san's Contract」
+Color Y
+*ChoiceClimax
+EndCard
+
+Character: TH/PCB-023
+Name Youmu, Sword Training
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Auto: OnPlay
+{
+	If StageContains 2 Other && HasTrait Gensokyo
+	{
+		Mill 2
+		SetXValue TotalLevel
+		SearchWaitingRoom IsCharacter && Compare ThatCardsLevel X OrLess
+		Discard 1 Any
+	}
+}
+Text Auto:When this card is placed on stage from hand, if you have 2 or more other «Gensokyo» characters, put the top 2 cards of your deck into waiting room, choose a level X or lower character in your waiting room, add it to your hand and discard 1 card from your hand into waiting room.
+Auto: OnReversed
+{
+    Question_Obvious Put this card into stock ?
+    If Yes
+    {
+        TargetSelf
+        MoveCard Stock
+    }
+}
+Text Auto:When this card becomes reversed, you may put this card into your stock.
+Act: 1 SendSelf Memory
+{
+	*Check4Add1(Gensokyo)
+}
+Text Act:[(1) Put this card into memory] Look at up to the top 4 cards of your deck, choose up to 1 «Gensokyo» character among them, reveal it to your opponent, add it to your hand and put the rest into waiting room.
+EndCard
+
+Character: TH/PCB-024
+Name Youmu, Slashing Left and Right
+Image th_pcb_024
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Cont: GiveSelf
+{
+    If InLocation MiddleCenterStage
+    {
+        GainSpecialEffect CannotAttack
+        LosePower 1500
+    }    
+}
+Text Cont:If this card is in your center stage middle position, this card cannot attack and gets -1500 power. 
+Cont: GiveSelf
+{
+    If InLocation LeftCenterStage
+    {
+        GainPower 1000
+    }
+}
+Text Cont:If this card is in center stage left position, this card gets +1000 power.
+Cont: GiveSelf
+{
+    If InLocation RightCenterStage
+    {
+        GainSoul 1
+    }
+}
+Text Cont:If this card is in center stage right position, this card gets +1 soul.
+*FreeRunner
+
+
+
+Character: TH/PCB-025
+Name Youmu Konpaku
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Combo Asura Sword 「Obsession with the Present World」
+Auto: OnReverseOpponent
+{
+    If Climax Asura Sword 「Obsession with the Present World」
+    {
+        PayCost 1 Send 1 Memory InLocation Backstage && CardPosition Rest
+        {
+            Message Choose a card to put into memory.
+            SearchLocationForTargets OpponentWaitingRoom 0 1 Any
+            If HasTarget
+            {
+                MoveCard OpponentMemory
+                IfTarget IsClimax
+                {
+                    TargetTop Deck
+                    MoveCard Clock
+                    TargetTop Deck
+                    MoveCard Clock
+                }
+            }
+        }
+    }
+}
+Text Auto:CxCombo [(1) Put a rest character in your backstage into memory] When this card's battle opponent becomes reversed, if "Asura Sword 「Obsession with the Present World」" is in your climax area, you may pay cost. If you do, choose up to 1 card in your opponent's waiting room and put it into memory. If you put a climax into your opponent's memory by this effect, put the 2 top card of your deck into clock.
+EndCard
+
+Character: TH/PCB-026
+Name Youmu, Half-Human Half-Ghost
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Gensokyo
+Trait2 Ghost
+Combo Ghost Sword 「Fasting of the Young Petra」
+Cont: GiveSelf
+{
+    If AllYourCharacters HasTrait Gensokyo
+    {
+        GainPower 2000
+    }
+}
+Text Cont:If all your characters are «Gensokyo», this card gets +2000 power.
+*Healer
+Auto: OnAttack
+{
+    If Climax Ghost Sword 「Fasting of the Young Petra」
+    {
+        PayCost 2 Discard 1 Any
+        {
+            TargetLocation OpponentMemory
+            NarrowTargets Not IsClimax
+            MoveCard OpponentDeck
+            ShuffleLocation OpponentDeck
+        }
+    }
+}
+Text Auto:CxCombo [(2) Put 1 card from your hand into waiting room] When this card attacks, if "Ghost Sword 「Fasting of the Young Petra」" is in your climax area, you may pay the cost. If you do, your opponent put all characters and events from memory to their deck and shuffle their deck.
+EndCard
+
+Character: TH/PCB-027
+Name Youmu, Happy to Win
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Auto: OnTriggerCheck
+{
+    IfOther HasTrigger Bag
+    {
+        PayCost 1 RestSelf
+        {
+            *OptionalDraw
+            TargetLocation Stage
+            ChooseCharacterFromTargets Choose a character to give +3000 power.
+            GainPower 3000
+        }
+    }
+}
+Text Auto:[(1) Rest this card] When your characters' trigger check reveals a Bag trigger, you may pay the cost. If you do, draw up to 1 cards, choose 1 of your «Gensokyo» character and that character gets +3000 power until end of turn.
+Auto: OnTriggerCheck
+{
+    IfOther HasTrigger Bar
+    {
+        PayCost 1 RestSelf
+        {
+            Peek Deck 2
+            Message Choose a card to put in your hand.
+            ChooseCardsFromTargets 0 1 Any
+            MoveCard Hand
+            PutTheRestIntoTheWaitingRoom
+        }
+    }
+}
+Text Auto:[(1) Rest this card] When your characters' trigger check reveals a Bar trigger, you may pay the cost. If you do, look at up to the top 2 cards of your deck, choose up to 1 among them, put it in your hand and put the rest into waiting room.
+EndCard
+
+Character: TH/PCB-028
+Name Youmu, Fighting With All Her Strength
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Combo Human Oni 「Slash of the Eternal Future」
+Cont: GiveSelf
+{
+    GainSpecialEffect CannotSideAttack
+}
+Text Cont:This card cannot side attack.
+Auto: OnAttack
+{
+    If Climax Human Oni 「Slash of the Eternal Future」
+    {
+        PayCost 1
+        {
+            TargetTop Deck
+            MoveCard Stock
+            TargetSelf
+            GainSpecialEffect DoubleTrigger
+        }
+    }
+    
+}
+Text Auto:CxCombo [(1)] When this card attacks, if "Human Oni 「Slash of the Eternal Future」" is in your climax area, you may pay the cost. If you do, put the top card from your deck into stock and perform the trigger check twice during this attack.
+EndCard
+
+Character: TH/PCB-029
+Name Youmu, Gathering Spring Essence
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Combo Arcanum 「Slash of Saigyou Spring World」
+Auto: OnAttack
+{
+    If Climax Arcanum 「Slash of Saigyou Spring World」
+    {
+        GainEffect
+        {
+            Auto: OnReversed
+            {
+                TargetFacing
+                IfTarget Compare ThatCardsLevel 3 OrLess
+                {
+                    Question_Obvious Put the battle opponent and this card into memory ?
+                    If Yes
+                    {
+                        MoveCard OpponentMemory
+                        TargetSelf
+                        MoveCard Memory
+                    }
+                }
+            }
+            Text Auto:When this card becomes reversed, if the level of the battle opponent of this card is 3 or Lower, you may put that card and this card into memory.
+        }
+    }
+}
+Text Auto:CxCombo When this card attacks, if "Arcanum 「Slash of Saigyou Spring World」" is in your climax area, this card gets the following ability until end of turn. "Auto:When this card becomes reversed, if the level of the battle opponent of this card is 3 or Lower, you may put that card and this card into memory."
+Auto: OnReverseOpponent
+{
+    TargetFacing
+    Question_Obvious Put the battle opponent into memory ?
+    If Yes
+    {
+        MoveCard OpponentMemory
+    }
+}
+Text Auto:When this card's battle opponent becomes reversed, you may send that character into memory
+EndCard
+
+Character: TH/PCB-030
+Name Youmu, Can't Understand Yuyuko
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 2500
+Soul 2
+Trait1 Gensokyo
+Trait2 Ghost
+Cont: InHand
+{
+    If StageContains 1 Other && NameEquals Yuyuko, Dancing With Flowers
+    {
+        LoseLevel 1
+    }
+}
+Text Cont:If you have another "Yuyuko, Dancing With Flowers", this card gets -1 level in your hand.
+Cont: Assist
+{
+    If HasTrait Ghost|Spring
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetFacing
+                Question_Obvious Put the battle opponent into memory ?
+                If Yes
+                {
+                    MoveCard OpponentMemory
+                }
+            }
+            Text Auto:When this card's battle opponent becomes reversed, you may put that character into memory.
+        }
+    }
+}
+Text Cont:ASSIST Your «Ghost» and/or «Spring» characters in front of this card get +2000 power and the following ability. "Auto:When this card's battle opponent becomes reversed, you may put that character into memory."
+Act: 1 Discard 1 Any RestSelf
+{
+    Heal
+}
+Text Act:[(1) Put a card from your hand into waiting room, rest this card] Put the top card of your Clock to your memory.
+EndCard
+
+Character: TH/PCB-031
+Name Youmu, Reading in the Autumn
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Cont: GiveAll
+{
+    If NameEquals Youmu Konpaku
+    {
+        GainPower 1000
+    }
+}
+Text Cont:All your other "Youmu Konpaku" gets +1000 power.
+*BondClock(Youmu Konpaku)
+EndCard
+
+Character: TH/PCB-032
+Name Youmu, Affraid of Ghost Story
+Color G
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Cont: Alarm
+{
+    If HasTrait Ghost
+    {
+        GainEffect
+        {
+            Auto: OnAttack
+            {
+                PayCost 1
+                {
+                    GainEffect
+                    {
+                        Auto: OnReverseOpponent
+                        {
+                            TargetFacing
+                            Question_Obvious Put the battle opponent into memory ?
+                            If Yes
+                            {
+                                MoveCard OpponentMemory
+                            }
+                        }
+                        Text Auto:When this card's battle opponent becomes reversed, you may put that card into memory.
+                    }
+                }
+            }
+            Text Auto:[(1)] When this card attacks, you may pay the cost. If you do, this card gets the following ability until end of turn. "Auto:When this card's battle opponent becomes reversed, you may put that card into memory."
+        }
+    }
+}
+Text Cont:ALARM If this card is on top of your clock, all your «Ghost» characters get the following ability. "Auto:[(1)] When this card attacks, you may pay the cost. If you do, this card gets the following ability until end of turn. 'Auto:When this card's battle opponent becomes reversed, you may put that card into memory.'"
+EndCard
+
+Character: TH/PCB-033
+Name Youmu, Trapped by Her Master
+Color G
+Level 2
+Cost 2
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Auto: OnUseThisCardsBackup
+{
+    TargetLocation OpponentMemory
+    SetXValue TargetCount
+    MultiplyXValue 500
+    TargetMyCharacterInBattle
+    GainPower X
+}
+Text Auto:When you use this card's BACKUP, choose one of your character in battle and that character gets +X power until end of turn. X = 500 times number of cards in your opponent's memory.
+Backup 2000
+EndCard
+
+Character: TH/PCB-034
+Name Youmu, Something to Protect
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Cont: GiveAll
+{
+    If Other && HasTrait Gensokyo
+    {
+        If InLocation RightCenterStage || InLocation LeftCenterStage
+        {
+            GainPower 500
+        }
+    }
+}
+Text Cont:All your other «Gensokyo» characters in center stage left position and center stage right position gets +500 power.
+Act: RestSelf
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1 level and +1000 power.
+    GainLevel 1
+    GainPower 1000
+    TargetSelf
+    DontStand
+}
+Text Act:[rest this card] Choose one of your «Gensokyo» character and that character gets +1 level and +1000 power until end of turn. This cannot stand during your next stand phase.
+EndCard
+
+Character: TH/PCB-035
+Name Youmu, Yuyuko's Sword Trainer
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Cont: GiveAll
+{
+    If Compare ThatCardsLevel 2 OrMore && NameContains Yuyuko
+    {
+        GainEffect
+        {
+            Auto: OnReversed
+            {
+                TargetFacing
+                Question_Obvious Reverse the character facing this card ?
+                Reverse
+            }
+            Text Auto:When this card becomes reversed, you may reverse the character facing this card.
+        }
+    }
+}
+Text Cont:All your other level 2 or higher character with "Yuyuko" in its card name get the following ability. "Auto:When this card becomes reversed, you may reverse the character facing this card."
+Act: 1 RestSelf
+{
+    If StageContains 4 Other && HasTrait Gensokyo
+    {
+        DrawCard
+    }
+}
+Text Act:[(1) rest this card] If you have 4 or more other «Gensokyo» characters, draw 1 card.
+EndCard
+
+Character: TH/PCB-036
+Name Youmu, Ready to Attack
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Auto: OnReverseOpponent
+{
+    PayCost 2 SendSelf Memory
+    {
+        TargetLocation OpponentMemory
+        Message Choose a card with the same name as a card in your opponent's memory to put into memory.
+        SearchLocationForTargets OpponentWaitingRoom 0 1 SameNameAsTarget
+        MoveCard OpponentMemory
+    }
+}
+Text Auto:[(2) Put this card into memory] When this card's battle opponent becomes reversed, you may pay the cost. If you do, choose up to 1 card in your opponent's waiting room that has the same card name as a card in their memory and put it into memory.
+Auto: StartClimaxPhase
+{
+    MoveCard Stock
+}
+InMemory
+Text Auto:MEMORY At the start of your climax phase, if this card is in your memory, put it in your stock.
+EndCard
+
+Character: TH/PCB-037
+Name Youmu, Under the Momiji Leaves
+Color G
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Auto: StartDrawPhase
+{
+    PayCost Clock
+    {
+        MoveCard Hand
+        TargetLocation OpponentMemory
+        If HasTarget
+        {
+            Message Choose a card to put into waiting room.
+            SearchLocationForTargets OpponentMemory 1 1 Any
+            MoveCard OpponentWaitingRoom
+        }
+    }
+}
+InMemory
+Text Auto:MEMORY [Put the top card of your deck into clock] At the start of your draw phase, if this card is in your memory, you may pay the cost. If you do, put this card into your hand, choose 1 card in your opponent's memory and put it into waiting room.
+Act: 1 RestSelf
+{
+    Message Choose a card to put in your hand.
+    SearchLocationForTargets Memory 0 1 Any
+    MoveCard Hand
+}
+Text Act:[(1) rest this card] Choose 1 card in your memory and put it into your hand.
+*Act1Rest2SearchBrainstorm(Gensokyo)
+EndCard
+
+Character: TH/PCB-038
+Name Youmu, Tasting Sweet Potato
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+*GainPowerForEachOther(500, Ghost|Spring)
+Auto: OnReverseOpponent
+{
+    TargetFacing
+    MoveCard OpponentMemory
+}
+Text Auto:When this card's battle opponent becomes reversed, put that character into memory.
+EndCard
+
+Character: TH/PCB-039
+Name Youmu, Roukan-ken and Hakurou-ken Wielder
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Combo Human Realm Sword 「Enlightenment Fantasy」
+Auto: OnAttack
+{
+    If Climax Human Realm Sword 「Enlightenment Fantasy」 && StageContains 3 Other && HasTrait Ghost
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose a character to give -1500 power.
+            LosePower 1500
+        }
+    }
+}
+Text Auto:CxCombo When this card attacks, if "Human Realm Sword 「Enlightenment Fantasy」" is in your climax area and you have 3 or more other «Ghost» characters, choose 1 of your opponent's character and that character gets -1500 power until end of turn.
+*ClockEncore
+EndCard
+
+Climax: TH/PCB-040
+Name Ghost Sword 「Fasting of the Young Petra」
+*BarClimax
+EndCard
+
+Climax: TH/PCB-041
+Name Human Oni 「Slash of the Eternal Future」
+*BagClimax
+EndCard
+
+Climax: TH/PCB-042
+Name Arcanum 「Slash of Saigyou Spring World」
+*GreenStockSoul
+EndCard
+
+Climax: TH/PCB-043
+Name Asura Sword 「Obsession with the Present World」
+*BarClimax
+EndCard
+
+Climax: TH/PCB-044
+Name Human Realm Sword 「Enlightenment Fantasy」
+*BarClimax
+EndCard
+
+Character: TH/PCB-045
+Name Alice, Peaceful Sleep
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Auto: OnPlay
+{
+    PayCost StockClock
+    {
+        SearchDeck HasTrait Gensokyo
+    }
+}
+Text Auto:[Put the top card of your stock into clock] When this card is placed on stage from hand, you may pay the cost. If you so, search your deck for up to 1 «Gensokyo» character, reveal it to your opponent, put it in your hand and shuffle your deck.
+Auto: OnPlay
+{
+    If StageContains 2 Other && HasTrait Gensokyo
+    {
+        PayCost Discard 1 Any
+        {
+            TargetTop Deck
+            Reveal
+            SetXValue TargetCardsLevel
+            SearchWaitingRoom IsCharacter && Compare ThatCardsLevel X OrLess
+        }
+    }
+}
+Text Auto:[Put 1 card from your hand into waiting room] When this card is placed on stage from hand, if you have 2 or more other «Gensokyo» characters, you may pay the cost. If you do, reveal the top card of your deck, choose a level X or less chracter from your waiting room and put it in your hand. X = level of the revealed card.
+EndCard
+
+Character: TH/PCB-046
+Name Alice, Happy to Win
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Auto: OnAttack
+{
+    PayCost 1
+    {
+        TargetLocation Hand
+        SetXValue TargetCount
+        RevealUpTo Deck 4
+        SaveTargets
+        Message Choose a "Hourai" to put to your hand.
+        ChooseCardsFromTargets 0 1 NameEquals Hourai
+        MoveCard Hand
+        RemoveCurrentFromSavedTargets
+        LoadTargets
+        Message Choose a "Shanghai" to put to your hand.
+        ChooseCardsFromTargets 0 1 NameEquals Shanghai
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+        TargetLocation Hand
+        If Compare TargetCount X GreaterThan
+        {
+            Discard 1 Any
+        }
+    }
+}
+Text Auto:[(1)] When this card attacks, you may pay the cost. If you do, reveal up to the top 4 card of your deck, choose up to 1 "Hourai" and up to 1 "Shanghai" among them, put them in your hand and put the rest into waiting room. If you put 1 or more cards in your hand, discard 1 card from your hand into waiting room.
+Cont: GiveSelf
+{
+    TargetLocation Stage
+    NarrowTargets NameEquals Hourai | Shanghai
+    SetXValue TargetCount
+    MultiplyXValue 500
+    GainPower X
+}
+Text Cont:This card gets +500 power for each other of your "Hourai" and/or "Shanghai".
+EndCard
+
+Character: TH/PCB-047
+Name Alice, Doll Handling
+Color R
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Combo Focus Type 「Trip Wire」
+Auto: OnOtherPlacedOnStageFromHand
+{
+    If InLocation Stage
+    {
+        PeekTop OpponentDeck
+        EndPeek
+    }
+    Else
+    {
+        RefundTimesPerTurn
+    }
+}
+TimesPerTurn 1
+Text Auto:This ability activates up to once per turn. When your other character is placed on stage from hand, look at the top card of your opponent's deck.
+Auto: StartMyEncorePhase
+{
+    If Climax Focus Type 「Trip Wire」
+    {
+        TargetLocation Stage
+        NarrowTargets Other
+        ChooseCharacterFromTargets Choose a character to return to hand.
+        If HasTarget
+        {
+            MoveCard Hand
+        }
+        TargetSelf
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Auto: StartOpponentClimaxPhase
+            {
+                TargetLocation Stage
+                ChooseCharacterFromTargets Choose a character to move.
+                TargetLocation CenterStage
+                If Compare TargetCount 2 OrLess
+                {
+                    Question Move this card to an open position of your center stage?
+                    If Yes
+                    {
+                        MoveToOpenPosition True False
+                    }
+                }
+            }
+            Text Auto:At the beginning of your opponent climax phase, you may choose 1 of your character and move that character into an empty position in your center stage.
+        }
+    }
+}
+Text Auto:CxCombo At the beginning of your encore step, if "Focus Type 「Trip Wire」" is in your climax area, choose up to 1 of your other characters, return it to your hand and this card gets the following ability until the end of your opponent's next turn. "Auto:At the beginning of your opponent climax phase, you may choose 1 of your character and move that character into an empty position in your center stage."
+EndCard
+
+Character: TH/PCB-048
+Name Yukari, Gensokyo's Tour
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Combo Yukari's Arcanum 「Danmaku Barrier」
+Auto: StartMyEncorePhase
+{
+    If Climax Yukari's Arcanum 「Danmaku Barrier」 && CardPosition Rest && InLocation CenterStage
+    {
+        PayCost 1
+        {
+            TargetSelf
+            SaveTargets
+            TargetLocation Stage
+            NarrowTargets Other
+            MarkerTargetsUnderSavedTarget_FaceDown
+        }
+    }
+}
+Text Auto:CxCombo [(1)] At the beginning of your encore step, if this card is rest in your center stage and you have "Yukari's Arcanum 「Danmaku Barrier」" in your climax area, you may pay the cost. If you do, put all of your other characters face-down underneath this card as markers.
+Auto: StartOpponentAttackPhase
+{
+    TargetSelf
+    If LocationContains Marker 1 Any
+    {
+        TargetLocation Stage
+        If Compare TargetCount 4 OrLess
+        {
+            TargetSelf
+            Question Move this card to an open position of your stage?
+            If Yes
+            {
+                MoveToOpenPosition True True
+            }
+        }
+    }
+}
+Text Auto:At the beginning of your opponent's attack phase, if this card has a marker, you may move this card to an open position of your stage. 
+Auto: StartMainPhase
+{
+    TargetSelf
+    TargetMarkersUnderTargets
+    PlaceOnStage false true true false
+}
+Text Auto:At the beginning of your main phase, put all markers from underneath this card on separate positions of your stage.
+EndCard
+
+Character: TH/PCB-049
+Name Alice Margatroid
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Gensokyo
+Trait2 Doll
+Combo Spy Sign 「Seeker Dolls」
+Cont: Global
+{
+    TargetLocation Stage
+    SaveTargets
+    If Not InSavedTargets
+    {
+        GainTrait Gensokyo
+        
+    }
+}
+Text Cont:All of your opponent's characters get «Gensokyo».
+Auto: OnAttack
+{
+    If Climax Spy Sign 「Seeker Dolls」 && StageContains 4 Other && HasTrait Gensokyo
+    {
+        PayCost 2
+        {
+            TargetFacing
+            LosePower 3000
+            TargetLocation OpponentStage
+            NarrowTargets HasTrait Gensokyo
+            GainEffect
+            {
+                Auto: OnReversed
+                {
+                    BurnSelf 1
+                }
+                Quick
+                Text Auto:When this card becomes reversed, deal 1 damage to you.
+            }
+        }
+    }
+}
+Text Auto:CxCombo [(2)] When this card attacks, if "Spy Sign 「Seeker Dolls」" is in your climax area, you have 4 or more other «Gensokyo» characters, you may pay the cost. If you do, the character facing this card gets -3000 power and all of your opponent's «Gensokyo» characters get the following ability until end of turn. "Auto:When this card becomes reversed, deal 1 damage to yourself."
+EndCard
+
+Character: TH/PCB-050
+Name Yukari Yakumo
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Gensokyo
+Trait2 Boundaries
+Combo Fantasy Nest 「Flying Glow Worm's Nest」
+Cont: GiveFacing
+{
+    TargetOwner
+    SetXValue ThatCardsSoul
+    MultiplyXValue 500
+    LosePower X
+}
+Text Cont:The character facing this card gets -X power. X = 500 times number of souls this card has.
+Auto: OnSpecificClimaxPlay Fantasy Nest 「Flying Glow Worm's Nest」
+{
+    If StageContainsOrLess 2 Other
+    {
+        PayCost 2 RestSelf
+        {
+            TargetLocation OpponentStage
+            NarrowTargets Compare ThatCardsPower 10000 OrLess
+            MoveCard OpponentWaitingRoom
+            SetXValue TargetCount
+            TargetLocation Stage
+            NarrowTargets Other
+            MoveCard WaitingRoom
+            AddToXValue TargetCount
+            Repeat X
+            {
+                Burn 2
+            }
+        }
+    }
+}
+Text Auto:CxCombo [(2) Rest this card] When "Fantasy Nest 「Flying Glow Worm's Nest」" is placed on your climax area, if you have 2 or less other characters, you may pay the cost. If you do, put all other opponent's characters with 10000 power or less in the waiting room, put all your other characters into waiting room and perform the following abilty X times "Deal 2 damage to your opponent". X = number of characters put in waiting room by this card effect.
+EndCard
+
+Character: TH/PCB-051
+Name Yukari, Living Freely
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Cont: Assist
+{
+    If Not MyTurn
+    {
+        GainPower 500
+    }
+}
+Text Cont:ASSIST During your opponent's turn, your characters in front of this get +500 power.
+Auto: StartOpponentAttackPhase
+{
+    TargetLocation Backstage
+    If Compare TargetCount 1 OrLess
+    {
+        TargetSelf
+        Question Move this card to an open position of your backstage?
+        If Yes
+        {
+            MoveToOpenPosition False True
+        }
+    }
+}
+Text Auto:At the beginning of your opponent's battle phase, you may move this card to an open position in the back stage.
+EndCard
+
+Character: TH/PCB-052
+Name Alice & Patchouli, Arguing
+Color R
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Cont: GiveSelf
+{
+    If StageContains 1 Other && NameContains Patchouli
+    {
+        LosePower 1500
+    }
+}
+Text Cont:If you have another character with "Patchouli" in its card name, this card gets -1500 power.
+Auto: OnReversed
+{
+    PayCost 1 SendSelf Memory
+    {
+        SearchWaitingRoom HasTrait Gensokyo
+    }
+}
+Text Auto:[(1) Put this card into memory] When this card becomes reversed, you may pay the cost. If you do, choose a «Gensokyo» character in your waiting room and put it into your hand.
+EndCard
+
+Character: TH/PCB-053
+Name Alice, Hourai's Master
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Combo Curse 「Hanged Hourai Dolls」
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Doll
+    {
+        GainPower 1000
+    }
+}
+Text Cont:If you have 2 or more other «Doll» characters, this card gets +1000.
+Auto: OnSpecificClimaxPlay Curse 「Hanged Hourai Dolls」
+{
+    Message Choose a level 1 or lower "Hourai" to place on stage and give +1 soul.
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Hourai && Compare ThatCardsLevel 1 OrLess
+    PlaceOnStage false true true false
+    GainSoul 1
+}
+Text Auto:CxCombo When "Curse 「Hanged Hourai Dolls」" is placed on your climax area, you may choose up to 1 level 1 or lower "Hourai" in your waiting room, put it into any position on stage and that character gets +1 soul until end of turn.
+EndCard
+
+Character: TH/PCB-054
+Name Yukari, Halloween Fever
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Combo Bounded Field 「Mesh of Light and Darkness」
+Cont: GiveSelf
+{
+    TargetLocation Stage
+    NarrowTargets Other && IsColor Blue || Other && IsColor Yellow
+    SetXValue TargetCount
+    MultiplyXValue 500
+    GainPower X
+}
+Text Cont:This card gets +500 power for each other of your BLUE and/or YELLOW characters.
+Auto: OnReverseOpponent
+{
+    If Climax Bounded Field 「Mesh of Light and Darkness」
+    {
+        SearchWaitingRoom HasTrait Boundaries|Intellect
+    }
+}
+Text Auto:CxCombo When this card's battle opponent becomes reverse, if "Bounded Field 「Mesh of Light and Darkness」" is in your climax area, choose up to 1 «Boundaries» and/or «Intellect» character from your waiting room and put it into your hand.
+EndCard
+
+Character: TH/PCB-055
+Name Alice, Above the city
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Combo Curse 「Eerily Luminous Shanghai Dolls」
+Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
+{
+    If LocationContains WaitingRoom 3 NameEquals Shanghai || NameEquals Hourai
+    {
+        *OptionalHeal
+    }
+}
+Text Auto:When this card is placed on the stage from your hand or from your waiting room, if you have 3 or more "Shanghai" and/or "Hourai" in your waiting room, you may put the top card of your clock into waiting room.
+Auto: OnSpecificClimaxPlay Curse 「Eerily Luminous Shanghai Dolls」
+{
+    PayCost 1
+    {
+        *OptionalDraw
+        TargetSelf
+        GainEffect
+        {
+            Cont: GiveAll
+            {
+                If Other && NameEquals Hourai
+                {
+                    GainSpecialEffect CannotBeReversed
+                }
+            }
+            Text Cont:All your other "Hourai" cannot be reversed.
+        }
+    }
+}
+Text Auto:CxCombo [(1)] When "Curse 「Eerily Luminous Shanghai Dolls」" is placed in your climax area, you may pay the cost. If you do, draw up to 1 card and this card gets the following ability until the end of your opponent's turn. "Cont:All your other "Hourai" cannot be reversed."
+EndCard
+
+Character: TH/PCB-056
+Name Alice, Doll Master
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Doll
+Auto: OnPlay
+{
+    SearchWaitingRoom HasTrait Doll
+}
+Text Auto:When this card is placed on the stage from your hand, choose up 1 «Doll» character in your waiting room and put it into your hand.
+Auto: OnReverseOpponent
+{
+    If StageContains 3 Other && NameEquals Hourai || Other && NameEquals Shanghai
+    {
+        PayCost 2 Send 1 WaitingRoom HasTrait Doll
+        {
+            TargetLocation Stage
+            NarrowTargets NameEquals Hourai | Shanghai
+            SetXValue TargetCount
+            Message Put any number of Hourai and/or Shanghai into waiting room.
+            ChooseCardsFromTargets 0 X Any
+            SetXValue TargetCount
+            MoveCard WaitingRoom
+            Burn X
+        }
+    }
+}
+Text Auto:[(2) Put 1 of your «Doll» character to your waiting room] When this card's battle opponent becomes reversed, if you have 3 or more other "Hourai" and/or "Shanghai", you may pay the cost. If you do, put any number of "Hourai" and/or "Shanghai" into waiting room and deal X damage to your opponent. X = number of character put into waiting room by this effect.
+EndCard
+
+Character: TH/PCB-057
+Name Alice, Always Ready to Fight
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Cont: GiveSelf
+{
+    LoseLevel 1
+}
+Text Cont:This card gets -1 level.
+Auto: OnAttack
+{
+    GainPower 1500
+}
+Text Auto:When this card attacks, this card gets +1500 power until end of turn.
+EndCard
+
+Character: TH/PCB-058
+Name Hourai
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Cont: GiveSelf
+{
+    If StageContains 1 Other && NameEquals Shanghai
+    {
+        GainPower 2000
+        GainLevel 1
+    }
+}
+Text Cont:If you have another "Shanghai", this card gets +2000 power and +1 level.
+Auto: OnReversed
+{
+    TargetTop Deck
+    MoveCard Clock
+    TargetSelf
+    Rest
+}
+Text Auto:When this card becomes reversed, put the top card of your deck into clock and rest this card.
+EndCard
+
+Character: TH/PCB-059
+Name Alice, Seven-Colored Puppeteer
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Cont: InHand
+{
+    GainColor Yellow
+}
+Text Cont:This card gets YELLOW IsColor while in hand.
+Cont: GiveSelfEverywhere
+{
+    If InLocation Clock
+    {
+        GainColor Green
+    }
+}
+Text Cont:This card gets GREEN IsColor while in clock.
+Cont: GiveSelfEverywhere
+{
+    If InLocation Level
+    {
+        GainColor Blue
+    }
+}
+Text Cont:EXPERIENCE This card gets BLUE IsColor while in level area.
+EndCard
+
+Character: TH/PCB-060
+Name Yukari, Preparing Spellcard
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Auto: OnUseThisCardsBackup
+{
+    TargetLocation CenterStage
+    If Compare TargetCount 2 OrLess
+    {
+        Question Move a character ?
+        If Yes
+        {
+            TargetLocation Stage
+            NarrowTargets HasTrait Gensokyo
+            ChooseCharacterFromTargets Choose a character to move into an open position on your center position.
+            If HasTarget
+            {
+                MoveCard MiddleCenterStage
+            }
+        }
+    }
+}
+Text Auto:When you use this card's BACKUP, you may choose 1 of your «Gensokyo» character and move it into an open position in your center stage.
+Backup 0
+EndCard
+
+Character: TH/PCB-61
+Image th_pcb_061
+Name Yukari, Happy to Win
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Cont: GiveAll
+{
+    If IsColor Blue
+    {
+        GainPower 500
+    }
+}
+Text Cont:All your other BLUE characters get +500 power.
+Auto: StartDrawPhase
+{
+    PayCost SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Yukari\, No Trespassing)
+    }
+}
+Text Auto:CHANGE [Put this card into waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Yukari, No Trespassing" in your waiting room and put it in the position this card was in.
+*Act1RestSelfSalvageBrainstorm(Gensokyo)
+EndCard
+
+Character: TH/PCB-062
+Name Yukari, Ran's Master
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Cont: GiveAll
+{
+    If NameEquals Ran, Embarassed Near Her Master
+    {
+        GainPower 500
+        GainEffect
+        {
+            Auto: Encore 1
+            {
+            }
+            Text Auto:ENCORE [(1)]
+        }
+    }
+}
+Text Cont:All your "Ran, Embarassed Near Her Master" get +500 power and "Auto:ENCORE [(1)]"
+*BondClock(Ran\, Embarassed Near Her Master)
+EndCard
+
+Character: TH/PCB-063
+Name Alice, Orchestring Dolls
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+*Level0Assist
+*Act1Rest2SalvageBrainstorm(Gensokyo)
+EndCard
+
+Character: TH/PCB-064
+Name Alice, Ready to Attack
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Auto: OnPlay
+{
+    PayCost 1 Clock
+    {
+        SearchDeck Compare ThatCardsLevel 1 OrLess && HasTrait Gensokyo
+        Message Choose a "Hourai" to put into waiting room.
+        SearchLocationForTargets Deck 0 1 NameEquals Hourai
+        SaveTargets
+        Message Choose a "Shanghai" to put into waiting room.
+        SearchLocationForTargets Deck 0 1 NameEquals Shanghai && Not InSavedTargets
+        AddSavedToCurrentTargets
+        MoveCard WaitingRoom
+        ShuffleLocation Deck
+    }
+}
+Text Auto:[(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search for up to 1 level 1 or lower «Gensokyo» character, reveal it, put it into your hand, search your deck for up to 1 "Hourai" and up to 1 "Shanghai" and put them into waiting room.
+EndCard
+
+Character: TH/PCB-065
+Name Shanghai
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Cont: GiveAll
+{
+    If NameEquals Alice, Above the city || NameEquals Hourai
+    {
+        GainEffect
+        {
+            Auto: StartOpponentEncorePhase
+            {
+                If InLocation CenterStage && CardPosition Rest
+                {
+                    PayCost Discard 1 Any
+                    {
+                        *OptionalDraw
+                    }
+                }
+            }
+            Text Auto:[Put 1 card from your hand to the waiting room] At the beginning of your opponent's encore step, if this card is rest on your center stage, you may pay the cost. If you do, draw up to 1 card.
+        }
+    }
+}
+Text Cont:All your other "Alice, Above the city" and "Hourai" get the following ability "Auto:[Put 1 card from your hand to the waiting room] At the beginning of your opponent's encore step, if this card is rest on your center stage, you may pay the cost. If you do, draw up to 1 card."
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost 2
+    {
+        Heal
+    }
+}
+Text Auto:[(2)] When this card is place into waiting from your stage, you may pay the cost. If you do, put the top card of your clock into waiting room.
+EndCard
+
+Character: TH/PCB-066
+Name Alice, Practicing Magic
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Auto: StartOpponentAttackPhase
+{
+    If StageContainsOrLess 2 Other
+    {
+        Question Move a character ?
+        If Yes
+        {
+            TargetLocation Stage
+            NarrowTargets Other
+            ChooseCharacterFromTargets Choose a character to move into an open position on your center stage.
+            If HasTarget
+            {
+                MoveCard MiddleCenterStage
+            }
+        }
+    }
+}
+Text Auto:At the beginning of your opponent's attack phase, if you have 2 or less other characters, you may choose 1 of your other character and move it to an open position in the center stage.
+EndCard
+
+Character: TH/PCB-067
+Name Yukari, Hakama
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Auto: OnPlay
+{
+    TargetTop Deck
+    Reveal
+    IfTarget Compare ThisCardsLevel 1 OrMore
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto:When this card is placed on stage from hand, reveal the top card of your deck. If that card is level 1 or higher, put it in your hand and discard 1 card from your hand into waiting room.
+EndCard
+
+Character: TH/PCB-068
+Name Alice, The Forest of Magic
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Combo Puppeteer Sign 「Maiden's Bunraku」
+Act: Discard 1 NameEquals Puppeteer Sign 「Maiden's Bunraku」
+{
+    Peek OpponentDeck 4
+    EndPeek
+    Reorder
+}
+Text Act:CxCombo [Put a "Puppeteer Sign 「Maiden's Bunraku」" from your hand into waiting room] Look at up to the top 4 cards of your opponent's deck and put them back in any order.
+EndCard
+
+Character: TH/PCB-069
+Name Yukari, Manipulation of Boundaries
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Cont: GiveSelf
+{
+    TargetLocation Marker
+    If HasTarget
+    {
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchWaitingRoom HasTrait Gensokyo
+            }
+            Text Auto:When this card's battle opponent becomes reversed, choose up to 1 «Gensokyo» character in your waiting room and put it in your hand.
+        }
+    }
+}
+Text Cont:If this card has a marker underneath, this card gets the following ability. "Auto:When this card's battle opponent becomes reversed, choose up to 1 «Gensokyo» character in your waiting room and put it in your hand."
+Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
+{
+    TargetSelf
+    SaveTargets
+    Message Choose a "Yukari, Travelling Through Boundaries" to put face-down underneath this card as marker.
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Yukari, Travelling Through Boundaries
+    MarkerTargetsUnderSavedTarget_FaceDown
+}
+Text Auto:When this card is placed on the stage from your hand or from your waiting room, you may choose a "Yukari, Travelling Through Boundaries" in your waiting room and put it face-down underneath this card as marker.
+Auto: StartClimaxPhase
+{
+    PayCost SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Yukari\, Travelling Through Boundaries)
+    }
+}
+Text Auto:CHANGE [Put this card into waiting room] At the beginning of your climax phase, you may pay cost. If you do, choose a "Yukari, Travelling Through Boundaries" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: TH/PCB-070
+Name Alice, Doll Creation
+Color R
+Level 1
+Cost 1
+Trigger Soul
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Doll
+Auto: OnUseThisCardsBackup
+{
+    TargetLocation Stage
+    NarrowTargets NameEquals Hourai
+    ChooseCharacterFromTargets Choose a "Hourai" to give the ability.
+    GainSpecialEffect CannotBeReversed
+}
+Text Auto: When you use this card's BACKUP, choose 1 of your "Hourai" and that character gets the following ability until end of turn. "Cont:This cannot be reversed"
+Backup 1500
+EndCard
+
+Climax: TH/PCB-071
+Name Fantasy Nest 「Flying Glow Worm's Nest」
+*StandbyClimax
+EndCard
+
+Climax: TH/PCB-072
+Name Focus Type 「Trip Wire」
+*DoorClimax
+EndCard
+
+Climax: TH/PCB-073
+Name Spy Sign 「Seeker Dolls」
+*StandbyClimax
+EndCard
+
+Climax: TH/PCB-074
+Name Bounded Field 「Mesh of Light and Darkness」
+*DoorClimax
+EndCard
+
+Climax: TH/PCB-075
+Name Curse 「Eerily Luminous Shanghai Dolls」
+*DoorClimax
+EndCard
+
+Climax: TH/PCB-076
+Name Curse 「Hanged Hourai Dolls」
+*StandbyClimax
+EndCard
+
+Climax: TH/PCB-077
+Name Puppeteer Sign 「Maiden's Bunraku」
+*StandbyClimax
+EndCard
+
+Climax: TH/PCB-078
+Name Yukari's Arcanum 「Danmaku Barrier」
+*DoorClimax
+EndCard
+
+Character: TH/PCB-079
+Name Yukari, Yakumo Familly
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Auto: OnReversed
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck HasTrait Gensokyo
+    }
+}
+Text Auto:[(1) Put a card from your hand into waiting room] When this card becomes reversed, you may pay the cost. If you do, search your deck for up to 1 «Gensokyo» character, reveal it to your opponent and add it to your hand.
+Auto: OnSentFromStageToWaitingRoom
+{
+    PayCost 2
+    {
+        SearchWaitingRoom HasTrait Gensokyo
+    }
+}
+Text Auto:[(2)] When this is placed into waiting room from your stage, you may pay the cost. If so, choose up to 1 «Gensokyo» character in your waiting room and pur it in your hand.
+Auto: OnOtherPlacedBy CHANGE
+{
+    Question Put this card into stock ?
+    If Yes
+    {
+        TargetSelf
+        MoveCard Stock
+    }
+}
+Text Auto:When one of your characters is placed on stage via CHANGE ability, you may put this card into stock.
+EndCard
+
+Character: TH/PCB-080
+Name Yuyuko, The Netherworld Pagoda
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Auto: OnOpponentsCharacterSentFromStageToElsewhere Memory
+{
+    PayCost 1 SendSelf Memory
+    {
+        MultipleChoiceQuestion Choose an effect to resolve.\n1:Choose a level 0 or lower character in your opponent's waiting room and put it into memory.\n2:Choose a card in your opponent's memory and put into waiting room.|1|2
+        If Answer 0
+        {
+            Message Choose a level 0 character to put into memory.
+            SearchLocationForTargets OpponentWaitingRoom 0 1 Compare ThatCardsLevel 0 OrLess
+            MoveCard OpponentMemory
+        }
+        If Answer 1
+        {
+            Message Choose a card to put into waiting room.
+            SearchLocationForTargets OpponentMemory 0 1 Any
+            MoveCard OpponentWaitingRoom
+        }
+    }
+}
+Text Auto:[(1) Put this card into memory] When a card is placed into your opponent's memory from stage, you may pay the cost. If you do, draw up to 1 card and perform 1 of the following 2 effects.\n"Choose a level 0 or lower character in your opponent's waiting room and put it into memory."\n"Choose a card in your opponent's memory and put into waiting room."
+Auto: OnReversed
+{
+    TargetFacing
+    IfTarget Compare ThatCardsLevel 0 OrLess
+    {
+        Question_Obvious Put the opposite character into memory ?
+        If Yes
+        {
+            MoveCard Memory
+        }
+    }
+}
+Text Auto:When this card becomes reversed, if this card's battle opponent is level 0 or lower, you may put that character into memory.
+Auto: OnReversed
+{
+    PayCost 1 SendSelf Memory
+    {
+        *Check4Add1(Gensokyo)
+    }
+}
+Text Auto:[(1) Put this card into memory] When this card becomes reversed, you may pay the cost. If you do, look at up to the top 4 cards of your deck, choose up to 1 «Gensokyo» character among them, add it to your hand and put the rest into waiting room.
+EndCard
+
+Character: TH/PCB-081
+Name Yuyuko, Under the Bright Night Sky
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Act: 1 RestSelf SendSelf Memory
+{
+    *Check4Add1(Spring|Ghost)
+}
+Text Act:［(1) Rest this card, put this card into memory] Look at up to the top 4 cards of your deck, choose up to 1 «Spring» and/or «Ghost» character among them, reveal it to your opponent, add it to hand and put the remaining cards into waiting room.
+Act: 1 RestSelf
+{
+    TargetLocation Memory
+    NarrowTargets NameEquals Yuyuko, Under the Bright Night Sky
+    If HasTarget
+    {
+        Message Choose a "Yuyuko, Under the Bright Night Sky" to place on stage.
+        SearchLocationForTargets Memory 1 1 NameEquals Yuyuko, Under the Bright Night Sky
+        PlaceOnStage true true true true
+    }
+}
+Text Act:[(1) Rest this card] Choose 1 "Yuyuko, Under the Bright Night Sky" in your memory and place it rested into an empty position on your stage.
+EndCard
+
+Character: TH/PCB-082
+Name Yukari, Transporting Object Via Gaps
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Auto: OnClimaxPlay
+{
+    Mill 1
+    IfTarget HasTrait Gensokyo
+    {
+        TargetSelf
+        GainSoul 1
+    }
+}
+Text Auto:When a climax card is placed on your climax area, put the top card of your deck into waiting room. If that card is a «Gensokyo» character, this card gets +1 soul until end of turn.
+Auto: OnPlay
+{
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetSelf
+        MoveCard Stock
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck into waiting room. If there is at least 1 climax among those cards, put this card into stock.
+EndCard
+
+Character: TH/PCB-083
+Name Yuyuko Saigyouji
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Combo Cherry Blossom Sign 「Perfect Cherry Blossom of Sumizome」
+Cont: GiveSelf
+{
+    If AllYourCharacters HasTrait Gensokyo
+    {
+        GainPower 1500
+    }
+}
+Text Cont:If all of your characters are «Gensokyo», this card gets +1500 power.
+Auto: OnReverseOpponent
+{
+    If Climax Cherry Blossom Sign 「Perfect Cherry Blossom of Sumizome」
+    {
+        *Check4Add1(Gensokyo)
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +2000 power.
+        GainPower 2000
+    }
+}
+Text Auto:CxCombo When this card's battle opponent becomes reversed, if "Cherry Blossom Sign 「Perfect Cherry Blossom of Sumizome」" is in your climax area, look at up to the top 4 cards of your deck, choose up to 1 «Gensokyo» character among them, reveal it to your opponent, put it in your hand and put the rest in your waiting room. Choose 1 of your character and that character gets +2000 power until end of turn.
+EndCard
+
+Character: TH/PCB-084
+Name Yuyuko, Cheeky Ghost
+Color B
+Level 3
+Cost 2
+Power 11000
+Soul 1
+Trigger Soul
+Trait1 Gensokyo
+Trait2 Spring
+Combo Spark of Life
+*OnPlayCheckX(Gensokyo)
+Auto: OnAttack
+{
+    If Climax Spark of Life && Compare ThisCardsSoul 3 OrLess
+    {
+        PayCost 1
+        {
+            GainSpecialEffect SplitSoulDamage
+        }
+    }
+}
+Text Auto:CxCombo [(1)] When this card attacks, if "Spark of Life" is in your climax area and this card has 3 soul or less, you may pay cost. If you do, for the attack, when this card would deal damage to your opponent, this card instead deals 1 damage X times to the opponent. This damage is not considered damage from Auto: effect. X = number of this card's soul.
+EndCard
+
+Character: TH/PCB-085
+Name Yuyuko, True Last Spellcard
+Color B
+Level 3
+Cost 3
+Trigger Soul
+Power 9000
+Soul 3
+Trait1 Gensokyo
+Trait2 Spring
+Combo 「Resurrection Butterfly」
+Cont: InHand
+{
+    If LocationContains WaitingRoom 6 IsClimax
+    {
+        ChangeCost -1
+    }
+}
+Text Cont:If you have 6 or more climax in waiting room, this card gets -1 cost while in hand.
+Cont: InHand
+{
+    If LocationContains OpponentMemory 6 Any
+    {
+        ChangeCost -1
+        LoseLevel 1
+    }
+}
+Text Cont:If your opponent have 6 or more cards in memory, this card gets -1 cost and -1 level while in hand.
+*OnPlayCheck3
+Auto: OnAttack
+{
+    If Climax 「Resurrection Butterfly」
+    {
+        PayCost 1 Discard 1 Any
+        {
+            Message Choose a card to put into waiting room.
+            SearchLocationForTargets OpponentMemory 0 1 Any
+            SaveTargets
+            MoveCard WaitingRoom
+            Message Choose a card with the same card name as the card put into waiting room.
+            SearchLocationForTargets OpponentMemory 0 50 SameNameAsSavedTarget
+            SetXValue TargetCount
+            MoveCard Clock
+            If Compare X 1 OrLess
+            {
+                SetXValue TargetCardsLevel
+                MultiplyXValue 2
+                Burn X
+            }
+            Else 
+            {
+                GainSpecialEffect CannotDealDamage
+            }
+        }
+    }
+}
+Text Auto:CxCombo [(1) Put a card from your hand into waiting room] When this card attacks, if "「Resurrection Butterfly」" is in your climax area, you may pay the cost. If you do, choose up to 1 card in your opponent's memory and put it into waiting room, choose any number of cards with the same card name as that card in your opponent's memory and put them into your opponent's clock. If you put 1 or less card in your opponent's clock by this card effect, deal X damage to your opponent. Otherwise, this card gets the following ability until end of turn "Cont:This cannot deal damage". X = 2 times the level of that card.
+EndCard
+
+Character: TH/PCB-086
+Name Yuyuko, Looking Over the Netherworld
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Cont: GiveSelf
+{
+    GainSpecialEffect CannotSideAttack
+}
+Text Cont:This card cannot side attack.
+Auto: OnPlay
+{
+    PayCost 1 Clock
+    {
+        SearchDeck Compare ThatCardsLevel 1 OrLess && HasTrait Gensokyo
+    }
+}
+Text Auto:[(1) Put the top card of your deck into clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, search your deck for up to 1 level 1 or lower «Gensokyo» character, reveal it to your opponent, put it in your hand and shuffle your deck.
+EndCard
+
+Character: TH/PCB-087
+Name Yuyuko, Chinese Dressing
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Combo Flowery Soul 「Butterfly Delusion」
+Auto: OnPlay
+{
+	Mill 2
+	NarrowTargets IsClimax
+	If HasTarget
+	{
+		TargetSelf
+		GainSoul 2
+	}
+}
+Text Auto:When this card is placed from hand on stage, put the top 2 cards of your deck in the waiting room. If there were at least 1 climax among them, this card gets +2 soul until end of turn.
+Auto: OnAttack
+{
+    If Climax Flowery Soul 「Butterfly Delusion」 && AllYourCharacters HasTrait Spring|Ghost
+    {
+        SetXValue ThisCardsSoul
+        RevealUpTo Deck X
+        Message Choose a «Spring» and/or «Ghost» character to put to your hand.
+        ChooseCardsFromTargets 0 1 HasTrait Spring|Ghost
+        MoveCard Hand
+        PutTheRestIntoTheWaitingRoom
+    }
+}
+Text Auto:CxCombo When this card attacks, if "Flowery Soul 「Butterfly Delusion」" is in your climax area and all your characters are «Spring: and/or :Ghost», you may look at up the top X cards of your deck, choose up to 1 «Spring» and/or «Ghost» character among them, reveal it to your opponent, put it in your hand and put the rest into your waiting room. X = number of this card's souls.
+EndCard
+
+Character: TH/PCB-088
+Name Yuyuko, Dancing With Flowers
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Combo Deadly Dance 「Law of Morality」
+Cont: Assist
+{
+    If MyTurn
+    {
+        SetXValue ThatCardsSoul
+        MultiplyXValue 1000
+        GainPower X
+    }
+}
+Text Cont:ASSIST During your turn, your characters in front of this card get +X power. X = 1000 times that character's souls
+Auto: OnSpecificClimaxPlay Deadly Dance 「Law of Morality」
+{
+    Message Choose a card to put into waiting room.
+    SearchLocationForTargets OpponentMemory 0 1 Any
+    If HasTarget
+    {
+        SetXValue TargetCardsLevel
+        MoveCard WaitingRoom
+        If LocationContains WaitingRoom 1 NameContains Youmu && Compare ThatCardsLevel X OrLess
+        {
+            Message Choose a level X or lower character with "Youmu" in its card name to place on stage. X = level of the card put into waiting room.
+            SearchLocationForTargets WaitingRoom 1 1 NameContains Youmu && Compare ThatCardsLevel X OrLess
+            PlaceOnStage true true true false
+        }
+    }
+}
+Text Auto:CxCombo When "Deadly Dance 「Law of Morality」" is placed on your climax area, put up to 1 card from your opponent's memory into waiting room. If you do, choose 1 character with "Youmu" in its card name in your waiting room whose level is less or equal to X and place it on an empty position on stage. X = the level of the card put into waiting by the effect.
+EndCard
+
+Character: TH/PCB-089
+Name Yukari, Fierce Battle Aftermath
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Combo Aerial Bait 「Laced With Venom」
+Cont: GiveSelf
+{
+    TargetLocation Stage
+    NarrowTargets Other && IsColor Red || Other && IsColor Yellow
+    SetXValue TargetCount
+    MultiplyXValue 500
+    GainPower X
+}
+Text Cont:This card gets +500 power for each other of your RED and/or YELLOW characters.
+Auto: OnSpecificClimaxPlay Aerial Bait 「Laced With Venom」
+{
+    If StageContains 4 Other && HasTrait Boundaries|Intellect
+    {
+        TargetLocation OpponentStage
+        MoveCard OpponentMemory
+        PlaceOnStage false true true false
+    }
+}
+Text Auto:CxCombo When "Aerial Bait 「Laced With Venom」" is placed on your climax area, if you have 4 or more other «Boundaries» and/or «Intellect» character, you may put all of your opponent's characters into memory and put them back into sperate position on your opponent's stage.
+EndCard
+
+Character: TH/PCB-090
+Name Yukari, 10 years Later
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 8000
+Soul 2
+Trait1 Gensokyo
+Trait2 Boundaries
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Gensokyo
+    {
+        GainPower 1000
+    }
+}
+Text Cont:If you have 2 or more other «Gensokyo» characters, this card gets +1000 power.
+Auto: StartClimaxPhase
+{
+    If Compare MyLevel 2 OrMore
+    {
+        PayCost Send 1 WaitingRoom Any
+        {
+            TargetSelf
+            PlaceOnStage true true true false
+        }
+    }
+}
+Alarm
+Text Auto:ALARM [Put a character from your stage into waiting room] At the beginning of your climax phase, if you are level 2 or higher and this card is on top of your clock, you may pay the cost. If you do, place this card on an open position on stage.
+EndCard
+
+Character: TH/PCB-091
+Name Yuyuko, Princess of Hakugyokurou
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Gensokyo
+Trait2 Spring
+*GainPowerForEachOther(500, Ghost|Spring)
+*Healer
+Auto: OnReverseOpponent
+{
+    PayCost 2 Discard 2 Any
+    {
+        If LocationContains OpponentMemory 1 Any
+        {
+            Message Choose a card to put into waiting room.
+            SearchLocationForTargets OpponentMemory 1 1 Any
+            SetXValue TargetCardsLevel
+            MoveCard WaitingRoom
+            If LocationContains WaitingRoom 1 HasTrait Spring|Ghost && Compare ThatCardsLevel X OrLess
+            {
+                Message Choose a level X or lower «Spring» and/or «Ghost» character to place on stage. X = level of the card put into waiting room.
+                SearchLocationForTargets WaitingRoom 1 1 HasTrait Spring|Ghost && Compare ThatCardsLevel X OrLess
+                PlaceOnStage true true true false
+            }
+        }
+    }
+}
+Text Auto:[(2) Put 2 cards from your hand into waiting room] When this card's battle opponent becomes reversed,you may pay the cost. If you do, put 1 card from your opponent's memory into waiting room, choose «Spring» and/or «Ghost» character in your waiting room whose level is less or equal to X and place it on any position on stage. X = the level of the card put into waiting by the effect.
+EndCard
+
+Character: TH/PCB-092
+Name Yukari, Giving Unimaginable Orders
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Auto: OnHealToWaitingRoom|OnOpponentHealToWaitingRoom
+{
+    If InLocation Memory
+	{
+		IfOther MyCard
+		{
+			TargetLocation Stage
+            If Not MyTurn
+            {
+                UntilEndOfOpponentsTurn
+                LosePower 1000
+            }
+            Else
+            {
+                LosePower 1000
+            }
+		}
+		Else
+		{
+			TargetLocation OpponentStage
+            LosePower 1000
+            If Not MyTurn
+            {
+                RememberTargets
+                ScheduleEffect StartDrawPhase
+                {
+                    Effect:
+                    {
+                        TargetRemembered
+                        NarrowTargets InLocation OpponentStage
+                        LosePower 1000
+                    }
+                }
+            }
+		}
+	}
+}
+InMemory
+Text Auto:MEMORY If this card is in memory, when your card or your opponent's card in the clock is put into the waiting room due to respective owner's card effects, all characters of that player get -1000 power until end of that player's opponent's turn.
+Act: RestSelf
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -1000 power.
+    LosePower 1000
+}
+Text Act:[Rest this] Choose 1 of your opponent's characters on center stage and that character gets -1000 power until end of turn.
+Act: 1 SendSelf Memory
+{
+    TargetLocation OpponentStage
+    NarrowTargets CanBeChosen
+    ChooseCharacterFromTargets Choose a character to give -1000 power.
+    LosePower 1000
+}
+Text Act:[(1) Put this card into memory] Choose 1 of your opponent's characters on center stage and that character gets -1000 power until end of turn.
+EndCard
+
+Character: TH/PCB-093
+Name Yuyuko, Airhead Princess
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Auto: OnPlay
+{
+    TargetTop Deck
+    Reveal
+    IfTarget HasTrait Spring|Ghost
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If that card is a «Spring» and/or «Ghost» character, put it in your hand and discard 1 card from your hand into your waiting room.
+Auto: OnPlay
+{
+    TargetLocation OpponentMemory
+    If Compare TargetCount 4 OrMore
+    {
+        Message Choose a level 0 character to put into memory.
+        SearchLocationForTargets WaitingRoom 0 1 Compare ThatCardsLevel 0 OrLess && IsCharacter
+        If HasTarget
+        {
+            MoveCard OpponentMemory
+        }
+    }
+}
+Text Auto:When this card is placed on stage from your hand, if your opponent has 4 or more cards in memory, choose up to 1 level 0 or lower character in your opponent's waiting room and put it into memory.
+Auto: OnOtherReversed
+{
+    TargetLocation Stage
+    NarrowTargets HasTrait Spring|Ghost
+    ChooseCharacterFromTargets Choose a character to give +1000 power.
+    GainPower 1000
+}
+Text Auto:When your other characters become reversed, choose 1 of your «Spring» and/or «Ghost» character and that character gets +1000 power until end of turn.
+EndCard
+
+Character: TH/PCB-094
+Name Yuyuko, Youmu's Master
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Auto: OnPlay
+{
+    RevealExactly Deck 3
+    If Compare TotalSoulTriggers 3 OrMore
+    {
+        Message Choose a character to put into stock.
+        ChooseCardsFromTargets 0 1 IsCharacter
+        MoveCard Stock
+    }
+    PutTheRestIntoTheWaitingRoom    
+}
+Text Auto:When this card is placed on stage from your hand, you may look at the top 3 cards of your deck. If there is 3 or more soul trigger icon among those cards, choose up to 1 character among them, put it into stock and put the rest into waiting room.
+EndCard
+
+Character: TH/PCB-095
+Name Yukari, Giving Unimaginable Orders
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Act: 0
+{
+    TargetSelf
+    Reverse
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +4000 power.
+    GainPower 4000
+}
+Text Act:[Reverse this card] Choose 1 of your character and that character gets +4000 power until end of turn.
+EndCard
+
+Character: TH/PCB-096
+Name Yukari, Travelling Through Boundaries
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Cont: GiveSelf
+{
+    TargetLocation Marker
+    If HasTarget
+    {
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                SearchDeck HasTrait Gensokyo
+            }
+            Text Auto:When this card's battle opponent becomes reversed, search your deck for up to «Gensokyo» character, reveal it to your opponent, put it in your hand and shuffle your deck.
+        }
+    }
+}
+Text Cont:If this card has a marker underneath, this card gets the following ability. "Auto:When this card's battle opponent becomes reversed, search your deck for up to «Gensokyo» character, reveal it to your opponent, put it in your hand and shuffle your deck."
+Auto: OnPlay|OnPlacedOnStageFromWaitingRoom
+{
+    TargetSelf
+    SaveTargets
+    Message Choose a "Yukari, Manipulation of Boundaries" to put face-down underneath this card as marker.
+    SearchLocationForTargets WaitingRoom 0 1 NameEquals Yukari, Manipulation of Boundaries
+    MarkerTargetsUnderSavedTarget_FaceDown
+}
+Text Auto:When this card is placed on the stage from your hand or from your waiting room, you may choose a "Yukari, Manipulation of Boundaries" in your waiting room and put it face-down underneath this card as marker.
+Auto: StartClimaxPhase
+{
+    PayCost SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Yukari\, Manipulation of Boundaries)
+    }
+}
+Text Auto:CHANGE [Put this card into waiting room] At the beginning of your climax phase, you may pay cost. If you do, choose a "Yukari, Manipulation of Boundaries" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: TH/PCB-097
+Name Yuyuko, Schoolgirl Cosplay
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Auto: OnUseThisCardsBackup
+{
+    TargetMyCharacterInBattle
+    GainEffect
+    {
+        Auto: OnReverseOpponent
+        {
+            TargetFacing
+            MoveCard Memory
+        }
+        Text Auto:When this card's battle opponent becomes reversed, put that character into memory.
+    }
+}
+Text Auto:When you use this card's BACKUP, choose 1 of your characters in battle and that character gets the following ability until end of turn. "Auto:When this card's battle opponent becomes reversed, put that character into memory."
+Backup 3000
+EndCard
+
+Character: TH/PCB-098
+Name Yukari, No Trespassing
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Cont: GiveAll
+{
+    If Other && IsColor Red
+    {
+        GainPower 500
+    }
+}
+Text Cont:All your other RED characters get +500 power.
+Auto: StartDrawPhase
+{
+    PayCost SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom(Yukari\, Happy to Win)
+    }
+}
+Text Auto:CHANGE [Put this card into waiting room] At the beginning of your draw phase, you may pay the cost. If you do, choose a "Yukari, Happy to Win" in your waiting room and put it in the position this card was in.
+*Act1RestSelfSearchBrainstorm(Gensokyo)
+EndCard
+
+Character: TH/PCB-099
+Name Yuyuko, Gathering Spring Essence
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Auto: OnTriggerCheck
+{
+    IfOther HasTrigger Soul
+    {
+        PayCost RestSelf
+        {
+            TargetLocation CenterStage
+            ChooseCharacterFromTargets Choose a character to give +1 soul.
+            GainSoul 1
+        }
+    }
+}
+Text Auto:[rest this card] When your characters' trigger check reveal a soul trigger icon, you may pay the cost. If you do, choose 1 character on your center stage and that character gets +1 soul until end of turn.
+*Act1RestSelfSalvageBrainstorm(Gensokyo)
+EndCard
+
+Character: TH/PCB-100
+Name Yuyuko, Making Fun of Youmu
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Auto: OnAttack
+{
+    TargetLocation Memory
+    SetXValue TargetCount
+    TargetLocation OpponentMemory
+    AddToXValue TargetCount
+    MultiplyXValue 500
+    TargetLocation CenterStage
+    NarrowTargets NameEquals Youmu, Tasting Sweet Potato
+    ChooseCharacterFromTargets Choose a "Youmu, Tasting Sweet Potato" to give +X power. X = 500 times number of cards in all player's memory.
+    GainPower X    
+}
+Text Auto:When this card attacks, choose up to 1 "Youmu, Tasting Sweet Potato" on your center stage and that character gets +X power until end of turn. X = 500 times number of cards in all player's memory.
+*Bond1(Youmu\, Tasting Sweet Potato)
+EndCard
+
+Character: TH/PCB-101
+Name Yukari, Gensokyo's Sage
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Auto: StartMyEncorePhase
+{
+    TargetSelf
+    If InLocation CenterStage && CardPosition Rest
+    {
+        Question_Obvious Put this card into memory ?
+        If Yes
+        {
+            MoveCard Memory
+            ScheduleEffect StartDrawPhase
+            {
+                Effect:
+                {
+                    TargetLocation Memory
+                    NarrowTargets NameEquals Yukari, Gensokyo's Sage
+                    FirstTarget
+                    If HasTarget
+                    {
+                        Message Yukari, Gensokyo's Sage returns from memory.
+                        PlaceOnStage false true true false
+                    }
+                
+                }
+            }
+        }
+    }
+}
+Text Auto:At the beginning of your Encore Step, if this card is rest on your center stage, you may put this card into memory. If you do, at the beginning of your next draw phase, choose 1 "Yukari, Gensokyo's Sage" in your memory, and put it on any position of your stage.
+EndCard
+
+Character: TH/PCB-102
+Name Yuyuko, Time For Snack
+Color B
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Auto: OnAttack
+{
+    PayCost 1
+    {
+        TargetTop Deck
+        Reveal
+        IfTarget HasTrigger Soul
+        {
+            TargetSelf
+            GainSoul 1
+        }
+        Else
+        {
+            TargetSelf
+            GainPower 1500
+        }
+    }
+}
+Text Auto:[(1)] When this card attacks, you may pay the cost. If you do, reveal the top card of your deck and, if that card has a soul trigger icon, this card gets +1 soul, otherwise this gets +1500 power.
+EndCard
+
+
+Character: TH/PCB-103
+Name Yuyuko, Loves Eating
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Cont: GiveSelf
+{
+    ClockRestriction IsClimax 
+}
+Text Cont:During your clock phase, you may not put a climax card from your hand in clock in order to draw cards.
+Auto: OnReverseOpponent
+{
+    If LocationContains OpponentClock 1 Any
+    {
+        Question Choose a card in your opponent's clock into waiting room ?
+        If Yes
+        {
+            TargetLocation OpponentClock
+            Message Choose a card to put into waiting room.
+            ChooseCardsFromTargets OpponentClock 1 1 Any
+            MoveCard WaitingRoom
+            TargetTop Deck
+            MoveCard Clock
+        }
+    }
+}
+Text Auto:When this card's battle opponent becomes reversed, you may choose 1 card in your opponent's clock and put it into waiting room. If you do, put the top card of your opponent's deck into clock.
+EndCard
+
+Character: TH/PCB-104
+Name Yuyuko, Eating Carelessly
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Spring
+Combo Losing Hometown 「Lost Soul's Village」
+Auto: OnSpecificClimaxPlay Losing Hometown 「Lost Soul's Village」
+{
+    PayCost 1
+    {
+        TargetLocation Stage
+        NarrowTargets HasTrait Spring|Ghost
+        SetXValue TargetCount
+        Peek Deck X
+        SaveTargets
+        Message Choose a «Spring» and/or «Ghost» character to put to your hand.
+        ChooseCardsFromTargets 0 1 HasTrait Spring|Ghost
+        MoveCard Hand
+        RemoveCurrentFromSavedTargets
+        LoadTargets
+        Message Choose a card to put into stock.
+        ChooseCardsFromTargets 0 1 Any
+        MoveCard Stock
+        EndPeek
+        RemoveCurrentFromSavedTargets
+        LoadTargets
+        Reorder
+    }
+}
+Text Auto:CxCombo [(1)] When "Losing Hometown 「Lost Soul's Village」" is placed on your climax area, you may look at up to the top X cards of your deck, choose up to 1 «Spring» and/or «Ghost» character among them, put it into your hand, choose up to 1 card among them, put it in stock and put the rest back on top of your deck in any order. X = number of your «Spring» and/or «Ghost» character.
+EndCard
+
+Character: TH/PCB-105
+Name Yukari, Shy Around Ohters
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Boundaries
+Combo Evil Spirits 「Yukari Yakumo's Spiriting Away」
+Act: 1 Rest 2 HasTrait Boundaries &&& Discard 1 NameEquals Evil Spirits 「Yukari Yakumo's Spiriting Away」
+{
+    If LocationContains Clock 1 Any
+    {
+        Message Choose a card to put in your hand.
+        SearchLocationForTargets Clock 1 1 Any
+        MoveCard Hand
+    }
+    If LocationContains WaitingRoom 1 Any
+    {
+        Message Choose a card to put in your clock.
+        SearchLocationForTargets WaitingRoom 1 1 Any
+        MoveCard Clock
+    }
+    DrawCard
+}
+Text Act:CxCombo [(1) Rest 2 of your «Boundaries» characters, put a "Evil Spirits 「Yukari Yakumo's Spiriting Away」" from your hand into waiting room] Choose 1 card in your clock and put that card into your hand. Choose 1 card in your waiting room, put that card into clock and draw 1 card.
+EndCard
+
+Character: TH/PCB-106
+Name Yuyuko, Manipulating Death
+Color B
+Level 2
+Cost 2
+Power 3000
+Soul 1
+Trigger Soul
+Trait1 Gensokyo
+Trait2 Spring
+Cont: GiveSelf
+{
+    AddToOtherCardsTriggerIcon Soul Any
+}
+Text Cont:All of your cards in any zone get a soul trigger icon.
+Auto: StartClimaxPhase
+{
+    PayCost RestSelf
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1 soul.
+        GainSoul 1
+    }
+}
+Text Auto:[Rest this card] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 of your character and that character gets +1 soul until end of turn.
+*SacrificeToSave(HasTrait Gensokyo)
+Text Auto:[Put this card into waiting room] When another «Gensokyo» character is placed into waiting room from your stage, if this card is on your backstage, you may pay cost. If you do, put that character rest in the position it was in.
+EndCard
+
+Event: TH/PCB-107
+Name Perfect Cherry Blossom
+Color B
+Level 0
+Cost 1
+Requirement StageContains 1 HasTrait Gensokyo
+Effect: 
+{
+    TargetSelf MoveCard Memory
+    SetXValue MyLevel
+    Repeat 7
+    {
+        TargetTop Deck
+        MoveCard Clock
+        If Compare MyLevel X GreaterThan
+        {
+            StopLoop
+        }
+    }
+}
+Text If you don't have 1 or more «Gensokyo» character, you cannot play this card from your hand.\nPut this card into memory. Repeat the following effect until you level up. "Put the top card of your deck into clock."
+Cont: Memory
+{
+    GainTrait Intellect
+    GainTrait Ghost
+    GainTrait Boundaries
+    GainTrait Spring
+    GainTrait Doll
+}
+Text Cont:MEMORY If this card is in memory, all your characters get «Intellect», «Ghost», «Boundaries», «Spring» and «Doll»
+EndCard
+
+Climax: TH/PCB-108
+Name Aerial Bait 「Laced With Venom」
+*BookClimax
+EndCard
+
+Climax: TH/PCB-109
+Name Cherry Blossom Sign 「Perfect Cherry Blossom of Sumizome」
+*GateClimax
+EndCard
+
+Climax: TH/PCB-110
+Name Spark of Life
+*GateClimax
+EndCard
+
+Climax: TH/PCB-111
+Name 「Resurrection Butterfly」
+*BookClimax
+EndCard
+
+Climax: TH/PCB-112
+Name Deadly Dance 「Law of Morality」
+Color B
+*Draw3SoulClimax
+EndCard
+
+Climax: TH/PCB-113
+Name Evil Spirits 「Yukari Yakumo's Spiriting Away」
+*GateClimax
+EndCard
+
+Climax: TH/PCB-114
+Name Flowery Soul 「Butterfly Delusion」
+Color B
+*2SoulClimax
+EndCard
+
+Climax: TH/PCB-115
+Name Losing Hometown 「Lost Soul's Village」
+*BookClimax
+EndCard
+
+Character: TH/PCB-P01
+Name Chen, Like a Daughter
+Color Y
+Level 3
+Cost 2
+Power 10000
+Soul 2
+Trigger Soul
+Trait1 Gensokyo
+Trait2 Shikigami
+Auto: OnAttack
+{
+    If StageContains 1 Other && NameContains Ran
+    {
+        PayCost 2
+        {
+            Burn 4
+        }
+    }
+}
+Text Auto:[(2)] When this card attacks, if you have another character with "Ran" in its card name, you may pay the cost. If so, deal 4 damage to your opponent.
+*Healer
+EndCard
+
+Character: TH/PCB-P02
+Name Youmu, Restocking
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Ghost
+Auto: OnPlay
+{
+    PayCost 3
+    {
+        StockSwap
+    }
+}
+Text Auto:[(3)] When this card is placed on the stage from your hand, you may pay the cost, put all of your opponent's stock into the waiting room, then put the same number of cards from the top of your opponent's deck into his or her stock.
+Auto: OnDamageCancel
+{
+    Question_Obvious Put this card into stock ?
+    If Yes
+    {
+        TargetSelf
+        MoveCard Stock
+    }
+}
+Text Auto:When damage dealt by this card is canceled, you may put this card into your stock. 
+EndCard
+
+Character: TH/PCB-P03
+Name Hourai
+Color R
+Level 3
+Cost 2
+Power 10000
+Soul 2
+Trigger Soul
+Trait1 Gensokyo
+Trait2 Doll
+Auto: OnReversed
+{
+    Burn 1
+}
+Text Auto:When this becoimes reversed, deal 1 damage to your opponent.
+Auto: OnReverseOpponent
+{
+    Question_Obvious Put this card's battle opponent on top of your opponent's deck ?
+    If Yes
+    {
+        TargetFacing
+        MoveCard OpponentDeck
+    }
+}
+Text Auto:When this card's battle opponent becomes reversed, you may put that character on top of your opponent's deck.
+EndCard
+
+Character: TH/PCB-P04
+Name Hourai & Shanghai
+Color R
+Level 3
+Cost 2
+Power 8500
+Soul 2
+Trigger Soul
+Trait1 Gensokyo
+Trait2 Doll
+Combo Puppet Showdown
+Cont: GiveSelfEverywhere
+{
+    GainName Hourai
+}
+Text Cont:This card's card name will also be regarded has "Hourai" in every zone.
+Cont: GiveSelfEverywhere
+{
+    GainName Shanghai
+}
+Text Cont:This card's card name will also be regarded has "Shanghai" in every zone.
+HandAction Send 1 WaitingRoom NameEquals Hourai
+{
+	PlaceOnStage False True True False
+}
+ActivationRequirement Compare MyLevel 3 OrHigher && HaveColor Red
+Text Cont:When this card is played from your hand, you may choose 1 of your "Hourai" and put it into your waiting room. If you do, you may play this card with 0 cost.
+Auto: OnAttack
+{
+    If Climax Puppet Showdown && StageContains 1 NameEquals Puppeteer Alice
+    {
+        SetXValue 0
+        Repeat 2
+        {
+            PayCost 1
+            {
+                AddToXValue 1
+            }
+        }
+        Repeat X
+        {
+            Burn 1
+        }
+    }
+}
+Text Auto:CxCombo [(1)] When this card attacks if "Puppet Showdown" is in your climax area and you have another "Puppeteer Alice" on your backstage, you may pay the cost up to 2 times. If you do, perform the following effect X times. "Deal 1 damage to your opponent." X = number of time you paid the cost.
+EndCard
+
+Character: TH/PCB-P05
+Name Puppeteer Alice
+Color R
+Level 3
+Cost 2
+Power 3000
+Soul 2
+Trigger Soul
+Trait1 Gensokyo
+Trait2 Doll
+Combo Puppet Showdown
+Cont: Assist
+{
+    If HasTrait Doll
+    {
+        GainPower 2000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetFacing
+                Question_Obvious Put the battle opponent into memory ?
+                If Yes
+                {
+                    MoveCard OpponentMemory
+                }
+            }
+            Text Auto:When this card's battle opponent becomes reversed, you may put that character into memory.
+        }
+    }
+}
+Text Cont:All of your «Doll» characters in front of this card get +2000 power and the following ability. "AWhen this card's battle opponent becomes reversed, you may put that character into memory."
+Auto: OnPlay
+{
+    *PlayCharacterFromHand(Compare ThatCardsLevel MyLevel OrLess)
+    GainPower 2000
+}
+Text Auto:When this card is placed on the stage from your hand, choose up to 1 character with level equal to or lower than your level in your hand, put it in any position of your stage, and that character gets +2000 power until end of turn.
+Auto: OnOtherAttacks
+{
+    If Climax Puppet Showdown && StageContains 4 Other && HasTrait Doll
+    {
+        IfOther NameEquals Shanghai || NameEquals Hourai
+        {
+            PayCost 2 Discard 1 Any
+            {
+                TargetLocation Stage
+                NarrowTargets NameEquals Shanghai && Not InSavedTargets
+                ChooseCharacterFromTargets Choose a "Shanghai" to swap with a "Hourai".
+                SaveTargets
+                TargetLocation Stage
+                NarrowTargets NameEquals Hourai && Not InSavedTargets
+                ChooseCharacterFromTargets Choose a "Hourai" to swap with the choosen "Shanghai".
+                AddSavedToCurrentTargets
+                Exchange
+            }
+        }
+    }
+}
+Text Auto:CxCombo [(2) Put a card from your hand into your waiting room] When your other "Hourai" or "Shanghai" attacks, if "Puppet Showdown" is in your climax area and you have 4 or more other «Doll» characters, you may pay the cost. If you do, choose 1 of your "Shanghai" and 1 of your "Hourai" and exchange them.
+EndCard
+
+Character: TH/PCB-P06
+Name Shanghai
+Image th_pcb_p06
+Color R
+Level 2
+Cost 1
+Power 6500
+Soul 1
+Trigger Soul
+Trait1 Gensokyo
+Trait2 Doll
+Auto: OnOtherReversed
+{
+    IfOther NameEquals Hourai
+    {
+        *OptionalHeal
+    }
+}
+Text Auto:When your other "Hourai" becomes reversed, you may put the top card of your clock into waiting room.
+EndCard
+
+Climax: TH/PCB-P07
+Name Puppet Showdown
+*StandbyClimax
+EndCard
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

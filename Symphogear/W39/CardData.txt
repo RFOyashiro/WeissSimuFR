@@ -1,0 +1,2753 @@
+Character: SG/W39-001
+Name "Gathered Miracle" Hibiki
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Combo Gungnir, Again
+Cont: GiveSelf
+{
+	If StageContains 3 Other && HasTrait Music
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 3 or more other ::Music:: Characters, this gains +1000 Power.
+Auto: OnReverseOpponent
+{
+	If Climax Gungnir, Again
+	{
+		SearchDeck HasTrait Music
+	}
+}
+Text Auto:When the Battle Opponent of this becomes Reversed, if "Gungnir, Again" is in the Climax Zone, search your Library for up to 1 ::Music:: Character, reveal it, put it in your hand, and shuffle your Library.
+EndCard
+
+Character: SG/W39-001SP
+Name "Gathered Miracle" Hibiki
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Combo Gungnir, Again
+Cont: GiveSelf
+{
+	If StageContains 3 Other && HasTrait Music
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 3 or more other ::Music:: Characters, this gains +1000 Power.
+Auto: OnReverseOpponent
+{
+	If Climax Gungnir, Again
+	{
+		SearchDeck HasTrait Music
+	}
+}
+Text Auto:When the Battle Opponent of this becomes Reversed, if "Gungnir, Again" is in the Climax Zone, search your Library for up to 1 ::Music:: Character, reveal it, put it in your hand, and shuffle your Library.
+EndCard
+
+Character: SG/W39-002
+Name "Magical Words" Hibiki
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 2
+Trait1 Music
+Combo Glorious Break
+*Healer
+Auto: OnAttack
+{
+	If Climax Glorious Break
+	{
+		TargetLocation Stage
+		NarrowTargets HasTrait Music
+		GainPower 2000
+		TargetSelf
+		GainEffect
+		{
+			*OnCancelBurn1
+		}
+	}
+}
+Text Auto:When this attacks, if "Glorious Break" is in the Climax Zone, for the turn, all your ::Music:: Characters gain +2000 Power, and this gains the following ability. "[A] This ability activates up to once per turn. When the Damage dealt by this is Cancelled, you may deal 1 Damage to your Opponent. (Damage Cancel can occur)"
+Auto: StartMyEncorePhase
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ignite Module
+	If Not HasTarget
+	{
+		TargetSelf
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-002R
+Name "Magical Words" Hibiki
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 2
+Trait1 Music
+Combo Glorious Break
+*Healer
+Auto: OnAttack
+{
+	If Climax Glorious Break
+	{
+		TargetLocation Stage
+		NarrowTargets HasTrait Music
+		GainPower 2000
+		TargetSelf
+		GainEffect
+		{
+			*OnCancelBurn1
+		}
+	}
+}
+Text Auto:When this attacks, if "Glorious Break" is in the Climax Zone, for the turn, all your ::Music:: Characters gain +2000 Power, and this gains the following ability. "[A] This ability activates up to once per turn. When the Damage dealt by this is Cancelled, you may deal 1 Damage to your Opponent. (Damage Cancel can occur)"
+Auto: StartMyEncorePhase
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ignite Module
+	If Not HasTarget
+	{
+		TargetSelf
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-003
+Name Miku, Understanding Hibiki
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Cont: GiveAll
+{
+	If NameEquals Hibiki, Fight to Protect
+	{
+		GainPower 1000
+	}
+}
+Text Cont:All your other "Hibiki, Fight to Protect" gain +1000 Power.
+*Bond1(Hibiki\, Fight to Protect)
+EndCard
+
+Character: SG/W39-004
+Name Autoscorer Leiur
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+Auto: OnReversed
+{
+	PayCost 1 Clock SendSelf Memory
+	{
+		SearchDeck HasTrait Alchemy
+	}
+}
+Text Auto:[(1) Put the top card of your Library in your Clock, Send this to Memory] When this becomes Reversed in battle, you may pay cost. If so, search your Library for up to 1 ::Alchemy:: Character, reveal it, put it in your hand, and shuffle your Library.
+EndCard
+
+Character: SG/W39-005
+Name Hibiki, Fight to Protect
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Auto: OnPlay
+{
+	If StageContains 2 Other && HasTrait Music
+	{
+		TargetSelf
+		GainPower 2000
+	}
+}
+Text Auto:When this is placed from hand to the Stage, if you have 2 or more other ::Music:: Characters, this gains +2000 Power for the turn.
+EndCard
+
+Character: SG/W39-005S
+Name Hibiki, Fight to Protect
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Auto: OnPlay
+{
+	If StageContains 2 Other && HasTrait Music
+	{
+		TargetSelf
+		GainPower 2000
+	}
+}
+Text Auto:When this is placed from hand to the Stage, if you have 2 or more other ::Music:: Characters, this gains +2000 Power for the turn.
+EndCard
+
+Character: SG/W39-006
+Name Miku, Scenery While Heading to School
+Color Y
+Level 1
+Cost 1
+Power 5500
+Soul 1
+Trait1 Music
+*ContForEachOtherTrait(500,Music)
+*ClockEncore
+EndCard
+
+Character: SG/W39-007
+Name Hibiki, Skinship
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 5000
+Soul 1
+Trait1 Music
+*LevelAssist
+Act: 1 Rest 1 Other && HasTrait
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +1 soul for the turn
+	GainSoul 1
+}
+Text Act:[(1) Rest 1 of your other ::Music:: Characters] Choose 1 of your ::Music:: Characters, and that Character gains +1 Soul for the turn.
+EndCard
+
+Character: SG/W39-008
+Name "Talk of Chances" Hibiki
+Color Y
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Music
+Cont: Assist
+{
+    If HasTrait Music
+    {
+	    GainPower 500
+	    GainLevel 1
+    }
+}
+Text Cont:ASSIST All your ::Music:: Characters in front of this gain +1 Level and +500 Power.
+Tag Backstage
+Auto: OnPlay
+{
+	TargetTop Deck 1
+    Reveal
+    IfTarget IsClimax
+    {
+		TargetSelf
+        MoveCard Deck
+		ShuffleLocation Deck
+    }
+}
+Text Auto:When this is placed from hand to the Stage, reveal the top card of your Library. If it's a Climax card, return this to your Library and shuffle your Library. (Otherwise put it back where it was)
+EndCard
+
+Character: SG/W39-009
+Name Hibiki, New Power
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Auto: OnAttack
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +1 level and +1000 power for the turn
+	GainLevel 1
+	GainPower 1000
+}
+Text Auto:When this attacks, choose 1 of your ::Music:: Characters, and that Character gains +1 Level and +1000 Power for the turn.
+*HandEncore
+EndCard
+
+Character: SG/W39-010
+Name Hibiki & Miku, Preparing for a Day Nap
+Color Y
+Level 1
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Cont: GiveAll
+{
+	If Other && HasTrait Music
+	{
+		GainPower 500
+	}
+}
+Text Cont:All your other ::Music:: Characters gain +500 Power.
+Auto: OnPlay
+{
+	Peek Deck 2
+	ChooseCard Choose a card to add to your hand (Will not be revealed)
+	MoveCard Hand
+	PutTheRestIntoTheWaitingRoom
+	Discard 1 Any
+}
+Text Auto:When this is placed from hand to the Stage, look at up to 2 cards from top of your Library and choose up to 1 of them and put it in your hand, and put the rest in the Waiting Room. Discard a card from your hand to the Waiting Room.
+EndCard
+
+Character: SG/W39-011
+Name Classification ID XMH_006, Leiur Darahim
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+Cont: GiveSelf
+{
+	If StageContains 2 Other && HasTrait Alchemy
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 2 or more other ::Alchemy:: Characters, this gains +1000 Power.
+*ClockEncore
+EndCard
+
+Character: SG/W39-012
+Name Hibiki, Special Training by the Beachside
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Music
+Auto: OnUseThisCardsBackup
+{
+	MillOpponent 3
+}
+Text Auto:When you use the BACKUP of this, put the top 3 cards of your Opponent's Library in the Waiting Room.
+Backup 3000
+EndCard
+
+Character: SG/W39-013
+Name Hibiki, Reunion with Father
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Cont: GiveSelf
+{
+	If MyTurn && InLocation MiddleCenterStage
+	{
+		GainPower 2000
+	}
+}
+Text Cont:During your turn, if this is in the Front Row Center Slot, this gains +2000 Power.
+EndCard
+
+Character: SG/W39-014
+Name Isaac, Carol's Father
+Color Y
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Alchemy
+Auto: OnPlay
+{
+	GainPower 1500
+}
+Text Auto:When this is placed from hand to the Stage, this gains +1500 Power for the turn.
+EndCard
+
+Character: SG/W39-015
+Name Miku, Cooking Practice
+Color Y
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Auto: OnPlay
+{
+	If Compare ClimaxInOpponentsWaitingRoom 3 OrMore
+	{
+		TargetSelf
+		Rest
+	}
+}
+Text Auto:When this is placed from hand to the Stage, if your Opponent has 3 or more Climax cards in the Waiting Room, Rest this.
+EndCard
+
+Character: SG/W39-016
+Name Terashima, Cooking Practice
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Cont: GiveSelf
+{
+	If MyTurn && StageContains 1 NameEquals Andou, Cooking Practice &&& StageContains 1 NameEquals Itaba, Cooking Practice
+	{
+		GainPower 3500
+		GainLevel 1
+	}
+}
+Text Cont:During your turn, if you have other "Andou, Cooking Practice" and "Itaba, Cooking Practice", this gains +1 Level and +3500 Power.
+*HandEncore
+EndCard
+
+Character: SG/W39-017
+Name Andou, Cooking Practice
+Color Y
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Music
+Cont: GiveSelf
+{
+	If MyTurn && StageContains 1 NameEquals Terashima, Cooking Practice &&& StageContains 1 NameEquals Itaba, Cooking Practice
+	{
+		GainPower 2000
+	}
+}
+Text Cont:If you have other "Terashima, Cooking Practice" and "Itaba, Cooking Practice", this gains +2000 Power.
+EndCard
+
+Character: SG/W39-018
+Name Itaba, Cooking Practice
+Color Y
+Level 1
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Music
+Cont: GiveAll
+{
+	If MyTurn && NameEquals Andou, Cooking Practice | Terashima, Cooking Practice
+	{
+		GainPower 1000
+	}
+}
+Text Cont:All your other "Andou, Cooking Practice" and "Terashima, Cooking Practice" gain +1000 Power.
+EndCard
+
+Character: SG/W39-019
+Name Miku, Attack During Daytime
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Music
+Combo Something Big Worries Me
+*ContForEachOtherTrait(500,Music)
+Auto: OnAttack
+{
+	If Climax Something Big Worries Me
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose an opponent's character to bounce.
+			If HasTarget
+			{
+				Bounce
+			}
+		}
+	}
+}
+Text Auto:When this attacks, if "Something Big Worries Me" is in the Climax Zone, you may choose 1 of your Opponent's Characters and return it to hand.
+EndCard
+
+Event: SG/W39-020
+Name Ignite Module
+Color Y
+Level 1
+Cost 1
+Effect: 
+{
+	*Check4Add1(Music)
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +2000 power for the turn.
+	GainPower 2000
+	TargetSelf
+	MoveCard Memory
+}
+Text Look at up to 4 cards from top of your Library and choose up to 1 ::Music:: Character, reveal it, put it in your hand, and put the rest in the Waiting Room. Choose 1 of your Characters, and that Character gains +2000 Power for the turn. Send this to Memory.
+EndCard
+
+Event: SG/W39-021
+Name Gungnir
+Color Y
+Level 2
+Cost 1
+Effect: 
+{
+	PayCost Send 1 Hand NameContains Hibiki && Compare ThatCardsLevel 2 OrMore
+    {
+		Message Choose a charactre with "Hibiki" in name from your hand and put it in any Slot on the Stage.
+		SearchLocationForTargets Hand 0 1 NameContains Hibiki
+		PlaceOnStage false true true false
+    }
+}
+Text You may choose 1 of your Level 2 or higher Character with "Hibiki" in name and return it to your hand. If so, choose up to 1 Character in your hand with "Hibiki" in name and put it in any Slot on the Stage.
+EndCard
+
+Event: SG/W39-022
+Name Beef Stroganoff
+Color Y
+Level 3
+Cost 3
+Effect: 
+{
+	Repeat 3
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose an opponent's character to bounce.
+			If HasTarget
+			{
+				Bounce
+			}
+		}
+	}
+}
+Text Choose up to 3 of your Opponent's Characters and return them to hand.
+EndCard
+
+Climax: SG/W39-023
+Name Gungnir, Again
+*ShotClimax
+EndCard
+
+Climax: SG/W39-023S
+Name Gungnir, Again
+*ShotClimax
+EndCard
+
+Climax: SG/W39-024
+Name Glorious Break
+*WindClimax
+EndCard
+
+Climax: SG/W39-025
+Name Something Big Worries Me
+*YellowStockSoul
+EndCard
+
+Character: SG/W39-026
+Name Shirabe, the Conclusion Reached
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 2500
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+	If StageContains 1 NameEquals Kirika, the Conclusion Reached
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:If you have "Kirika, the Conclusion Reached", this gets -1 Level while in your hand.
+Cont: Assist
+{
+	If HasTrait Music
+	{
+		GainPower 2000
+		GainEffect
+		{
+			Auto: OnReverseOpponent
+			{
+				TargetBattleOpponent
+				IfTarget OnStage
+				{
+					Question Put the battle opponent to memory ?
+					If Yes
+					{
+						MoveCard OpponentMemory
+					}
+				}
+			}
+			Text Auto: When this card's battle opponent becomes reversed, you may put that character into your opponent's memory.
+		}
+	}
+}
+Text Cont:ASSIST All your ::Music:: Characters in front of this gain +2000 Power and the following ability. "[A] When the Battle Opponent of this becomes Reversed, you may send that Character to Memory."
+Tag Backstage
+*Healer
+EndCard
+
+Character: SG/W39-026SP
+Name Shirabe, the Conclusion Reached
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 2500
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+	If StageContains 1 NameEquals Kirika, the Conclusion Reached
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:If you have "Kirika, the Conclusion Reached", this gets -1 Level while in your hand.
+Cont: Assist
+{
+	If HasTrait Music
+	{
+		GainPower 2000
+		GainEffect
+		{
+			Auto: OnReverseOpponent
+			{
+				TargetBattleOpponent
+				IfTarget OnStage
+				{
+					Question Put the battle opponent to memory ?
+					If Yes
+					{
+						MoveCard OpponentMemory
+					}
+				}
+			}
+			Text Auto: When this card's battle opponent becomes reversed, you may put that character into your opponent's memory.
+		}
+	}
+}
+Text Cont:ASSIST All your ::Music:: Characters in front of this gain +2000 Power and the following ability. "[A] When the Battle Opponent of this becomes Reversed, you may send that Character to Memory."
+Tag Backstage
+*Healer
+EndCard
+
+Character: SG/W39-027
+Name Kirika, the Conclusion Reached
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo Unison of Two
+Cont: InHand
+{
+	If Compare ClimaxInWaitingRoom 6 OrMore
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:If there are 6 or more Climax cards in your Waiting Room, this gets -1 Level while in your hand.
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && NameEquals Shirabe, the Conclusion Reached
+	SetXValue TargetCount
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:For each of your other "Shirabe, the Conclusion Reached", this gains +1000 Power.
+*OnPlayDraw2Discard1
+Auto: OnReverseOpponent
+{
+	If Climax Unison of Two
+	{
+		TargetBattleOpponent
+		IfTarget OnStage
+		{
+			Question Put the battle opponent to clock ?
+			If Yes
+			{
+				MoveCard OpponentClock
+			}
+		}
+	}
+}
+Quick
+Text Auto:When the Battle Opponent of this becomes Reversed, if "Unison of Two" is in your Climax Zone, you may put that Character in Clock.
+EndCard
+
+Character: SG/W39-027SP
+Name Kirika, the Conclusion Reached
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Combo Unison of Two
+Cont: InHand
+{
+	If Compare ClimaxInWaitingRoom 6 OrMore
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:If there are 6 or more Climax cards in your Waiting Room, this gets -1 Level while in your hand.
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && NameEquals Shirabe, the Conclusion Reached
+	SetXValue TargetCount
+	MultiplyXValue 1000
+	GainPower X
+}
+Text Cont:For each of your other "Shirabe, the Conclusion Reached", this gains +1000 Power.
+*OnPlayDraw2Discard1
+Auto: OnReverseOpponent
+{
+	If Climax Unison of Two
+	{
+		TargetBattleOpponent
+		IfTarget OnStage
+		{
+			Question Put the battle opponent to clock ?
+			If Yes
+			{
+				MoveCard OpponentClock
+			}
+		}
+	}
+}
+Quick
+Text Auto:When the Battle Opponent of this becomes Reversed, if "Unison of Two" is in your Climax Zone, you may put that Character in Clock.
+EndCard
+
+Character: SG/W39-028
+Name "Courage to Confront" Shirabe
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveAll
+{
+	If Other && NameEquals "Courage to Confront" Kirika
+	{
+		GainPower 500
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont:All your other '"Courage to Confront" Kirika' gain +500 Power and "[A] ENCORE [Discard a Character card from your hand to the Waiting Room]".
+*BondClock("Courage to Confront" Kirika)
+EndCard
+
+Character: SG/W39-028R
+Name "Courage to Confront" Shirabe
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveAll
+{
+	If Other && NameEquals "Courage to Confront" Kirika
+	{
+		GainPower 500
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont:All your other '"Courage to Confront" Kirika' gain +500 Power and "[A] ENCORE [Discard a Character card from your hand to the Waiting Room]".
+*BondClock("Courage to Confront" Kirika)
+EndCard
+
+Character: SG/W39-029
+Name "Courage to Confront" Kirika
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 NameContains Shirabe
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another Character with "Shirabe" in name, this gains +1500 Power.
+Act: Rest 1 Any
+{
+	TargetSelf
+	GainPower 1000
+}
+Text Act:[Rest 1 of your ::Music:: Characters] This gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W39-029R
+Name "Courage to Confront" Kirika
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContains 1 NameContains Shirabe
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another Character with "Shirabe" in name, this gains +1500 Power.
+Act: Rest 1 Any
+{
+	TargetSelf
+	GainPower 1000
+}
+Text Act:[Rest 1 of your ::Music:: Characters] This gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W39-030
+Name "End of the World" Carol
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Alchemy
+Cont: GiveAll
+{
+	If Other && InLocation MiddleCenterStage
+	{
+		GainPower 1000
+	}
+}
+Text Cont:Your other Character in the Front Row Center Slot gains +1000 Power.
+*Act1Rest2SearchBrainstorm(Alchemy)
+EndCard
+
+Character: SG/W39-031
+Name Kirika, Marvelous Combination
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*Bond1(Shirabe\, Marvelous Combination)
+*Act1Rest2SearchBrainstorm(Music)
+EndCard
+
+Character: SG/W39-032
+Name Carol Malus Dienheim
+Color G
+Level 3
+Cost 3
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Alchemy
+Cont: InHand
+{
+	If LocationContains Memory 1 NameEquals Autoscorer Leiur &&& LocationContains Memory 1 NameEquals Autoscorer Phara &&& LocationContains Memory 1 NameEquals Autoscorer Micha &&& LocationContains Memory 1 NameEquals Autoscorer Galie
+	{
+		LoseLevel 1
+		ChangeCost -2
+	}
+}
+Text Cont:RECOLLECTION If "Autoscorer Leiur", "Autoscorer Phara", "Autoscorer Micha", and "Autoscorer Galie" are all in your Memory, this gets -1 Level and -2 Cost while in your hand.
+*Healer
+Act: 1 SendFromLocationToLocation Memory WaitingRoom 1 false HasTrait Alchemy
+{
+	TargetSelf
+	GainPower 1500
+	GainEffect
+	{
+		*HexProof
+	}
+}
+Text Act:[(1) Put an ::Alchemy:: Character from your Memory in the Waiting Room] This gains +1500 Power and the following ability until the next end of your Opponent's turn. "[C] This cannot be chosen as the target of Opponent's effects."
+EndCard
+
+Character: SG/W39-032SP
+Name Carol Malus Dienheim
+Color G
+Level 3
+Cost 3
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Alchemy
+Cont: InHand
+{
+	If LocationContains Memory 1 NameEquals Autoscorer Leiur &&& LocationContains Memory 1 NameEquals Autoscorer Phara &&& LocationContains Memory 1 NameEquals Autoscorer Micha &&& LocationContains Memory 1 NameEquals Autoscorer Galie
+	{
+		LoseLevel 1
+		ChangeCost -2
+	}
+}
+Text Cont:RECOLLECTION If "Autoscorer Leiur", "Autoscorer Phara", "Autoscorer Micha", and "Autoscorer Galie" are all in your Memory, this gets -1 Level and -2 Cost while in your hand.
+*Healer
+Act: 1 SendFromLocationToLocation Memory WaitingRoom 1 false HasTrait Alchemy
+{
+	TargetSelf
+	GainPower 1500
+	GainEffect
+	{
+		*HexProof
+	}
+}
+Text Act:[(1) Put an ::Alchemy:: Character from your Memory in the Waiting Room] This gains +1500 Power and the following ability until the next end of your Opponent's turn. "[C] This cannot be chosen as the target of Opponent's effects."
+EndCard
+
+Character: SG/W39-033
+Name Carol, Power Filling
+Color G
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Alchemy
+Cont: GiveSelf
+{
+	TargetLocation Memory
+	If Compare TargetCount 2 OrMore
+	{
+		GainPower 2000
+	}
+}
+Text Cont:RECOLLECTION If there are 2 or more cards in your Memory, this gains +2000 Power.
+*ClockEncore
+EndCard
+
+Character: SG/W39-034
+Name Autoscorer Phara
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+Auto: OnPlay
+{
+	SetXToNumberOfCharacters HasTrait Alchemy
+	MultiplyXValue 500
+	GainPower X
+}
+Text Auto:When this is placed from hand to the Stage, this gains +X Power for the turn. X = 500 times # of your ::Alchemy:: Characters.
+Auto: OnReversed
+{
+    PayCost 1
+    {
+        TargetSelf
+        MoveCard Memory
+    }
+}
+Text Auto:[(1)] When this becomes Reversed in battle, you may pay cost. If so, Send this to Memory.
+EndCard
+
+Character: SG/W39-035
+Name Kirika, New Power
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: Assist
+{
+	If Compare ThatCardsLevel 3 OrMore
+	{
+		GainPower 2000
+	}
+}
+Text Cont:ASSIST All your Level 3 or higher Characters in front of this gain +2000 Power.
+Tag Backstage
+Auto: OnPlay
+{
+	PayCost 2
+	{
+		SearchDeck HasTrait Music
+	}
+}
+Text Auto:[(2)] When this is placed from hand to the Stage, you may pay cost. If so, search your Library for up to 1 ::Music:: Character, reveal it, put it in your hand, and shuffle your Library.
+EndCard
+
+Character: SG/W39-036
+Name Shirabe, New Life
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo The Unchanged Pair
+Cont: GiveSelf
+{
+	If StageContains 3 Other && HasTrait Music
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 3 or more other ::Music:: Characters, this gains +1000 Power.
+Auto: OnAttack
+{
+	If Climax The Unchanged Pair
+	{
+		TargetTop Deck
+		Reveal
+		IfTarget HasTrait Music
+		{
+			MoveCard Hand
+			TargetSelf
+			GainPower 6000
+		}
+	}
+}
+Text Auto:When this attacks, if "The Unchanged Pair" is in the Climax Zone, reveal the top card of your Library. If it's a ::Music:: Character, put it in your hand and this gains +6000 Power for the turn. (Otherwise put it back where it was)
+EndCard
+
+Character: SG/W39-037
+Name Carol, Alchemist
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Alchemy
+Combo Memories After Hundreds of Years
+Auto: OnSpecificClimaxPlay Memories After Hundreds of Years
+{
+	If InLocation CenterStage
+	{
+		PayCost 1
+		{
+			SearchLocationForTargets Deck 0 3 NameEquals Alca Noise
+			RevealTargets
+			PlaceOnStage false true true false
+			ShuffleLocation Deck
+		}
+	}
+}
+Text Auto:[(1)] When "Memories After Hundreds of Years" is placed in your Climax Zone, if this is in the Front Row, you may pay cost. If so, search your Library for up to 3 "Alca Noise" and put them in separate Slots on the Stage, and shuffle your Library.
+Auto: OnAttack
+{
+	TargetBattleOpponent
+	If Compare ThatCardsLevel 3 OrMore
+	{
+		TargetSelf
+		UntilEndOfOpponentsTurn
+		GainPower 3000
+	}
+}
+Text Auto:When this attacks, if the Level of the Character Opposite this is 3 or higher, this gains +3000 Power until the next end of your Opponent's turn.
+EndCard
+
+Character: SG/W39-038
+Name Kirika, Fluttering
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+	If StageContainsOrLess 1 Other
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have 1 or fewer other Characters, this gains +1500 Power.
+EndCard
+
+Character: SG/W39-039
+Name Carol, Murderer of Miracles
+Color G
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Alchemy
+Cont: GiveSelf
+{
+	If StageContainsOrLess 0 Other
+	{
+		GainPower 1500
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont:If you have no other Characters, this gains +1500 Power and "[A] ENCORE [Discard a Character card from your hand to the Waiting Room]".
+EndCard
+
+Character: SG/W39-040
+Name Shirabe, New Power
+Color G
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*500Assist
+Auto: OnPlay
+{
+	PayCost RestSelf
+	{
+		TargetLocation Stage
+		NarrowTargets NameContains Kirika
+		ChooseCharacterFromTargets Choose a "Kirika" to give the effect "[A] When the Battle Opponent of this becomes Reversed, you may put the top card of your Library in your Stock." for the turn.
+		GainEffect
+		{
+			Auto: OnReverseOpponent
+			{
+				*OptionalBlindStock
+			}
+		}
+	}
+}
+Text Auto:[Rest this] When this is placed from hand to the Stage, if this is Standing, you may pay cost. If so, choose 1 of your Characters with "Kirika" in name, and that Character gains the following ability for the turn. "[A] When the Battle Opponent of this becomes Reversed, you may put the top card of your Library in your Stock."
+EndCard
+
+Character: SG/W39-041
+Name Alca Noise
+Color G
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Alchemy
+Trait2 Noise
+Army
+*GreenCost0Bomb
+EndCard
+
+Character: SG/W39-042
+Name "Person of Truth" Ver
+Color G
+Level 1
+Cost 0
+Power 2500
+Soul 1
+Trait1 Science
+Cont: GiveSelf
+{
+	TargetLocation Marker
+	If Compare TargetCount 1 OrMore
+	{
+		GainPower 4000
+	}
+}
+Text Cont:If there is Marker under this, this gains +4000 Power.
+Auto: OnPlay
+{
+	SearchLocationForTargets WaitingRoom 0 1 NameEquals Gungnir | Ichaival | Amenohabakiri
+	Marker_FaceDown
+}
+Text Auto:When this is placed from hand to the Stage, you may choose either a "Gungnir", "Ichaival", or "Amenohabakiri" in your Waiting Room and put it face-down under this as Marker.
+EndCard
+
+Character: SG/W39-043
+Name Shirabe, Marvelous Combination
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+	TargetMyCharacterInBattle
+	IfTarget ColorIs Green
+	{
+		GainPower 1000
+	}
+}
+Text Auto:When you use the BACKUP of this, choose 1 of your GREEN Characters in battle, and that Character gains +1000 Power for the turn.
+Backup 1500
+EndCard
+
+Character: SG/W39-044
+Name Classification ID XMH_008, Phara Suyuf
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+Cont: GiveAll
+{
+	If Other && HasTrait Alchemy
+	{
+		GainPower 1000
+	}
+}
+Text Cont:All your other ::Alchemy:: Characters gain +1000 Power.
+Auto: OnPlay
+{
+	If StageContains 4 Other && HasTrait Alchemy
+	{
+		*OptionalBlindStock
+	}
+}
+Text Auto:When this is placed from hand to the Stage, if you have 4 or more other ::Alchemy:: Characters, you may put the top card of your Library in your Stock.
+EndCard
+
+Event: SG/W39-045
+Name Chateau de Tiffauges
+Color G
+Level 2
+Cost 0
+Effect: 
+{
+	RevealUpTo Deck 3
+	ChooseCardsFromTargets 0 1 IsColor Green
+	RevealTargets
+	MoveCard Hand
+	PutTheRestIntoTheWaitingRoom
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +2000 power for the turn.
+	GainPower 2000
+}
+Text Look at up to 3 cards from top of your Library and search for up to 1 GREEN card, reveal it, put it in your hand, and put the rest in the Waiting Room. Choose 1 of your Characters, and that Character gains +2000 Power for the turn.
+EndCard
+
+Event: SG/W39-046
+Name LiNKER model_K
+Color G
+Level 1
+Cost 1
+Counter
+Effect: 
+{
+    TargetLocation Stage
+    ChooseCardsFromTargets 0 1 NameContains Kirika
+    GainPower 2000
+    SaveTargets
+    TargetLocation Stage
+    ChooseCardsFromTargets 0 1 NameContains Shirabe && Not InSavedTargets
+    GainPower 2000
+}
+Text [Counter] Choose 1 of your Characters with "Kirika" in name and 1 of your Characters with "Shirabe" in name separately, and they gain +2000 Power for the turn.
+EndCard
+
+Event: SG/W39-047
+Name Faust Robe
+Color G
+Level 2
+Cost 0
+Effect: 
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +1500 power until the next end of your Opponent's turn.
+    UntilEndOfOpponentsTurn
+    GainPower 1500
+    TargetSelf
+    MoveCard Stock
+}
+Text Choose 1 of your Characters, and that Character gains +1500 Power until the next end of your Opponent's turn. Put this in your Stock.
+EndCard
+
+Climax: SG/W39-048
+Name Unison of Two
+Color G
+*DrawClimax
+EndCard
+
+Climax: SG/W39-048S
+Name Unison of Two
+Color G
+*DrawClimax
+EndCard
+
+Climax: SG/W39-049
+Name Memories After Hundreds of Years
+*BarClimax
+EndCard
+
+Climax: SG/W39-050
+Name The Unchanged Pair
+*BagClimax
+EndCard
+
+Climax: SG/W39-050S
+Name The Unchanged Pair
+*BagClimax
+EndCard
+
+Character: SG/W39-051
+Name "Bond With Kouhai" Chris
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 3
+Trait1 Music
+Trait2 Weapon
+Combo MEGA DETH FUGA
+Auto: OnAttack
+{
+    If Climax MEGA DETH FUGA
+    {
+        *OptionalBurn(1)
+    }
+}
+Text Auto:When this attacks, if "MEGA DETH FUGA" is in the Climax Zone, you may deal 1 Damage to your Opponent.
+*DefensiveScryOnCenterStage
+Auto: StartMyEncorePhase
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ignite Module
+	If Not HasTarget
+	{
+		TargetSelf
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-051SP
+Name "Bond With Kouhai" Chris
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 3
+Trait1 Music
+Trait2 Weapon
+Combo MEGA DETH FUGA
+Auto: OnAttack
+{
+    If Climax MEGA DETH FUGA
+    {
+        *OptionalBurn(1)
+    }
+}
+Text Auto:When this attacks, if "MEGA DETH FUGA" is in the Climax Zone, you may deal 1 Damage to your Opponent.
+*DefensiveScryOnCenterStage
+Auto: StartMyEncorePhase
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ignite Module
+	If Not HasTarget
+	{
+		TargetSelf
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-052
+Name "Self Brilliance" Maria
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 3
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay|PlacedBy CHANGE
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget HasTrait Music
+    {
+        *OptionalBurn(1)
+    }
+}
+Text Auto:When this is placed from hand to the Stage or via CHANGE to the Stage, reveal the top card of your Library. If it's a ::Music:: Character, you may deal 1 Damage to your Opponent. (Damage Cancel can occur. Put the revealed card back where it was)
+Auto: OnAttack
+{
+    PayCost ShuffleFromWaitingRoom 2 IsCharacter
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 1000
+    }
+}
+Text Auto:[Return 2 Character cards from your Waiting Room to the Library, shuffle your Library] When this attacks, you may pay cost. If so, this gains +1000 Power until the next end of your Opponent's turn.
+Auto: StartMyEncorePhase
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ignite Module
+	If Not HasTarget
+	{
+		TargetSelf
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-052SP
+Name "Self Brilliance" Maria
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 3
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay|PlacedBy CHANGE
+{
+    TargetTop Deck 1
+    Reveal
+    IfTarget HasTrait Music
+    {
+        *OptionalBurn(1)
+    }
+}
+Text Auto:When this is placed from hand to the Stage or via CHANGE to the Stage, reveal the top card of your Library. If it's a ::Music:: Character, you may deal 1 Damage to your Opponent. (Damage Cancel can occur. Put the revealed card back where it was)
+Auto: OnAttack
+{
+    PayCost ShuffleFromWaitingRoom 2 IsCharacter
+    {
+        UntilEndOfOpponentsTurn
+        GainPower 1000
+    }
+}
+Text Auto:[Return 2 Character cards from your Waiting Room to the Library, shuffle your Library] When this attacks, you may pay cost. If so, this gains +1000 Power until the next end of your Opponent's turn.
+Auto: StartMyEncorePhase
+{
+	TargetLocation Memory
+	NarrowTargets NameEquals Ignite Module
+	If Not HasTarget
+	{
+		TargetSelf
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-053
+Name Maria, Resurrected Gear
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveAll
+{
+    If Other
+    {
+        GainPower 500
+    }
+}
+Text Cont:All your other ::Music:: Characters gain +500 Power.
+Auto: OnOtherReversed
+{
+    TargetMyCharacterInBattle
+    IfTarget HasTrait Music
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose 1 character to give +500 power
+        GainPower 500
+    }
+}
+Text Auto:When your other ::Music:: Character becomes Reversed in battle, choose 1 of your Characters, and that Character gains +500 Power for the turn.
+EndCard
+
+Character: SG/W39-053R
+Name Maria, Resurrected Gear
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveAll
+{
+    If Other
+    {
+        GainPower 500
+    }
+}
+Text Cont:All your other ::Music:: Characters gain +500 Power.
+Auto: OnOtherReversed
+{
+    TargetMyCharacterInBattle
+    IfTarget HasTrait Music
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose 1 character to give +500 power
+        GainPower 500
+    }
+}
+Text Auto:When your other ::Music:: Character becomes Reversed in battle, choose 1 of your Characters, and that Character gains +500 Power for the turn.
+EndCard
+
+Character: SG/W39-054
+Name Chris, Special Training by the Beachside
+Color R
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnDamageCancel
+{
+    PayCost 1
+    {
+        SearchWaitingRoom IsCharacter
+        Discard 1 Any
+    }
+}
+Text Auto:[(1)] When the Damage dealt by this is Cancelled, you may pay cost. If so, choose a Character in your Waiting Room and return it to your hand, and discard a card from your hand to the Waiting Room.
+*RedLevel1Bomb
+EndCard
+
+Character: SG/W39-054R
+Name Chris, Special Training by the Beachside
+Color R
+Level 1
+Cost 0
+Power 3000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnDamageCancel
+{
+    PayCost 1
+    {
+        SearchWaitingRoom IsCharacter
+        Discard 1 Any
+    }
+}
+Text Auto:[(1)] When the Damage dealt by this is Cancelled, you may pay cost. If so, choose a Character in your Waiting Room and return it to your hand, and discard a card from your hand to the Waiting Room.
+*RedLevel1Bomb
+EndCard
+
+Character: SG/W39-055
+Name Maria, Seeking Strength
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*GainPowerForEachOther(500,Music)
+Act: Rest 1 HasTrait Music
+{
+    TargetSelf
+    GainPower 1000
+}
+Text Act:[Rest 1 of your ::Music:: Characters] This gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W39-055S
+Name Maria, Seeking Strength
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*GainPowerForEachOther(500,Music)
+Act: Rest 1 HasTrait Music
+{
+    TargetSelf
+    GainPower 1000
+}
+Text Act:[Rest 1 of your ::Music:: Characters] This gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W39-056
+Name Chris, Fear of Losing
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+    PayCost 2 Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
+            MoveCard WaitingRoom
+        }
+
+    }
+}
+Text Auto:[(2) Put a Character from your Stage in the Waiting Room] When you use the BACKUP of this, you may pay cost. If so, choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
+Backup 2500
+EndCard
+
+Character: SG/W39-056S
+Name Chris, Fear of Losing
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+    PayCost 2 Send 1 WaitingRoom Any
+    {
+        TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
+            MoveCard WaitingRoom
+        }
+
+    }
+}
+Text Auto:[(2) Put a Character from your Stage in the Waiting Room] When you use the BACKUP of this, you may pay cost. If so, choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
+Backup 2500
+EndCard
+
+Character: SG/W39-057
+Name Maria, New Power
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo SERENADE
+Cont: GiveSelf
+{
+    If StageContains 3 Other && HasTrait Music
+    {
+        GainPower 1000
+    }
+}
+Text Cont:If you have 3 or more other ::Music:: Characters, this gains +1000 Power.
+Auto: OnAttack
+{
+    If Climax SERENADE
+    {
+        PayCost 1
+        {
+            SearchLocationForTargets WaitingRoom 0 2 IsCharacter
+            MoveCard Hand
+            Discard 1 Any
+            TargetSelf
+            GainPower 1000
+        }
+    }
+}
+Text Auto:[(1)] When this attacks, if "SERENADE" is in the Climax Zone, you may pay cost. If so, choose up to 2 Characters in your Waiting Room and return them to your hand, discard a card from your hand to the Waiting Room, and this gains +1000 Power for the turn.
+EndCard
+
+Character: SG/W39-058
+Name Autoscorer Micha
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+*RedLevel0Bomb
+Auto: OnReversed
+{
+    PayCost 1
+    {
+        TargetSelf
+        MoveCard Memory
+    }
+}
+Text Auto:[(1)] When this becomes Reversed in battle, you may pay cost. If so, Send this to Memory.
+EndCard
+
+Character: SG/W39-059
+Name Chris, New Power
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom HasTrait Music
+    }
+}
+Text Auto:[Discard a Climax card from hand to the Waiting Room] When this is placed from hand to the Stage, you may pay cost. If so, choose a ::Music:: Character in your Waiting Room and return it to your hand.
+EndCard
+
+Character: SG/W39-060
+Name Maria & Tsubasa on the Stage Again
+Color R
+Level 1
+Cost 1
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    TargetFacing
+    If Compare ThatCardCost 0 OrLess
+    {
+        GainLevel 1
+        GainPower 3500
+    }
+}
+Text Cont:If the Cost of the Character Opposite this is 0 or lower, this gains +1 Level and +3500 Power.
+EndCard
+
+Character: SG/W39-061
+Name Maria, Special Training by the Beachside
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    TargetTop Deck
+    Reveal
+    IfTarget HasTrait Music
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto:When this is placed from hand to the Stage, reveal the top card of your Library. If it's a ::Music:: Character, put it in your hand and discard a card from your hand to the Waiting Room. (Otherwise put it back where it was)
+Auto: StartClimaxPhase
+{
+    PayCost Discard 2 HasTrait Music && SendSelf WaitingRoom
+    {
+        *ChangeWaitingRoom("Self Brilliance" Maria)
+    }
+}
+Text Auto:CHANGE [Discard 2 ::Music:: Characters from your hand to the Waiting Room, Put this in the Waiting Room] At the start of your Climax Phase, you may pay cost. If so, choose 1 '"Self Brilliance" Maria' in your Waiting Room and put it in the Slot this was in.
+EndCard
+
+Character: SG/W39-062
+Name Chris, Elite Battle Power Among Gear Bearers
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 8000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    If StageContains 4 HasTrait Music && Other
+    {
+        TargetSelf
+        GainPower 3000
+    }
+}
+Text Auto:When this is placed from hand to the Stage, if you have 4 or more other ::Music:: Characters, this gains +3000 Power for the turn.
+EndCard
+
+Character: SG/W39-063
+Name Chris & Hibiki & Miku, Swimming Time
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+*500Assist
+Act: RestSelf
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +500 power.
+    GainPower 500
+}
+Text Act:[Rest this] Choose 1 of your ::Music:: Characters, and that Character gains +500 Power for the turn.
+EndCard
+
+Character: SG/W39-064
+Name Maria, Collaboration of Songstresses
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnOtherAttacks
+{
+    TargetSelf
+    GainPower 1500
+}
+Text Auto:When your other ::Music:: Character attacks, this gains +1500 Power for the turn.
+*HandEncore
+EndCard
+
+Character: SG/W39-065
+Name Chris, Panicking
+Color R
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnOpponentClimaxPlay
+{
+    TargetSelf
+    MoveCard WaitingRoom
+}
+Text Auto:When your or your Opponent's Climax card is placed in the Climax Zone, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-066
+Name Chris, Reliable Senpai
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Fine Even When I Am Around
+Auto: OnSpecificClimaxPlay Fine Even When I Am Around
+{
+    If InLocation CenterStage
+    {
+        PayCost 2
+        {
+            *SearchDeckToPlaceOnStage(Compare ThatCardsLevel 1 OrLess && HasTrait Music, false)
+        }
+    }
+}
+Text Auto:[(2)] When "Fine Even When I Am Around" is placed in your Climax Zone, if this is in the Front Row, you may pay cost. If so, search your Library for up to 1 Level 1 or lower ::Music:: Character and put it in any Slot on the Stage, and shuffle your Library.
+Auto: OnAttack
+{
+    TargetLocation Stage
+    NarrowTargets Other && HasTrait Music
+    SetXValue TargetCount
+    MultiplyXValue 500
+    TargetSelf
+    GainPower 500
+}
+Text Auto:When this attacks, this gains +X Power for the turn. X = 500 times # of your other ::Music:: Characters.
+EndCard
+
+Character: SG/W39-067
+Name Maria, Bearer of Airget-Lamh
+Color R
+Level 1
+Cost 0
+Power 5500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Something True to Yourself
+Auto: OnSpecificClimaxPlay Something True to Yourself
+{
+    If InLocation CenterStage
+    {
+        PayCost 1 Clock
+        {
+            TargetLocation OpponentCenterStage
+            NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrLess
+            If HasTarget
+            {
+                ChooseCharacterFromTargets Choose an opponent's character to put in Waiting Room.
+                If HasTarget
+                {
+                    MoveCard WaitingRoom
+                }
+            }
+        }
+    }
+}
+Text Auto:[(1) Put the top card of your Library in your Clock] When "Something True to Yourself" is placed in your Climax Zone, if this is in the Front Row, you may pay cost. If so, choose 1 of your Opponent's Level 1 or lower Characters and put it in the Waiting Room, and this gains +1000 Power for the turn.
+Auto: OnReversed
+{
+    Message Choose a card in your opponent's waiting room to place on top of your opponent's deck.
+    AIChoice If Not IsClimax
+    SearchLocationForTargets OpponentWaitingRoom 1 1 IsCharacter
+    MoveCard OpponentDeck
+}
+Text Auto:When this becomes Reversed, your Opponent may choose a Character in your Waiting Room and put it on top of the Library.
+EndCard
+
+Character: SG/W39-068
+Name Classification ID XMH_004, Micha Jawkan
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+Cont: GiveSelf
+{
+    If StageContains 2 Other && HasTrait Alchemy
+    {
+        GainPower 1000
+    }
+}
+Text Cont:If you have 2 or more other ::Alchemy:: Characters, this gains +1000 Power.
+EndCard
+
+Event: SG/W39-069
+Name Ichaival
+Color R
+Level 2
+Cost 1
+Effect: 
+{
+    PayCost Send 1 Hand NameContains Chris && Compare ThatCardsLevel 2 OrMore
+    {
+        Message Choose a character with "Chris" in name from your hand and put it in any Slot on the Stage.
+        SearchLocationForTargets Hand 0 1 NameContains Chris
+        PlaceOnStage false true true false
+    }
+}
+Text You may choose 1 of your Level 2 or higher Character with "Chris" in name and return it to your hand. If so, choose up to 1 Character in your hand with "Chris" in name and put it in any Slot on the Stage.
+EndCard
+
+Event: SG/W39-070
+Name Ignite Module
+Color R
+Level 2
+Cost 1
+Effect: 
+{
+    SearchLocationForTargets WaitingRoom 0 2 IsCharacter
+    MoveCard Hand
+    Discard 1 Any
+    TargetSelf
+    MoveCard Memory
+}
+Text Choose up to 2 ::Music:: Characters in your Waiting Room and return them to your hand, and discard a card from your hand to the Waiting Room. Send this to Memory.
+EndCard
+
+Event: SG/W39-071
+Name Airget-Lamh
+Color R
+Level 2
+Cost 1
+Effect: 
+{
+    PayCost Send 1 Hand NameContains Maria && Compare ThatCardsLevel 2 OrMore
+    {
+        Message Choose a character with "Maria" in name from your hand and put it in any Slot on the Stage.
+        SearchLocationForTargets Hand 0 1 NameContains Maria
+        PlaceOnStage false true true false
+    }
+}
+Text You may choose 1 of your Level 2 or higher Character with "Maria" in name and return it to your hand. If so, choose up to 1 Character in your hand with "Maria" in name and put it in any Slot on the Stage.
+EndCard
+
+Climax: SG/W39-072
+Name MEGA DETH FUGA
+Color R
+*DrawClimax
+EndCard
+
+Climax: SG/W39-072S
+Name MEGA DETH FUGA
+Color R
+*DrawClimax
+EndCard
+
+Climax: SG/W39-073
+Name Something True to Yourself
+Color R
+*2SoulClimax
+EndCard
+
+Climax: SG/W39-074
+Name SERENADE
+*DoorClimax
+EndCard
+
+Climax: SG/W39-074S
+Name SERENADE
+*DoorClimax
+EndCard
+
+Climax: SG/W39-075
+Name Fine Even When I Am Around
+*DoorClimax
+EndCard
+
+Character: SG/W39-076
+Name Tsubasa, Emergency Participation in Battle
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    TargetTop Deck
+    Reveal
+    IfTarget HasTrait Music
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto:When this is placed from hand to the Stage, reveal the top card of your Library. If it's a ::Music:: Character, put it in your hand and discard a card from your hand to the Waiting Room. (Otherwise put it back where it was)
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck HasTrait Music
+    }
+}
+Text Auto:[(1) Discard a card from your hand to the Waiting Room] When this is placed from hand to the Stage, you may pay cost. If so, search your Library for up to 1 ::Music:: Character, reveal it, put it in your hand, and shuffle your Library.
+EndCard
+
+Character: SG/W39-076R
+Name Tsubasa, Emergency Participation in Battle
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    TargetTop Deck
+    Reveal
+    IfTarget HasTrait Music
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto:When this is placed from hand to the Stage, reveal the top card of your Library. If it's a ::Music:: Character, put it in your hand and discard a card from your hand to the Waiting Room. (Otherwise put it back where it was)
+Auto: OnPlay
+{
+    PayCost 1 Discard 1 Any
+    {
+        SearchDeck HasTrait Music
+    }
+}
+Text Auto:[(1) Discard a card from your hand to the Waiting Room] When this is placed from hand to the Stage, you may pay cost. If so, search your Library for up to 1 ::Music:: Character, reveal it, put it in your hand, and shuffle your Library.
+EndCard
+
+Character: SG/W39-077
+Name "No Need for Sword" Tsubasa
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+    TargetLocation WaitingRoom
+    NarrowTargets NameEquals "No Need for Sword" Tsubasa
+    If Compare TargetCount 2 OrMore
+    {
+        LoseLevel 1
+    }
+}
+Text Cont:If there are 2 or more '"No Need for Sword" Tsubasa' in your Waiting Room, this gets -1 Level while in your hand.
+Auto: StartOpponentDrawPhase
+{
+    If InLocation CenterStage
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +4000 power
+        GainPower 4000
+    }
+}
+Text Auto:At the start of your Opponent's Draw Phase, if this is in the Front Row, choose 1 of your Characters, and that Character gains +4000 Power for the turn.
+Auto: StartMyEncorePhase
+{
+    TargetLocation Memory
+    NarrowTargets NameEquals Ignite Module
+    If Not HasTarget
+    {
+        TargetSelf
+        MoveCard WaitingRoom
+    }
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-077SP
+Name "No Need for Sword" Tsubasa
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 11000
+Soul 2
+Trait1 Music
+Trait2 Weapon
+Cont: InHand
+{
+    TargetLocation WaitingRoom
+    NarrowTargets NameEquals "No Need for Sword" Tsubasa
+    If Compare TargetCount 2 OrMore
+    {
+        LoseLevel 1
+    }
+}
+Text Cont:If there are 2 or more '"No Need for Sword" Tsubasa' in your Waiting Room, this gets -1 Level while in your hand.
+Auto: StartOpponentDrawPhase
+{
+    If InLocation CenterStage
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +4000 power
+        GainPower 4000
+    }
+}
+Text Auto:At the start of your Opponent's Draw Phase, if this is in the Front Row, choose 1 of your Characters, and that Character gains +4000 Power for the turn.
+Auto: StartMyEncorePhase
+{
+    TargetLocation Memory
+    NarrowTargets NameEquals Ignite Module
+    If Not HasTarget
+    {
+        TargetSelf
+        MoveCard WaitingRoom
+    }
+}
+Text Auto:RECOLLECTION At the start of your Encore Step, if there are no "Ignite Module" in your Memory, put this in the Waiting Room.
+EndCard
+
+Character: SG/W39-078
+Name Hibiki & Elfnein, Special Training by the Beachside
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Alchemy
+Trait2 Music
+Cont: GiveAll
+{
+    If Other && InLocation MiddleCenterStage
+    {
+        GainPower 500
+    }
+}
+Text Cont:Your other Character in the Front Row Center Slot gains +500 Power.
+Auto: OnPlay
+{
+    PayCost 1
+    {
+        SearchWaitingRoom NameEquals Ignite Module
+    }
+}
+Text Auto:[(1)] When this is placed from hand to the Stage, you may pay cost. If so, choose an "Ignite Module" in your Waiting Room and return it to your hand.
+EndCard
+
+Character: SG/W39-079
+Name Tsubasa, Special Training by the Beachside
+Color B
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    Mill 2
+    IfTarget IsClimax
+    {
+        TargetSelf
+        Rest
+    }
+}
+Text Auto:When this is placed from hand to the Stage, put the top 2 cards of your Library in the Waiting Room. If there is at least 1 Climax card among them, Rest this.
+EndCard
+
+Character: SG/W39-079S
+Name Tsubasa, Special Training by the Beachside
+Color B
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    Mill 2
+    IfTarget IsClimax
+    {
+        TargetSelf
+        Rest
+    }
+}
+Text Auto:When this is placed from hand to the Stage, put the top 2 cards of your Library in the Waiting Room. If there is at least 1 Climax card among them, Rest this.
+EndCard
+
+Character: SG/W39-080
+Name Tsubasa, Chateau Rescue Mission
+Color B
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: Assist
+{
+    If HasTrait Music
+    {
+        GainPower 500
+        GainLevel 1
+    }
+}
+Text Cont:ASSIST All your ::Music:: Characters in front of this gain +1 Level and +500 Power.
+Tag Backstage
+*Act1RestSelfDrawBrainstorm
+EndCard
+
+Character: SG/W39-081
+Name Elfnein, Created Being
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Alchemy
+Combo PROJECT IGNITE
+Cont: GiveSelf
+{
+    If Not MyTurn && Compare CardsInHand 5 OrMore
+    {
+        GainPower 4000
+    }
+}
+Text Cont:During your Opponent's turn, if there are 5 or more cards in your hand, this gains +4000 Power.
+Auto: OnAttack
+{
+    If Climax PROJECT IGNITE
+    {
+        PayCost 1
+        {
+            DrawCard
+        }
+    }
+}
+Text Auto:[(1)] When this attacks, if "PROJECT IGNITE" is in the Climax Zone, you may pay cost. If so, draw a card.
+EndCard
+
+Character: SG/W39-082
+Name Tsubasa, New Power
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Raxa Zero no Kata
+Auto: OnPlay
+{
+    TargetLocation Stage
+    NarrowTargets HasTrait Music
+    SetXValue TargetCount
+    MultiplyXValue 500
+    TargetSelf
+    GainPower X
+}
+Text Auto:When this is placed from hand to the Stage, this gains +X Power for the turn. X = 500 times # of your ::Music:: Characters.
+Auto: OnAttack
+{
+    If Climax Raxa Zero no Kata
+    {
+        TargetSelf
+        GainPower 1500
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfThatCard OnStage
+                {
+                    Question Put the battle opponent on the bottom of the deck?
+                    If Yes
+                    {
+                        MoveCardToBottom OpponentDeck
+                    }
+                }
+            }
+        }
+    }
+}
+Text Auto:When this attacks, if "Raxa Zero no Kata" is in the Climax Zone, this gains +1500 Power and the following ability for the turn. "[A] When the Battle Opponent of this becomes Reversed, you may put that Character on the bottom of the Library."
+EndCard
+
+Character: SG/W39-083
+Name Tsubasa, Confronting Monsters
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    *ScryToBottom
+}
+Text Auto:When this is placed from hand to the Stage, look at the top card of your Library and put it either on top or bottom of the Library.
+*Bond1(Maria\, Seeking Strength)
+EndCard
+
+Character: SG/W39-084
+Name Autoscorer Galie
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+Auto: OnAttack
+{
+    TargetLocation Stage
+	NarrowTargets Other
+    ChooseCharacterFromTargets Choose a character to give +1 level and +1000 power.
+    GainPower 1000
+    GainLevel 1
+}
+Text Auto:When this attacks, choose 1 of your other Characters, and that Character gains +1 Level and +1000 Power for the turn.
+Auto: OnReversed
+{
+    TargetTop Deck
+    Reveal
+    IfThatCard HasTrait Alchemy
+    {
+        TargetSelf
+        MoveCard Memory
+    }
+}
+Text Auto:When this becomes Reversed, reveal the top card of your Library. If it's an ::Alchemy:: Character, you may send this to Memory. (Put the revealed card back where it was)
+EndCard
+
+Character: SG/W39-085
+Name Tsubasa, Collaboration of Songstresses
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnUseThisCardsBackup
+{
+    *ScryToBottom
+}
+Text Auto:When you use the BACKUP of this, look at the top card of your Library and put it either on top or bottom of the Library.
+Backup 1500
+EndCard
+
+Character: SG/W39-086
+Name "To Acknowledge the World" Elfnein
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Alchemy
+Auto: OnUseThisCardsBackup
+{
+    TargetLocation Memory
+    If Compare TargetCount 2 OrMore
+    {
+        TargetMyCharacterInBattle
+        GainPower 1000
+    }
+}
+Text Auto:RECOLLECTION When you use the BACKUP of this, if there are 2 or more cards in your Memory, choose 1 of your Characters in battle, and that Character gains +1000 Power for the turn.
+Backup 2500
+EndCard
+
+Character: SG/W39-087
+Name Yatsuhiro Kazanari
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 1
+Trait1 Glasses
+Cont: GiveAll
+{
+    If NameContains Tsubasa && Other
+    {
+        GainPower 1500
+    }
+}
+Text Cont:All your other Characters with "Tsubasa" in name gain +1500 Power.
+EndCard
+
+Character: SG/W39-088
+Name Elfnein, Mysterious Girl
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Alchemy
+*500Assist
+Act: 1
+{
+    DrawCard
+    Discard 1 Any
+}
+Text Act:[(1)] Draw a card, and discard a card from your hand to the Waiting Room
+EndCard
+
+Character: SG/W39-089
+Name Tomosato of S.O.N.G.
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Operator
+EndCard
+
+Character: SG/W39-090
+Name Agent Ogawa
+Color B
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Ninja
+*CharacterFacingThisCannotMove
+EndCard
+
+Character: SG/W39-091
+Name Classification ID XMH_020, Galie Tuman
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Alchemy
+Trait2 Doll
+Cont: Assist
+{
+
+    MultiplyXValue 500
+    GainPower X
+}
+Text Cont:ASSIST All your Characters in front of this gain +X Power. X = 500 times # of your Characters with ASSIST.
+Tag Backstage
+Act: 2 RestSelf
+{
+    Heal
+}
+Text Act:[(2) Rest this] Put the top card of your Clock in the Waiting Room.
+EndCard
+
+Character: SG/W39-092
+Name Fujitaka of S.O.N.G.
+Color B
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Operator
+Cont: GiveSelf
+{
+    If Not MyTurn
+    {
+        GainPower 2000
+    }
+}
+Text Cont:During your Opponent's turn, this gains +2000 Power.
+EndCard
+
+Character: SG/W39-093
+Name Tsubasa, Thoughts Towards Father
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Combo Furinkazan Gekkou
+Cont: GiveSelf
+{
+    If Not MyTurn
+    {
+        TargetLocation Stage
+        NarrowTargets Other && HasTrait Music
+        SetXValue TargetCount
+        MultiplyXValue 500
+        GainPower 500
+    }
+}
+Text Cont:During your Opponent's turn, for each of your other ::Music:: Characters, this gains +500 Power.
+Auto: OnAttack
+{
+    If Climax Furinkazan Gekkou
+    {
+        PayCost 1
+        {
+            Heal
+        }
+    }
+}
+Text Auto:[(1)] When this attacks, if "Furinkazan Gekkou" is in the Climax Zone, you may pay cost. If so, put the top card of your Clock in the Waiting Room.
+EndCard
+
+Character: SG/W39-094
+Name Genjuurou of S.O.N.G.
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 9000
+Soul 2
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        Message All Good :D
+    }
+    Else
+    {
+        TargetSelf
+        MoveCard WaitingRoom
+    }
+}
+Text Auto:[Discard a Character card from your hand to the Waiting Room] When this is placed from hand to the Stage, you may pay cost. If not, put this in the Waiting Room.
+*HandEncore
+EndCard
+
+Event: SG/W39-095
+Name Ignite Module
+Color B
+Level 1
+Cost 1
+Requirement StageContains 1 HasTrait Music
+Counter
+Effect: 
+{
+    TargetLocation Stage
+    ChooseCharacterFromTargets Choose a character to give +2500 power.
+    GainPower 2500
+    TargetSelf
+    MoveCard Memory
+}
+Text [Counter] If you have no ::Music:: Characters, you cannot play this from your hand. Choose 1 of your Characters, and that Character gains +2500 Power for the turn. Send this to Memory.
+EndCard
+
+Event: SG/W39-096
+Name Ame-no-Habakiri
+Color B
+Level 2
+Cost 1
+Effect: 
+{
+    PayCost Send 1 Hand NameContains Tsubasa && Compare ThatCardsLevel 2 OrMore
+    {
+        Message Choose a character with "Tsubasa" in name from your hand and put it in any Slot on the Stage.
+        SearchLocationForTargets Hand 0 1 NameContains Tsubasa
+        PlaceOnStage false true true false
+    }
+}
+Text You may choose 1 of your Level 2 or higher Character with "Tsubasa" in name and return it to your hand. If so, choose up to 1 Character in your hand with "Tsubasa" in name and put it in any Slot on the Stage.
+EndCard
+
+Event: SG/W39-097
+Name Inherited Life
+Color B
+Level 2
+Cost 1
+Effect: 
+{
+     TargetLocation Stage
+     ChooseCharacterFromTargets Choose a character to give +4000 power.
+     UntilEndOfOpponentsTurn
+     GainPower 4000
+     TargetSelf
+     MoveCard Memory
+}
+Text Choose 1 of your Characters, and that Character gains +4000 Power until the next end of your Opponent's turn. Send this to Memory.
+EndCard
+
+Climax: SG/W39-098
+Name Raxa Zero no Kata
+*BookClimax
+EndCard
+
+Climax: SG/W39-098S
+Name Raxa Zero no Kata
+*BookClimax
+EndCard
+
+Climax: SG/W39-099
+Name PROJECT IGNITE
+*GateClimax
+EndCard
+
+Climax: SG/W39-100
+Name Furinkazan Gekkou
+*BlueStockSoul
+EndCard
+
+Character: SG/W39-P13
+Name Hibiki, With a New Song
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Auto: OnAttack
+{
+     TargetLocation Stage
+     ChooseCharacterFromTargets Choose a character to give +1 level and +1000 power.
+     GainPower 1000
+     GainLevel 1
+}
+Text Auto:When this attacks, choose 1 of your ::Music:: Characters, and that Character gains +1 Level and +1000 Power for the turn.
+*HandEncore
+EndCard
+
+Character: SG/W39-P14
+Name Maria, With a New Song
+Color R
+Level 1
+Cost 1
+Power 5000
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Cont: GiveSelf
+{
+    TargetFacing
+    If Compare ThatCardCost 0 OrLess
+    {
+        GainLevel 1
+        GainPower 3500
+    }
+}
+Text Cont:If the Cost of the Character Opposite this is 0 or lower, this gains +1 Level and +3500 Power.
+EndCard
+
+Character: SG/W39-P16
+Name Chris, With a New Song
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Music
+Trait2 Weapon
+Auto: OnPlay
+{
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom HasTrait Music
+    }
+}
+Text Auto:[Discard a Climax card from your hand to the Waiting Room] When this is placed from hand to the Stage, you may pay cost. If so, choose a ::Music:: Character in your Waiting Room and return it to your hand.
+EndCard

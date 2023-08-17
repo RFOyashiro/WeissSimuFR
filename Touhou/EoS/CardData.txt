@@ -1,0 +1,3381 @@
+Character: TH/EoS-001
+Name Rumia, Manipulating Darkness
+Color Y
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Auto: StartDrawPhase
+{
+	If StageContains 1 Other && NameEquals Rumia, Not Listening
+	{
+		Peek Deck 2
+		If HasTarget
+		{
+			ChooseCardsFromTargets 1 1 Any
+			MoveCard Deck
+			PutTheRestIntoTheWaitingRoom
+		}
+	}
+}
+Text Auto:At the start of your draw phase, if you have another "Rumia, Not Listening", look at up to 2 cards from the top of your deck, choose 1 among them, put it on top of your deck and put the rest in your waiting room
+EndCard
+
+Character: TH/EoS-002
+Name Rumia, Human Hunting
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Combo Darkness Sign 「Dark Side of the Moon」
+Auto: OnSpecificClimaxPlay Darkness Sign 「Dark Side of the Moon」
+{
+	PayCost 1
+	{
+		TargetLocation OpponentStage
+		NarrowTargets CanBeChosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose a character to put in waiting room.
+			IfTarget InLocation OpponentBackStage
+			{
+				MoveCard OpponentWaitingRoom
+				SetXValue TargetCardsLevel
+				AddToXValue 1
+				MultiplyXValue 1000
+				TargetSelf
+				LosePower X
+			}
+			Else
+			{
+				MoveCard OpponentWaitingRoom
+			}
+		}
+		TargetTop Deck
+		Reveal
+		IfTarget HasTrait Gensokyo
+		{
+			MoveCard Hand
+		}
+	}
+}
+Text Auto:[(1)] When "Darkness Sign 「Dark Side of the Moon」" is placed in your climax area, you may pay the cost. If you do, Choose 1 of your opponent's character. If that character is in back stage, this card gets -X Power until end of turn. Put that character into their waiting room and reveal the top card of your deck. If that card is a «Gensokyo» character, put it into your hand. X = 1000 times the level of that character + 1.
+EndCard
+
+Character: TH/EoS-003
+Name Rumia, Invitation to Darkness
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 8500
+Soul 2
+Trait1 Gensokyo
+Trait2 Darkness
+Combo Night Sign 「Midnight Bird」
+Auto: OnAttack
+{
+	If Climax Night Sign 「Midnight Bird」
+	{
+		PayCost 1
+		{
+			Peek OpponentDeck 4
+			If HasTarget
+			{
+				Message Choose up to 3 cards to put back on top.
+				ChooseCardsFromTargets 0 3 Any
+				MoveCard OpponentDeck
+				Reorder
+				PutTheRestIntoTheWaitingRoom
+			}
+		}
+	}
+}
+Text Auto:[(1)] When this card attacks, if "Night Sign 「Midnight Bird」" is in your climax area, you may pay the cost. If you do, look at up to 4 cards from the top of your opponent's deck, choose up to 3 cards among them, put them on top of your opponent's deck in any order and put the rest into their waiting room
+*GainPowerForEachOther(1000, Darkness)
+EndCard
+
+Character: TH/EoS-004
+Name Rumia, Realizing Something
+Color Y
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Auto: OnPlay
+{
+	Mill 2
+	NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetSelf
+        Rest
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, put the top 2 cards of your deck into your Waiting Room. If there is a climax among those cards, rest this card.
+EndCard
+
+Character: TH/EoS-005
+Name Rumia, Preparing Spellcard
+Color Y
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Combo Night Sign 「Night Bird」
+Cont: GiveSelf
+{
+	If StageContains 3 Other && HasTrait Darkness
+	{
+		GainPower 1000
+	}
+}
+Text Cont:If you have 3 or more other «Darkness» characters, this card gets +1000 Power.
+Auto: OnAttack
+{
+	If Climax Night Sign 「Night Bird」
+	{
+		Question Put the top card of yoru deck to waiting room ?
+		If Yes
+		{
+			Mill 1
+			IfTarget HasTrait Darkness
+			{
+				SearchDeck HasTrait Darkness
+			}
+		}
+	}
+}
+Text Auto:When this card attacks, if "Night Sign 「Night Bird」" is in your climax area, you may put the top card of your deck into your waiting room. If that card is a «Darkness» character, search your deack for up to 1 «Darkness» character, reveal it to your opponent, put it in your hand and shuffle your deck.
+EndCard
+
+Character: TH/EoS-006
+Name Rumia, Taking a Nap
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Combo Darkness Sign 「Demarcation」
+Auto: OnReversed
+{
+	If Climax Darkness Sign 「Demarcation」
+	{
+		TargetSelf
+		Bounce
+		TargetLocation Stage
+		NarrowTargets HasTrait Darkness
+		ChooseCharacterFromTargets Choose a character to give +3000 power.
+		GainPower 3000
+	}
+}
+Text Auto:When this becomes reversed, if "Darkness Sign 「Demarcation」" is in your climax area, return this card to your hand, choose 1 of your «Darkness» character and that character gets +3000 Power until end of turn.
+Backup 3000
+EndCard
+
+Character: TH/EoS-007
+Name Rumia, Scared When Alone
+Color Y
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Gensokyo
+Trait2 Darkness
+Cont: InHand
+{
+	If LocationContainsOrLess OpponentWaitingRoom 3 IsClimax
+	{
+		LoseLevel 1
+	}
+}
+Text Cont:If your opponent has 3 or less climax in their waiting room, this card gets -1 Level while in your hand.
+*Healer
+Auto: OnReceiveDamage
+{
+	If OpponentsTurn && InLocation CenterStage && LocationContainsOrLess CenterStage 0 Other
+	{
+		Peek Deck 2
+		If HasTarget
+		{
+			Message Choose up to 2 cards to put back on top.
+			ChooseCardsFromTargets 0 2 Any
+			MoveCard Deck
+			Reorder
+			PutTheRestIntoTheWaitingRoom
+		}
+	}
+}
+Text Auto:During your opponent's turn, when damage taken by you isn't cancelled, if this card is in your center stage and you have no other characters in your center stage, look at up to the top 2 cards of your deck, choose up to 2 among them, put them on top of your deck in any order and put the rest in waiting room
+EndCard
+
+Character: TH/EoS-008
+Name Rumia, Flying Carelessly
+Color Y
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Auto: StartOpponentAttackPhase
+{
+	If FacingIsEmptyOrReversed
+	{
+		TargetLocation CenterStage
+		If Compare TargetCount 2 OrLess
+		{
+			TargetSelf
+			Question Move this card to an open position of your center stage with a character facing it?
+			If Yes
+			{
+				MoveToOpenPositionWithOpponent
+			}
+		}
+	}
+}
+Text Auto:At the start of your opponent's attack phase, if there is no character facing this card, you may move this card to an open position of your center stage with a character facing it.
+Auto: StartAttackPhase
+{
+	If FacingIsEmptyOrReversed
+	{
+		TargetSelf
+		Rest
+	}
+}
+Text Auto:At the start of your attack phase, if there is no character facing this card, rest this card.
+EndCard
+
+Character: TH/EoS-009
+Name Rumia, Not Listening
+Color Y
+Level 1
+Cost 1
+Power 6000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Cont: GiveSelf
+{
+	TargetLocation OpponentBackStage
+	SetXValue TargetCount
+	MultiplyXValue 500
+	GainPower X
+}
+Text Cont:This card gets +500 power for each of your opponent's characters in back stage.
+Cont: GiveSelf
+{
+	If StageContains 3 Other && HasTrait Gensokyo
+	{
+		GainPower 500
+		GainSpecialEffect CannotBeReversedByAutoEffects
+	}
+}
+Text Cont:If you have 3 or more other «Gensokyo» characters, this card gets +500 power and this card cannot become Reversed by Auto: effects of your opponent's characters.
+EndCard
+
+Character: TH/EoS-010
+Name Rumia & Daiyousei, Playing Freely
+Color Y
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+*Level3Assist
+*Revenge(1500)
+EndCard
+
+Character: TH/EoS-011
+Name Rumia
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Auto: OnAttack
+{
+	If Compare MyLevel 1 OrLess
+	{
+		Question Return all of your cards in hand to your deck and draw the same amount?
+		If Yes
+		{
+			TargetLocation Hand
+			SetXValue TargetCount
+			MoveCard Deck
+			ShuffleLocation Deck
+			TargetTop Deck X
+			MoveCard Hand
+		}
+	}
+}
+Text Auto:When this card attacks, if you are level 1 or lower, you may return all cards in your hand to your deck and shuffle your deck. If you do, draw back up to the same number of cards.
+EndCard
+
+Character: TH/EoS-012
+Name Rumia, New Daily Life
+Color Y
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Auto: OnClimaxPlay
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +1000 power.
+	GainPower 1000
+}
+Text Auto:When your climax is placed on your climax area, choose 1 of your characters and that character gets +1000 Power until end of turn.
+Act: 1 Rest 2 Any
+{
+	Brainstorm 4
+	If Compare BrainstormedClimax 1 OrMore
+	{
+		SetXValue BrainstormedClimax
+		AIChoice AddToHand
+		SearchLocationForTargets WaitingRoom 0 X IsCharacter
+		RevealTargets
+		MoveCards Hand
+	}
+}
+Text Act:BRAINSTORM [(1) Rest 2 of your characters] Flip over 4 cards from the top of your deck and put them into the waiting room, for each climax revealed, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: TH/EoS-013
+Name Rumia, Counting on You
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Auto: OnCardSentFromWaitingRoomToHand|OnOpponentCardSentFromWaitingRoomToHand
+{
+	IfOther IsCharacter && Phase Attack
+	{
+		IfOther MyCard
+		{
+			TargetLocation OpponentStage
+		}
+		Else
+		{
+			TargetLocation Stage
+		}
+		GainPower 3000
+	}
+}
+Quick
+Text Auto:During the attack phase, when your character or your opponent's character is returned to hand from the waiting room, all of that player's opponent's characters get +3000 power until end of turn.
+EndCard
+
+Character: TH/EoS-014
+Name Rumia, Sleeping With Friends
+Color Y
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Cont: GiveAll
+{
+	If NameContains Cirno | Mystia
+	{
+		GainPower 500
+	}
+}
+Text Cont:All your other characters with "Cirno" or Mystia" in their card name get +500 Power.
+Cont: GiveSelf
+{
+	If StageContains 1 Other && NameContains Cirno &&& StageContains 1 Other && NameContains Mystia
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another character with "Cirno" in its card name and another character with "Mystia" in its card name, this gets +1500 Power.
+EndCard
+
+Character: TH/EoS-015
+Name Rumia, Preparing Revenge
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Auto: OnDamageCancel
+{
+	TargetTop Deck
+	Reveal
+	IfTarget HasTrait Darkness
+	{
+		Question put the top card of your opponent's stock to waiting room ?
+		If Yes
+		{
+			TargetTop OpponentStock
+			If HasTarget
+			{
+				MoveCard OpponentWaitingRoom
+				Message Choose a card in to put in your opponent's stock.
+				SearchLocationForTargets OpponentWaitingRoom 1 1 Any
+				MoveCard OpponentStock
+				ShuffleLocation OpponentStock
+			}
+		}
+	}
+}
+Text Auto:When the damage dealt by this card is cancelled, reveal the top card of your deck. If that card is «Darkness» character, you may put the top card of your opponent's stock in their waiting room. If you do, choose a card in your opponent's waiting room, put it in their stock and shuffle your opponent's stock.
+EndCard
+
+Character: TH/EoS-016
+Name Rumia, Smiling During Battle
+Color Y
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Darkness
+Combo Moon Sign 「Moonlight Ray」
+Auto: OnAttack
+{
+	If Climax Moon Sign 「Moonlight Ray」
+	{
+		PayCost 1
+		{
+			TargetLocation Stage
+			GainPower 2000
+		}
+	}
+}
+Text Auto:[(1)] When this card attacks, if "Moon Sign 「Moonlight Ray」" is in your climax area, you may pay the cost. If you do, all your characters get +2000 power until end of turn.
+Auto: OnAttack
+{
+	If Climax Moon Sign 「Moonlight Ray」
+	{
+		TargetLocation Stage
+		UntilEndOfOpponentsTurn
+		GainEffect 
+		{
+			Auto: Encore 1
+			{
+			}
+			Text Auto:ENCORE [(1)]
+		}
+	}
+}
+Text Auto:When this card attacks, if "Moon Sign 「Moonlight Ray」" is in your climax area, all your characters get the following ability until the next end of your Opponent's turn."Auto:ENCORE [(1)]"
+EndCard
+
+Event: TH/EoS-017
+Name Embodiment of Scarlet Devil
+Color Y
+Level 2
+Cost 3
+Counter
+Cont: InHand
+{
+	If StageContains 1 HasTrait Gensokyo
+	{
+		GainSpecialEffect IgnoreColorRequirement
+	}
+}
+Text Cont:If you have 1 or more «Gensokyo» character, you may play this card without color requirement.
+Cont: Memory
+{
+	TargetLocation Stage
+	GainTrait Darkness
+	GainTrait Time
+	GainTrait Clone
+	GainTrait Elements
+	GainTrait Freeze
+	GainTrait Vampire
+}
+Text Cont:MEMORY If this is in your memory, all your characters get «Darkness», «Time», «Clone», «Elements», «Freeze» and «Vampire».
+Effect 
+{
+	TargetSelf
+	MoveCard Memory
+	TargetLocation Stage
+	UntilEndOfOpponentsTurn
+	GainPower 3500
+}
+Text Send this card to memory. All your characters get +3500 Power until the next end of your Opponent's turn.
+EndCard
+
+Climax: TH/EoS-018
+Name Darkness Sign 「Dark Side of the Moon」
+*WindClimax
+EndCard
+
+Climax: TH/EoS-019
+Name Night Sign 「Midnight Bird」
+Color Y
+Trigger DoubleSoul
+*DrawClimax
+EndCard
+
+Climax: TH/EoS-020
+Name Darkness Sign 「Demarcation」
+*YellowStockSoul
+EndCard
+
+Climax: TH/EoS-021
+Name Moon Sign 「Moonlight Ray」
+Color Y
+*2SoulClimax
+EndCard
+
+Climax: TH/EoS-022
+Name Night Sign 「Night Bird」
+*ShotClimax
+EndCard
+
+Character: TH/EoS-094
+Name Cirno
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Freeze
+Combo Freeze Sign 「Freeze Atmosphere」
+Auto: OnPlay
+{
+	TargetTop Deck
+	Reveal
+	IfTarget HasTrait Gensokyo
+	{
+		TargetSelf
+		GainPower 3000
+	}
+}
+Text Auto:When this card is placed from hand to the stage, reveal the top card of your deck. If it's a «Gensokyo» character, this card gets +3000 power until end of turn.
+Auto: OnReverseOpponent
+{
+	If Climax Freeze Sign 「Freeze Atmosphere」
+	{
+		PayCost 2 Discard 1 HasTrait Gensokyo
+		{
+			TargetSelf
+			Stand
+			UntilEndOfOpponentsTurn
+			BlockOpponentAct
+			UntilEndOfOpponentsTurn
+			BlockOpponentBackup
+		}
+	}
+}
+Text Auto:[(2) Put a «Gensokyo» character from your hand to the waiting room] This ability activates up to 1 time per turn. When this card's battle opponent becomes reversed, if "Freeze Sign 「Freeze Atmosphere」" is in your climax area, you may pay cost. If you do, stand this card and your opponent cannot use Act: abilities until the end of your opponent's next turn.
+EndCard
+
+Character: TH/EoS-092
+Name Cirno, Loves Cold
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Combo Freeze Sign 「Perfect Freeze」
+Auto: OnAttack
+{
+	If Climax Freeze Sign 「Perfect Freeze」
+	{
+		PayCost 1
+		{
+			*OptionalDraw
+			TargetLocation OpponentStage
+			NarrowTargets CardPosition Stand
+			Rest
+		}
+	}
+}
+Text Auto:[(1)] When this card attacks, if "Freeze Sign 「Perfect Freeze」" is in your climax area, you may pay the cost. If you do, draw up to 1 card and rest all opponent's stand characters.
+Cont: GiveSelf
+{
+	TargetLocation OpponentBackStage
+	NarrowTargets CardPosition Rest
+	SetXValue TargetCount
+	MultiplyXValue 2000
+	GainPower X
+}
+Text Cont:This gains +2000 Power for each rest characters in your opponent's back stage.
+EndCard
+
+Character: TH/EoS-089
+Name Cirno, Defending Gensokyo
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Cont: GiveFacing
+{
+	GainSpecialEffect CannotMove
+}
+Text Cont:The character facing this card cannot move to another position.
+*MillRunner(Gensokyo)
+EndCard
+
+Character: TH/EoS-103
+Name Cirno, Loves Ice Cream
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Freeze
+*EarlyPlayInClock(Cirno\, 9. Baka)
+Cont: Global
+{
+	IfOwner InLocation MiddleCenterStage
+	{
+		If Other || InLocation OpponentStage
+		{
+			GainSpecialEffect CannotMove
+		}
+	}
+}
+Text Cont:If this card is in the middle position of your center stage, all other characters cannot move to another position.
+*OnPlayDraw2Discard1
+EndCard
+
+Character: TH/EoS-099
+Name Cirno, Ice Crusher
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Combo Blowing Ice 「Ice Tornado」
+Auto: OnSpecificClimaxPlay Blowing Ice 「Ice Tornado」 
+{
+	If StageContains 2 Other && HasTrait Freeze
+	{
+		TargetLocation WaitingRoom
+		Question Return all cards in waiting room to deck ?
+		If Yes
+		{
+			MoveCard Deck
+			ShuffleLocation Deck
+			TargetLocation OpponentCenterStage
+			NarrowTargets CanBeChosen
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose a character to not stand in next stand phase
+				DontStand
+			}
+		}
+	}
+}
+Text Auto:[Return all cards from your waiting room into your deck] When "Blowing Ice 「Ice Tornado」" is placed on your climax area, if you have 2 or more other «Freeze» characters, you may pay the cost. If you do, shuffle your deck, choose 1 of your opponent's character in center stage and that character cannot stand during your opponent's next Stand phase.
+EndCard
+
+Character: TH/EoS-098
+Name Cirno, Ready for Battle
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Combo Ice Sign 「Sword Freezer」
+Auto: OnAttack
+{
+	If Climax Ice Sign 「Sword Freezer」 && LocationContains Level 1 NameEquals Cirno, 9. Baka
+	{
+		Peek Deck 4
+		ChooseCardsFromTargets 0 1 Any
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+	}
+}
+Text Auto:EXPERIENCE When this card attacks, if you have "Ice Sign 「Sword Freezer」" in your climax area and you have "Cirno, 9. Baka" in your level, look at up to 4 cards from the top of your deck, choose up to 1 card among them, put it in your hand and put the rest in waiting room.
+EndCard
+
+Character: TH/EoS-115
+Name Cirno, Looking Confident
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Auto: OnAttack
+{
+	Question Mill the top 2 cards of your deck ?
+	If Yes
+	{
+		Mill 2
+		NarrowTargets IsClimax
+		If Compare TargetCount 1 OrMore
+		{
+			TargetSelf
+			LosePower 2000
+		}
+		If Compare TargetCount 2 OrMore
+		{
+			TargetSelf
+			GainPower 4000
+		}
+	}
+}
+Text Auto:When this card attacks, you may put the top 2 cards of your deck to waiting room. If there is at least 1 climax among them, this card gets -2000 power. If there is at least 2 climax among them, this card gets +4000 power.
+EndCard
+
+Character: TH/EoS-104
+Name Cirno, Eating with Friends
+Color B
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Auto: OnAttack
+{
+	If StageContainsOrLess 1 Other
+	{
+		Mill 1
+		IfTarget Compare ThatCardsLevel 1 OrLess && NameContains Rumia | Mystia
+		{
+			PlaceOnStage false false true false
+		}
+	}
+}
+Text Auto:When this card attacks, if you have 1 or less other characters, put the top card of your deck into waiting room. If it's a level 1 or lower character with either "Rumia" or "Mystia" in its card name, put it in any slot in your back stage.
+Cont: GiveSelf
+{
+	If StageContains 1 Other && NameContains Rumia &&& StageContains 1 Other && NameContains Mystia
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another character with "Rumia" in its card name and another character with "Mystia" in its card name, this card gets +1500 power.
+EndCard
+
+Character: TH/EoS-107
+Name Cirno, Freezing Frogs
+Color B
+Level 1
+Cost 1
+Trigger Soul
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Auto: OnUseThisCardsBackup
+{
+	PayCost 1 Send 1 WaitingRoom Any
+	{
+		TargetLocation OpponentStage
+        NarrowTargets CanBeChosen && EarlyPlay
+        If HasTarget
+        {
+            ChooseCharacterFromTargets Choose 1 of your Opponent's Characters whose Level is higher than your Opponent and put it in the Waiting Room.
+            MoveCard WaitingRoom
+        }
+	}
+}
+Text Auto:[(1) Put a character from your stage into your waiting room] When you use this card's BACKUP, you may pay the cost. If you do, choose 1 of your opponent's character whose level is higher than your opponent's level and put it into waiting room.
+Backup 1500
+EndCard
+
+Character: TH/EoS-108
+Name Cirno, No Need for Support
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Cont: Assist
+{
+	If HasTrait Freeze
+	{
+		GainSoul 1
+	}
+}
+Text Cont:ASSIST Your «Freeze» characters in front of this get +1 soul.
+Auto: OnPlay
+{
+	If StageContains 4 Other && HasTrait Freeze
+	{
+		TargetTop Deck
+		MoveCard Stock
+	}
+}
+Text Auto:When this card is placed from hand to the stage, if you have 4 or more other «Freeze» character, you may put the top card of your deck into your stock.
+EndCard
+
+Character: TH/EoS-110
+Name Cirno, Living in Winter
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+*GlobalPower(500,Freeze)
+Act: 1 RestSelf
+{
+	Brainstorm 4
+	If Compare BrainstormedClimax 1 OrMore
+	{
+		SetXValue BrainstormedClimax
+		SearchLocationForTargets WaitingRoom 0 X IsCharacter
+		RevealTargets
+		MoveCards Hand
+	}
+}
+Text Act:BRAINSTORM [(1) rest this] Flip over 4 cards from the top of your deck and put them into the waiting room, for each climax revealed, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: TH/EoS-117
+Name Cirno, 9. Baka
+Color B
+Level 0
+Cost 0
+Power 9000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Cont: InHand
+{
+	If LocationContainsOrLess Clock 3 Any
+	{
+		GainSpecialEffect CannotBePlayed
+	}
+}
+Text Cont:If you have 3 or less card in your clock, you cannot play this card from your hand.
+Cont: InHand 
+{
+	If StageContainsOrLess 3 HasTrait Freeze
+	{
+		GainSpecialEffect CannotBePlayed
+	}
+}
+Text Cont:If you have 3 or less «Freeze» characters, you cannot play this card from your hand.
+Auto: OnPlay
+{
+	Mill 1
+	IfTarget Not HasTrait Freeze
+	{
+		TargetSelf
+		MoveCard Stock
+	}
+}
+Text Auto:When this card is placed from hand to the stage, put the top card of your deck in waiting room. If it's not a «Freeze» character, put this card in stock.
+Auto: OnPlay
+{
+	TargetLocation Stage
+	If HasTarget
+	{
+		Message Choose a character to put into the waiting room.
+		ChooseCharacterFromTargets
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:When this card is placed from hand to stage, choose 1 of your «Gensokyo» character and put it into your waiting room.
+*ClimaxPhaseCheckTopRestIfClimax
+Auto: OnReversed
+{
+	OpponentSearchLocationForTargets OpponentWaitingRoom 0 1 Any
+	MoveCard OpponentDeck
+}
+Text Auto:When this card becomes reversed, your opponent may choose a card in your waiting room and put it on top of your deck.
+Auto: OnReversed
+{
+	BurnSelf 2
+}
+Text Auto:When this card becomes reversed, this deals 2 damage to you.
+Auto: OnReversed
+{
+	BlockEncore
+}
+Text Auto:When this card becomes reversed, you cannot use "Auto:ENCORE" until end of turn. 
+EndCard
+
+Character: TH/EoS-113
+Name Cirno, Freezing Opponents
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Auto: OnPlay
+{
+	PayCost Clock
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen && Compare ThatCardsLevel 0 OrLess
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose a character to not stand in next stand phase
+			DontStand
+		}
+	}
+}
+Text Auto:[Put the top card of your deck into your clock] When this card is placed from hand to the stage, you may pay the cost. If you do, choose 1 of your opponent's level 0 or lower character in center stage and that character cannot stand during your opponent's next stand phase.
+EndCard
+
+Character: TH/EoS-095
+Name Cirno, Water-Flavored Ice
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Cont: GiveAll
+{
+	If Not MyTurn && Other && InLocation MiddleCenterStage
+	{
+		GainPower 1000
+	}
+}
+Text Cont:During your opponent's turn, your other character in the middle position of your center stage gets +1000 power.
+Auto: OnClimaxPlay
+{
+	PayCost 1
+	{
+		*Check4Add1(Gensokyo)
+	}
+}
+Text Auto:[(1)] When a climax is placed in your climax area, you may pay cost. If you do, look at up to 4 cards from the top of your deck, choose up to 1 «Gensokyo» character among them, reveal it, put it in your hand and put the rest into your waiting room.
+EndCard
+
+Character: TH/EoS-120
+Name Cirno & Daiyousei, Everyday Life
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+*GainPowerForEachOther(500, Gensokyo)
+*ClockEncore
+EndCard
+
+Character: TH/EoS-119
+Name Cirno, Ice Rain
+Color B
+Level 1
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Freeze
+Combo Ice Sign 「Icicle Fall」
+Auto: OnSpecificClimaxPlay Ice Sign 「Icicle Fall」
+{
+	PayCost 1 RestSelf
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose a character to not stand in next stand phase and gain FREEZE.
+			DontStand
+			UntilEndOfOpponentsTurn
+			GainEffect
+			{
+				Cont: GiveSelf
+				{
+					GainSpecialEffect CannotStand
+					GainSpecialEffect CannotBeReversed
+					GainSpecialEffect CannotMove
+				}
+				Text Cont:FREEZE (This cannot change its state).
+			}
+		}
+		TargetSelf
+		DontStand
+	}
+}
+Text Auto:[(1) Rest this card] When "Ice Sign 「Icicle Fall」" is placed on your climax area, you may pay the cost. If you do, choose 1 of your opponent's character and that character gets the following ability until the end of your opponent's next turn and this card cannot stand during your next Stand phase. "Cont:FREEZE (This cannot change its state)".
+EndCard
+
+Climax: TH/EoS-126
+Name Freeze Sign 「Perfect Freeze」
+Color B
+*DrawClimax
+EndCard
+
+Climax: TH/EoS-125
+Name Freeze Sign 「Freeze Atmosphere」
+*GateClimax
+EndCard
+
+Climax: TH/EoS-128
+Name Ice Sign 「Icicle Fall」
+*BookClimax
+EndCard
+
+Climax: TH/EoS-127
+Name Blowing Ice 「Ice Tornado」
+*BlueStockSoul
+EndCard
+
+Climax: TH/EoS-129
+Name Ice Sign 「Sword Freezer」
+Color B
+*2SoulClimax
+EndCard
+
+Character: TH/EoS-052
+Name Patchouli, Manipulating Fire
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Auto: StartOpponentAttackPhase
+{
+	If LocationContains Memory 1 NameEquals Fire
+	{
+		TargetLocation CenterStage
+		If Compare TargetCount 2 OrLess
+		{
+			TargetSelf
+			Question Move this card to an open position of your center stage?
+			If Yes
+			{
+				MoveToOpenPosition True False
+			}
+		}
+	}
+}
+Text Auto:MEMORY At the start of your opponent's attack phase, if you have "Fire" in memory, you may move this card to an open position of your center stage.
+EndCard
+
+Character: TH/EoS-049
+Name Patchouli, Thirst of Knowledge
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Gensokyo
+Trait2 Elements
+Combo Fire Sign 「Agni Shine」
+Cont: GiveAll
+{
+	CopyTraitsFrom Other && Not MyCard
+}
+Text Cont:All your characters get all traits from all opponent's characters.
+Auto: OnSpecificClimaxPlay Fire Sign 「Agni Shine」
+{
+	PayCost 2
+	{
+		TargetTop Deck
+		Reveal
+		IfTarget HasTrait Gensokyo
+		{
+			TargetLocation OpponentStage
+			NarrowTargets CanBeChosen && Compare ThatCardsLevel 3 OrLess
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose a character to put in waiting room and gain AUTO effects.
+				MoveCard OpponentMemory
+				SaveTargets
+				TargetSelf
+				AddSavedToCurrentTargets
+				CopyAllAutoEffects
+				TargetSelf
+			}
+			TargetLocation OpponentWaitingRoom
+			NarrowTargets IsClimax
+			SaveTargets
+			TargetLocation Climax
+			ChooseCardsFromTargets 1 1 Any
+			CopyNamesFromSavedTargets
+		}
+	}
+}
+Text Auto:[(2)] When "Fire Sign 「Agni Shine」" is placed on your climax area, you may pay the cost. If you do, reveal the top card of your deck. If that card is a «Gensokyo» character, choose 1 of your opponent's level 3 or lower character and put it in memory. This card gets all Auto: abilities of that character until the end of your opponent's next turn. Choose a "Fire Sign 「Agni Shine」" in your climax area and that card is considered to also have the same cardname as every climax in your opponent's waiting room.
+*OnPlayDraw2Discard1
+EndCard
+
+Character: TH/EoS-056
+Name Patchouli, Eastern Style Western Magician
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Combo Five Elements Sign 「Philosopher's Stone」
+Auto: OnAttack
+{
+	If Climax Five Elements Sign 「Philosopher's Stone」 && LocationContains Memory 1 NameEquals Sun
+	{
+		PayCost 5 Discard 2 IsCharacter
+		{
+			TargetLocation Stage
+			NarrowTargets NameEquals Patchouli Knowledge
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose a Patchouli Knowledge to stand.
+				Stand
+			}
+			ScheduleEffect EndOfTurn
+			{
+				Effect
+				{
+					If InLocation CenterStage && CardPosition Rest
+					{
+						TargetLocation Memory
+						NarrowTargets NameEquals Patchouli, The One-Week Girl
+						If HasTarget
+						{
+							Message Choose a Patchouli, The One-Week Girl in Memory.
+							ChooseCardsFromTargets 0 1 NameEquals Patchouli, The One-Week Girl
+							UntilEndOfOpponentsTurn
+							GainName Fire
+							UntilEndOfOpponentsTurn
+							GainName Water
+							UntilEndOfOpponentsTurn
+							GainName Wood
+							UntilEndOfOpponentsTurn
+							GainName Metal
+							UntilEndOfOpponentsTurn
+							GainName Earth
+							UntilEndOfOpponentsTurn
+							GainName Sun
+							UntilEndOfOpponentsTurn
+							GainName Moon
+							ScheduleEffectForTargets StartDrawPhase
+							{
+								Effect
+								{
+									TargetSelf
+									GainName Fire
+									GainName Water
+									GainName Wood
+									GainName Metal
+									GainName Earth
+									GainName Sun
+									GainName Moon
+								}
+								Text That card's card name will be also regarded as "Fire", "Water", "Wood", "Metal", "Earth", "Sun" and "Moon" until end of turn. 
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+Text Auto:RECOLLECTION MEMORY [(5) Put 2 characters from your hand into your waiting room] When this card attacks, if "Five Elements Sign 「Philosopher's Stone」" is in your climax area and you have "Sun" in your memory, you may pay the cost. If you do, stand another "Patchouli Knowledge" and, at the beginning of your end phase, if this card is rest on your center stage, choose a "Patchouli, The One-Week Girl" in your memory. That card's card name will be also regarded as "Fire", "Water", "Wood", "Metal", "Earth", "Sun" and "Moon" until the start of your next end phase.
+EndCard
+
+Character: TH/EoS-072
+Name Patchouli, Bad Luck With Magic
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Auto: OnPlay
+{
+    PayCost Discard 1 IsClimax
+    {
+        SearchWaitingRoom HasTrait Gensokyo
+    }
+}
+Text Auto:[Put a climax card from your hand to the waiting room] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 «Gensokyo» character in your waiting room and return it to your hand.
+Auto: OnPlay
+{
+    TargetTop Deck
+    Reveal
+    IfTarget HasTrait Gensokyo
+    {
+        MoveCard Hand
+        Discard 1 Any
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, reveal the top card of your deck. If it's a «Gensokyo» character, put it in your hand and discard a card from your hand to the waiting room.
+EndCard
+
+Climax: TH/EoS-079
+Name Five Elements Sign 「Philosopher's Stone」
+*StandbyClimax
+EndCard
+
+Character: TH/EoS-054
+Name Patchouli, Manipulating Metal
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Combo Earth Metal Sign 「Emerald Megalopolis」
+Auto: OnAttack
+{
+	If Climax Earth Metal Sign 「Emerald Megalopolis」 && StageContains 1 Other && HasTrait Elements &&& LocationContains Memory 1 NameEquals Metal
+	{
+		PayCost 1
+		{
+			*OptionalDraw
+			*OptionalDraw
+		}
+	}
+}
+Text Auto:MEMORY [(1)] When this card attacks, if you have "Earth Metal Sign 「Emerald Megalopolis」" in climax area, you have 4 or more other «Elements» characters and you have "Metal" in memory, you may pay the cost. If you do, draw up to 2 cards.
+EndCard
+
+Character: TH/EoS-059
+Name Patchouli Knowledge
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Elements
+Auto: StartOpponentAttackPhase
+{
+	If LocationContains Memory 1 NameEquals Fire
+	{
+		PayCost Discard 1 Any
+		{
+			TargetLocation Stage
+			NarrowTargets CanMove
+			If Compare TargetCount 2 OrMore
+			{
+				ChooseCharacterFromTargets Choose first character to swap
+				SaveTargets
+				TargetLocation Stage
+				NarrowTargets Not InSavedTargets
+				NarrowTargets CanMove
+				ChooseCharacterFromTargets Choose second character to swap
+				AddSavedToCurrentTargets
+				Exchange
+				Stand
+				GainPower 1000
+			}
+		}
+	}
+}
+Text Auto:MEMORY [Put a card from your hand to your waiting room] At the start of your opponent's attack phase, if you have "Fire" in memory, you may pay the cost. If you do, choose this card and 1 of your other «Gensokyo» characters, exchange them as standing and those characters get +1000 power until end of turn.
+Auto: OnPlay
+{
+	If LocationContains Memory 1 NameEquals Water
+	{
+		*OptionalHeal
+	}
+}
+Text Auto:MEMORY When this card is placed on the stage from your hand, if you have "Water" in memory, you may put the top card of your clock into your waiting room.
+Auto: OnPlay
+{
+	If LocationContains Memory 1 NameEquals Wood
+	{
+		TargetLocation WaitingRoom
+		Question Return all cards in waiting room to deck ?
+		If Yes
+		{
+			MoveCard Deck
+			ShuffleLocation Deck
+		}
+	}
+}
+Text Auto:MEMORY When this card is placed on the stage from your hand, if you have "Wood" in memory, you may return all the cards in your waiting room to your deck. If you do, shuffle your deck.
+Auto: OnPlay
+{
+	If LocationContains Memory 1 NameEquals Metal
+	{
+		*OptionalDraw
+		*OptionalDraw
+		Discard 1 Any
+		TargetTop Deck
+		MoveCard Stock
+	}
+}
+Text Auto:MEMORY When this card is placed on the stage from your hand, If you have "Metal" in memory, you may draw up to 2 cards, discard a card and put up to 1 card from the top of your deck into your stock.
+Cont: GiveSelf
+{
+	If LocationContains Memory 1 NameEquals Earth
+	{
+		GainPower 3000
+		GainSpecialEffect GreatPerformance
+	}
+}
+Text Cont:MEMORY If you have "Earth" in memory, this card gets +3000 power and the following ability : "Cont:GREAT PERFORMANCE"
+Auto: OnAttack
+{
+	If LocationContains Memory 1 NameEquals Sun
+	{
+		TargetTop Deck
+		Reveal
+		IfTarget HasTrait Gensokyo
+		{
+			SetXValue ThatCardsLevel
+			Burn X
+		}
+	}
+}
+Text Auto:MEMORY When this card attacks, if you have "Sun" in your memory, reveal the top card of your deck. If its a «Gensokyo» character, deal X damage to your opponent. X = the level of the revealed card.
+Auto: OnReceiveDamage
+{
+	If OpponentsTurn && InLocation CenterStage && LocationContains Memory 1 NameEquals Moon
+	{
+		Peek Deck 1
+		If HasTarget
+		{
+			Message Choose up to 1 cards to put back on top.
+			ChooseCardsFromTargets 0 1 Any
+			MoveCard Deck
+			PutTheRestIntoTheWaitingRoom
+		}
+	}
+}
+Text Auto:RMEMORY During your opponent's turn, when damage you receive is not canceled, if this card is on your center stage and you have "Moon" in memory, look at the top card of your deck, and put it on the top of your deck or into the waiting room.
+EndCard
+
+Character: TH/EoS-048
+Name Patchouli, Learning From Books
+Color R
+Level 1
+Cost 0
+Power 6000
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Combo Water Wood Sign 「Water Elf」
+Cont: GiveSelf
+{
+    TargetFacing
+    If Compare TargetCardsLevel ThisCardsLevel GreaterThan
+    {
+        GainSpecialEffect CannotFrontalAttack
+    }
+}
+Text Cont:If the level of the character facing this card is higher than the level of this card, this card cannot frontal attack.
+Auto: OnAttack
+{
+	If Climax Water Wood Sign 「Water Elf」
+	{
+		PayCost 1
+		{
+			SearchDeck HasTrait Gensokyo
+		}
+	}
+}
+Text Auto:[(1)] When this card attacks, if "Water Wood Sign 「Water Elf」" is in your climax area, you may pay the cost. If you do, search your deck for up to 1 «Gensokyo» character, reveal it, put it into your hand and shuffle your deck.
+Cont: GiveSelf
+{
+	If Climax Water Wood Sign 「Water Elf」 && LocationContains Memory 1 NameEquals Wood
+	{
+		GainSpecialEffect FreeSideAttack
+	}
+}
+Text Cont:MEMORY If "Water Wood Sign 「Water Elf」" is in your climax area and you have "Wood" in your memory, this character's soul does not decrease by side attacking.
+EndCard
+
+Character: TH/EoS-045
+Name Patchouli, The One-Week Girl
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Auto: OnPlay
+{
+    PayCost 1 SendSelf Memory
+    {
+        TargetLocation Stage
+        ChooseCharacterFromTargets Choose a character to give +1000 power.
+        GainPower 1000
+        *Check4Add1(Elements)
+        If LocationContains Memory 1 Other && NameEquals Patchouli, The One-Week Girl
+        {
+            TargetSelf
+            FlipFaceDown
+        }
+    }
+}
+Text Auto:MEMORY [(1) Put this card into memory] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose 1 of your other character, it gets +1000 Power until end of turn, look at up to 4 cards from the top of your deck, choose up to 1 «Elements» character from among them, reveal it, put it into your hand and put the rest into your waiting room. If you have another "Patchouli, The One-Week Girl" in your memory, put it face down.
+Auto: StartDrawPhase|StartOpponentDrawPhase
+{
+    TargetSelf
+    MultipleChoiceQuestion Choose a name for this card to gain.|Fire|Water|Wood|Metal|Earth|Sun|Moon
+    If Answer 0
+    {
+        GainName Fire
+    }
+    If Answer 1
+    {
+        GainName Water
+    }
+    If Answer 2
+    {
+        GainName Wood
+    }
+    If Answer 3
+    {
+        GainName Metal
+    }
+    If Answer 4
+    {
+        GainName Earth
+    }
+    If Answer 5
+    {
+        GainName Sun
+    }
+    If Answer 6
+    {
+        GainName Moon
+    }
+}
+Text Auto:MEMORY At the start of any player's draw phase, if this card is in your memory, announce "Fire", "Water", "Wood", "Metal", "Earth", "Sun" or "Moon". This card's card name will also be regarded as the announced word until end of turn.
+InMemory
+EndCard
+
+Character: TH/EoS-065
+Name Patchouli, Manipulating Water
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 6000
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+*GlobalPower(1000, Elements)
+Act: 1 SendSelf Memory
+{
+    *OptionalHeal
+}
+Text Act:MEMORY [(1) Put this card into memory] If you have "Water" in memory, you may pay the cost. If you do, you may put the top card of your clock into the waiting room.
+EndCard
+
+Character: TH/EoS-062
+Name Patchouli, Manipulating Moon
+Color R
+Level 1
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+*BackupBonus1000(Gensokyo)
+Auto: OnUseThisCardsBackup
+{
+    If LocationContains Memory 1 NameEquals Moon
+    {
+        TargetMyCharacterInBattle
+        GainPower 500
+    }
+}
+Text Auto:MEMORY When you use this card's BACKUP, if you have "Moon" in memory, your character in battle gets +500 power until end of turn.
+Backup 1000
+EndCard
+
+Character: TH/EoS-061
+Name Patchouli, Prefer to be Alone
+Color R
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Cont: GiveSelf
+{
+    If StageContainsOrLess 0 Other
+    {
+        GainPower 1500
+        GainLevel 1
+    }
+}
+Text Cont:If you have no other characters, this card gets +1500 power and +1 level.
+EndCard
+
+Climax: TH/EoS-080
+Name Moon Sign 「Silent Selene」
+Color R
+*DrawClimax
+EndCard
+
+Climax: TH/EoS-078
+Name Fire Sign 「Agni Shine」
+*DoorClimax
+EndCard
+
+Climax: TH/EoS-088
+Name Water Wood Sign 「Water Elf」
+Color R
+*Draw3SoulClimax
+EndCard
+
+Climax: TH/EoS-083
+Name Earth Metal Sign 「Emerald Megalopolis」
+Color R
+*2SoulClimax
+EndCard
+
+Climax: TH/EoS-085
+Name Sun Sign 「Royale Flare」
+*RedStockSoul
+EndCard
+
+Character: TH/EoS-069
+Name Patchouli, Manipulating Earth
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Cont: GiveSelf
+{
+    If LocationContains Memory 1 NameEquals Earth
+    {
+        SetXValue MarkersUnderThis
+        MultiplyXValue 1000
+        GainPower X
+    }
+}
+Text Cont:MEMORY If you have "Earth" in memory, this card gets +1000 power for each marker underneath this card.
+Auto: OnReversed
+{
+	If Compare MarkersUnderThis 10 OrLess
+	{
+		TargetSelf
+		SaveTargets
+		TargetTop Stock
+		If HasTarget
+		{
+			MarkerTargetsUnderSavedTarget_FaceDown
+			TargetSelf
+			Rest
+		}
+	}
+}
+Text Auto:When this card becomes reversed, if there are 10 or fewer markers underneath this card, put the top card of your stock underneath this card as marker. If you do, rest this card.
+EndCard
+
+Character: TH/EoS-074
+Name Patchouli, Manipulating Wood
+Color R
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Cont: GiveSelf
+{
+    If LocationContains Memory 1 NameEquals Wood
+    {
+        GainEffect
+        {
+            Auto: StartAttackPhase
+            {
+                If LocationContains Memory 1 NameEquals Wood
+                {
+                    PayCost 1 SendSelf WaitingRoom
+                    {
+                        *ChangeWaitingRoom(Patchouli\, Eastern Style Western Magician)
+                    }
+                }
+            }
+            Text Auto:MEMORY CHANGE [(1) Put this card in your waiting room] At the start of your attack phase, if you have "Wood" in your memory, you may pay the cost. If you do, choose 1 "Patchouli, Eastern Style Western Magician" in your waiting room and put it in the position this card was in.
+        }
+    }
+}
+Text Cont:MEMORY If you have "Wood" in your memory, this card gets the following ability. "Auto:MEMORY CHANGE [(1) Put this card in your waiting room] At the start of your attack phase, if you have "Wood" in your memory, you may pay the cost. If you do, choose 1 "Patchouli, Eastern Style Western Magician" in your waiting room and put it in the position this card was in."
+EndCard
+
+Character: TH/EoS-077
+Name Patchouli, Suffering Anemia
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Combo Sun Sign 「Royale Flare」
+Combo Moon Sign 「Silent Selene」
+Cont: GiveSelf
+{
+    SetXValue MarkersUnderThis
+    MultiplyXValue 1000
+    LosePower X
+}
+Text Cont:This card gets -1000 Power, for each marker underneath this card.
+Auto: OnSpecificClimaxPlay Sun Sign 「Royale Flare」
+{
+    PayCost MarkerFromWaitingRoom 1 HasTrait Gensokyo
+    {
+		TargetLocation Marker
+		FlipFaceDown
+        SearchWaitingRoom HasTrait Gensokyo
+    }
+}
+Text Auto:[Put a «Gensokyo» character from your waiting room under this card as a Marker] When "Sun Sign 「Royale Flare」" is placed on your climax area, you may pay the cost. If you do, choose up to 1 «Gensokyo» character in your waiting room and return it to your hand.
+Auto: OnSpecificClimaxPlay Moon Sign 「Silent Selene」
+{
+    TargetSelf
+    SetXValue MarkersUnderThis
+    Question PayCost ?
+    If Yes
+    {
+    	TargetSelf
+    	TargetMarkersUnderTargets
+    	MoveCard WaitingRoom
+		TargetSelf
+		MultiplyXValue 1000
+		UntilEndOfOpponentsTurn
+		GainPower X    
+    }
+}
+Text Auto:[Put all markers under this card into your waiting room] When "Moon Sign 「Silent Selene」" is placed on your climax area, you may pay the cost. If you do, this card gets +X power until the end of your opponent's next turn. X = 1000 times # of marker put in waiting room this way.
+EndCard
+
+Character: TH/EoS-073
+Name Patchouli, Enjoy Reading
+Color R
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Auto: OnClimaxPlay
+{
+    PayCost 1 RestSelf
+    {
+        SearchLocationForTargets Memory 0 1 NameEquals Patchouli The One-Week Girl
+        If HasTarget
+        {
+            MultipleChoiceQuestion Choose a name for a Patchouli, The One-Week Girl in Memory to gain.|Fire|Water|Wood|Metal|Earth|Sun|Moon
+            If Answer 0
+            {
+                GainName Fire
+            }
+            If Answer 1
+            {
+                GainName Water
+            }
+            If Answer 2
+            {
+                GainName Wood
+            }
+            If Answer 3
+            {
+                GainName Metal
+            }
+            If Answer 4
+            {
+                GainName Earth
+            }
+            If Answer 5
+            {
+                GainName Sun
+            }
+            If Answer 6
+            {
+                GainName Moon
+            }
+        }
+    }
+}
+Text Auto:MEMORY [(1) rest this card, announce "Fire", "Water", "Wood", "Metal", "Earth", "Sun" or "Moon"] When a climax is placed in your climax area, you may pay the cost. If you do, choose a "Patchouli, The One-Week Girl" in your memory and that card's card name will also be regarded as the announced word until end of turn.
+Act: 1 Rest 2 Any
+{
+	Brainstorm 4
+	If Compare BrainstormedClimax 1 OrMore
+	{
+		SetXValue BrainstormedClimax
+		AIChoice AddToHand
+		SearchLocationForTargets WaitingRoom 0 X IsCharacter
+		RevealTargets
+		MoveCards Hand
+	}
+}
+Text Act:BRAINSTORM [(1) rest 2 of your Characters] Flip over 4 cards from the top of your deck and put them into the waiting room, for each climax revealed, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: TH/EoS-068
+Name Patchouli, Hate Sunlight
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Elements
+Cont: Assist
+{
+    GainLevel 1
+}
+Text Cont:ASSIST Your characters in front of this get +1 level.
+Cont: Assist
+{
+    If MyTurn
+    {
+        GainEffect
+        {
+            Cont: GiveFacing
+            {
+                GainLevel 1
+            }
+            Text Cont:The character facing this card gets +1 level
+        }
+    }
+}
+Text Cont:ASSIST During your turn, your characters in front of this get the following ability. "Cont:The character facing this card gets +1 level"
+Cont: GiveAll
+{
+    If Other && HasTrait Elements
+    {
+        GainEffect
+        {
+            *ClockEncore
+        }
+    }
+}
+Text Cont:All your other «Elements» characters get the following ability. "Auto:ENCORE [Put the top card of your deck into your clock]"
+EndCard
+
+Climax: TH/EoS-081
+Name Taboo 「Four of a Kind」
+Color R
+*2SoulClimax
+EndCard
+
+Climax: TH/EoS-082
+Name Taboo 「Lævateinn」
+*DoorClimax
+EndCard
+
+Climax: TH/EoS-084
+Name Q.E.D. 「Ripples of 495 Years」
+Color R
+*DrawClimax
+EndCard
+
+Climax: TH/EoS-087
+Name Taboo 「Kagome, Kagome」
+*RedStockSoul
+EndCard
+
+Climax: TH/EoS-086
+Name Taboo 「Forbidden Games」
+*StandbyClimax
+EndCard
+
+Character: TH/EoS-090
+Name Remilia, Prone to Boredom
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Auto: OnReverseOpponent
+{
+	Question Reveal the top card of your deck ?
+	If Yes
+	{
+		TargetTop Deck
+		Reveal
+		IfTarget IsClimax
+		{
+			SearchDeck HasTrait Gensokyo
+		}
+		Else
+		{
+			TargetFacing
+			Rest
+		}
+	}
+}
+Text Auto:When this card's battle opponent becomes reversed, you may reveal the top card of your deck. If it's a climax card, search your deck for up to 1 «Gensokyo» character, reveal it, add to your hand and shuffle your deck. If it's not a climax card, rest the character facing this.
+EndCard
+
+Character: TH/EoS-091
+Name Remilia, Charsimatic Little Mistress
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Combo 「Scarlet Gensokyo」
+Auto: OnAttack
+{
+	If Climax 「Scarlet Gensokyo」 && StageContains 2 Other && CardPosition Reverse
+	{
+		PayCost 2
+		{
+			TargetLocation Stage
+			NarrowTargets Other && CardPosition Reverse
+			Rest
+			*OptionalDraw
+		}
+	}
+}
+Text Auto:[(2)] When this card attacks, if you have "「Scarlet Gensokyo」" in your climax area and you have 2 or more other reversed characters, you may pay the cost. If you do, rest all your other reversed characters and draw up to 1 card.
+Cont: GiveSelf
+{
+	TargetLocation Stage
+	NarrowTargets Other && CardPosition Rest
+	SetXValue TargetCount
+	MultiplyXValue 500
+	GainPower 500
+}
+Text Cont:This card gets +500 power for each other rest characters on your center stage.
+EndCard
+
+Character: TH/EoS-093
+Name Remilia, Manipulating Fate
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 7500
+Soul 2
+Trait1 Gensokyo
+Trait2 Vampire
+Combo Curse 「Curse of Vlad Tepes」
+Auto: StartOpponentAttackPhase
+{
+	PayCost 2 SendFromLocationToLocation Hand Deck 1 true NameEquals Curse 「Curse of Vlad Tepes」
+	{
+		GainEffect
+		{
+			Auto: OnDamageDealtByCharacterFacingThisCanceled
+			{
+				SetXValue LastDamageTaken
+				Burn X
+			}
+			Text Auto:When damage dealt by the character facing this card is canceled, deal X damage to your opponent. X = damage dealt by the character facing this card.
+		}
+	}
+}
+Text Auto:[(2) Put a "Curse 「Curse of Vlad Tepes」" from your hand on top of your deck] At the start of your opponent's attack phase, you may pay the cost. If you do, this card gets the following ability until end of turn. "Auto:When damage dealt by the character facing this card is canceled, deal X damage to your opponent. X = damage dealt by the character facing this card.".
+Auto: StartOpponentAttackPhase
+{
+	PayCost 1 SendFromLocationToLocation Hand Deck 1 true NameEquals Curse 「Curse of Vlad Tepes」
+	{
+		Burn 1
+	}
+}
+Text Auto:[(1) Put a "Curse 「Curse of Vlad Tepes」" from your hand on top of your deck] At the start of your opponent's attack phase, you may pay the cost. If you do, deal 1 damage to your opponent.
+*OnPlayCheckX(Gensokyo)
+EndCard
+
+Character: TH/EoS-096
+Name Remilia, Thinking About Fate
+Color B
+Level 0
+Cost 0
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Cont: GiveAll
+{
+	If Not NameContains Remilia
+	{
+		LosePower 500
+	}
+}
+Text Cont:All your other characters without "Remilia" in their card name get -500 power.
+*OnPlayReorderTop2
+EndCard
+
+Character: TH/EoS-097
+Name Remilia, Strongest Gensokyo's Vampire
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Combo 「Red Magic」
+Auto: OnAttack
+{
+	If Climax 「Red Magic」 && StageContains 4 Other && HasTrait Vampire
+	{
+		Peek Deck 2
+		Message Choose a card to add to hand.
+		ChooseCardsFromTargets 1 1 Any
+		MoveCard Hand
+		EndPeek
+	}
+}
+Text Auto:When this card attacks, if "「Red Magic」" is in your climax area and you have 4 or more other «Vampire» characters, look at the top 2 cards of your deck, choose 1 card among them, put it into your hand and put the rest on top of your deck.
+*HandEncore
+EndCard
+
+Character: TH/EoS-100
+Name Remilia Scarlet
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Combo Flandre & Remilia, The Scarlet Sisters
+Auto: OnSpecificClimaxPlay Flandre & Remilia, The Scarlet Sisters
+{
+	If LocationContains BackStage 1 Other && NameEquals Sakuya, Scarlet Sisters' Maid &&& LocationContains CenterStage 1 Other && NameEquals Flandre Scarlet
+	{
+		SearchLocationForTargets Hand 0 1 NameEquals Scarlet Sisters
+		If HasTarget
+		{
+			PlaceOnStage false true true false
+		}
+	}
+}
+Text Auto:When "Flandre & Remilia, The Scarlet Sisters" is placed on your climax area, if you have another "Sakuya, Scarlet Sisters' Maid" on your back stage and another "Flandre Scarlet" on your center stage, you may place a "Scarlet Sisters" from your hand to the stage.
+EndCard
+
+Character: TH/EoS-102
+Name Remilia, Loves Tea
+Color B
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Gensokyo
+Trait2 Vampire
+*GainPowerForEachOther(500, Vampire)
+Auto: OnPlay
+{
+	*PlayCharacterFromHand(HasTrait Vampire && Compare ThatCardsLevel MyLevel OrLess)
+	GainPower 2000
+}
+Text Auto:When this card is placed from hand to the stage, choose up to 1 «Vampire» character in your hand whose level is equal to or lower than your level, put it in any position on the stage and that card gets +2000 power until end of turn.
+Auto: OnReverseOpponent
+{
+	If AllYourCharacters NameContains Remilia
+	{
+		PayCost 5
+		{
+			TargetSelf
+			Stand
+		}
+	}
+}
+Text Auto:[(5)] When this card's battle opponent becomes reversed and all your other characters have "Remilia" in their card name, you may pay the cost. If you do, stand this card.
+EndCard
+
+Character: TH/EoS-105
+Name Remilia, Smiling
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Auto: StartOpponentAttackPhase
+{
+	SetXValue 0 //Using as bool variable
+	If Not LocationContains OpponentCenterStage 3 Any
+	{
+		TargetLocation OpponentCenterStage
+		ChooseCharacterFromTargets_Optional Choose a character to move, or choose none to send this "Remilia, Smiling" to your waiting room.
+		If HasTarget
+		{
+			MoveToOpenPosition True False
+			SetXValue 1
+		}
+	}
+	If Compare X 0 Exactly
+	{
+		TargetSelf
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:At the start of your opponent's attack phase, you may choose a character in your opponent's center stage and move it to another open position in the center stage. If not, put this card into your waiting room.
+EndCard
+
+Character: TH/EoS-106
+Name Remilia, Invocating Spears
+Color B
+Level 1
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Auto: OnPlacedOnStageFromWaitingRoom
+{
+	If StageContains 2 Other && HasTrait Gensokyo
+	{
+		TargetSelf
+		GainPower 2500
+	}
+}
+Text Auto:When this card is placed from the waiting room to the stage, if you have 2 or more other «Gensokyo» characters, this card gets +2500 power until end of turn.
+Auto: StartOpponentDrawPhase
+{
+	PayCost SendSelf WaitingRoom
+	{
+		*ChangeWaitingRoom(Flandre\, Invocating Swords)
+		GainPower 2500
+	}
+}
+Text Auto:CHANGE [Put this card into your waiting room] At the start of your opponent's draw phase, you may pay cost. If you do, choose a "Flandre, Invocating Swords" in your waiting room and put it in the position this card was in and that character gets +2500 power until end of turn.
+EndCard
+
+Character: TH/EoS-109
+Name Remilia, Losing to her Sister
+Color B
+Level 2
+Cost 1
+Trigger Soul
+Power 6500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Cont: Assist
+{
+	If HasTrait Gensokyo
+	{
+		GainPower 1000
+		GainEffect
+		{
+			Cont: GiveSelf
+			{
+				GainSpecialEffect CannotBeChosen
+			}
+			Text Cont:This card cannot be chosen as the target of opponent's effects.
+		}
+	}
+}
+Text Cont:ASSIST Your «Gensokyo» characters in front of this get +1000 power and the following ability. "Cont:This card cannot be chosen as the target of opponent's effects."
+EndCard
+
+Character: TH/EoS-112
+Name Remilia, Mistress of the Scarlet Devil Mansion
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Auto: OnUseAct
+{
+	TargetLocation Stage
+	NarrowTargets Other && HasTrait Vampire
+	ChooseCharacterFromTargets Choose a character to give +500 power.
+	GainPower 500
+}
+TimesPerTurn 1
+Text Auto:This ability activates up to 1 time per turn. When you use a Act: ability, choose 1 of your other «Vampire» character and that character gets +500 power until end of turn.
+Act: 1 RestSelf
+{
+	Brainstorm 4
+	If Compare BrainstormedClimax 1 OrMore
+	{
+		SetXValue BrainstormedClimax
+		SearchLocationForTargets WaitingRoom 0 X IsCharacter
+		RevealTargets
+		MoveCards Hand
+	}
+}
+Text Act:BRAINSTORM [(1) rest this] Flip over 4 cards from the top of your deck and put them into the waiting room, for each climax revealed, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: TH/EoS-116
+Name Remilia, Going Outside at Night
+Color B
+Level 0
+Cost 0
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Auto: OnPlay
+{
+	RevealUpTo Deck 3
+	If HasTarget
+	{
+		Message Choose a character to add to your hand.
+		ChooseCardsFromTargets 0 1 HasTrait Vampire
+		MoveCard Hand
+		PutTheRestIntoTheWaitingRoom
+		Discard 1 Any
+	}
+}
+Text Auto:When this card is placed from hand to the stage, you may reveal up to 3 cards from the top of your deck. If you reveal at least 1 card this way, choose up to 1 «Vampire» character among them, put it in your hand, put the rest into your waiting room and discard a card from your hand to your waiting room.
+EndCard
+
+Character: TH/EoS-111
+Name Remilia, Ballad Under a Parasol
+Color B
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Auto: StartMyEncorePhase
+{
+	PayCost Clock
+	{
+		TargetLocation CenterStage
+		NarrowTargets CardPosition Reverse
+		ChooseCharacterFromTargets Choose a character to rest.
+		Rest
+	}
+}
+Alarm
+Text Auto:ALARM [Put the top card of your deck into your clock] At the start of your encore step, if this card is on top of your clock, you may pay the cost. If you do, choose a reversed «Vampire» character in your center stage and rest it.
+EndCard
+
+Character: TH/EoS-114
+Name Remilia, Bratty Child
+Color B
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+*BlueLevel0Bomb
+EndCard
+
+Character: TH/EoS-118
+Name Remilia, Childish 500 Years Old Vampire
+Color B
+Level 1
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Auto: OnUseThisCardsBackup
+{
+	PayCost 2
+	{
+		*OptionalDraw
+	}
+}
+Text Auto:[(2)] When you use this card's BACKUP, you may pay the cost. If you do, draw up to 1 card.
+Backup 1000
+EndCard
+
+Character: TH/EoS-121
+Name Remilia, Fighting her Sister
+Color B
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Vampire
+Combo Scarlet Shine 「Scarlet Shoot」
+Auto: OnAttack
+{
+	If Climax Scarlet Shine 「Scarlet Shoot」
+	{
+		PayCost Send 1 WaitingRoom NameContains Flandre
+		{
+			SearchDeck HasTrait Vampire
+		}
+	}
+}
+Text Auto:[Put a character with "Flandre" in its card name from your stage into your waiting room] When this card attacks, if "Scarlet Shine 「Scarlet Shoot」" is in your climax area, you may pay the cost. If you do, search for up to 1 «Vampire» character in your deck, reveal it, put it into your hand and shuffle your deck.
+EndCard
+
+Climax: TH/EoS-122
+Name Curse 「Curse of Vlad Tepes」
+*BlueStockSoul
+EndCard
+
+Climax: TH/EoS-123
+Name Divene Spear 「Spear the Gungnir」
+*BookClimax
+EndCard
+
+Climax: TH/EoS-130
+Name Scarlet Shine 「Scarlet Shoot」
+Color B
+*2SoulClimax
+EndCard
+
+Climax: TH/EoS-131
+Name 「Red Magic」
+*GateClimax
+EndCard
+
+Climax: TH/EoS-132
+Name 「Scarlet Gensokyo」
+Color B
+*DrawClimax
+EndCard
+
+Character: TH/EoS-060
+Name Flandre, Smile of a Vampire
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Auto: OnPlay
+{
+	If LocationContainsOrLess OpponentCenterStage 1 Any
+	{
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose a character to give -3000 power.
+			LosePower 3000
+		}
+	}
+}
+Text Auto:When this card is placed on the stage from your hand, if there is 1 or less character in your opponent's center stage, you may choose a character in your opponent's center stage. That character gets -3000 power until end of turn.
+Auto: OnPlay
+{
+	Peek Deck 2
+	Message Choose a "Flandre, Smile of a Vampire" to add to your hand.
+	ChooseCardsFromTargets 0 1 NameEquals Flandre, Smile of a Vampire
+	MoveCard Hand
+	PutTheRestIntoTheWaitingRoom
+}
+Text Auto:When this card is placed on the stage from your hand, look at up to 2 cards from the top of your deck, choose up to 1 "Flandre, Smile of a Vampire" among them, put it on any position of your stage and put the rest in your waiting room.
+EndCard
+
+Character: TH/EoS-053
+Name Flandre, Cloning Herself
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Combo Taboo 「Four of a Kind」
+Cont: GiveSelf
+{
+	If StageContains 1 Other && NameEquals Flandre, Cloning Herself
+	{
+		GainPower 1500
+	}
+}
+Text Cont:If you have another "Flandre, Cloning Herself", this card gets +1500 power.
+Auto: OnSpecificClimaxPlay Taboo 「Four of a Kind」
+{
+	If InLocation CenterStage && StageContains 1 Other && NameContains Flandre
+	{
+		SearchLocationForTargets WaitingRoom 0 1 HasTrait Clone && Compare ThatCardsCost 0 OrLess
+		PlaceOnStage false true true false
+	}
+}
+Text Auto:When "Taboo 「Four of a Kind」" is placed on your climax area, if this card is in the center stage and you have another character with "Flandre" in its card name, you may choose up to 1 «Clone» character with cost 0 or lower from your waiting room and put it on any position of your stage.
+EndCard
+
+Character: TH/EoS-101
+Name Remilia, Holder of Gungnir
+Color B
+Level 2
+Cost 2
+Trigger Soul
+Power 6000
+Soul 2
+Trait1 Gensokyo
+Trait2 Vampire
+Combo Divene Spear 「Spear the Gungnir」
+*GainPowerForEachOther(1000, Vampire)
+Auto: OnAttack
+{
+	If Climax Divene Spear 「Spear the Gungnir」
+	{
+		SearchDeck HasTrait Vampire
+	}
+}
+Text Auto:When this card attacks, if "Divene Spear 「Spear the Gungnir」" is in your climax area, search for up to 1 «Vampire» character in your deck, reveal it, put it into your hand and shuffle your deck.
+EndCard
+
+Character: TH/EoS-055
+Name Flandre Scarlet
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Auto: OnOtherPlacedOnStageFromHand
+{
+	IfOther NameEquals Remilia Scarlet
+	{
+		If StageContains 1 Other && NameEquals Sakuya, Scarlet Sisters' Maid
+		{
+			Question Put the top card of your deck to stock ?
+			If Yes
+			{
+				TargetTop Deck
+				MoveCard Stock
+			}
+		}
+	}
+}
+Text Auto:When another "Remilia Scarlet" is placed on the stage from your hand, if you have another "Sakuya, Scarlet Sisters' Maid", you may put the top card of your deck into your stock.
+EndCard
+
+Climax: TH/EoS-124
+Name Flandre & Remilia, The Scarlet Sisters
+Color B
+Trigger DoubleSoul
+Cont: InHand
+{
+	If Not LocationContains Level 1 NameEquals Remilia Scarlet &&& Not LocationContains Level 1 NameEquals Flandre Scarlet &&& Not LocationContains Level 1 NameEquals Sakuya, Scarlet Sisters' Maid
+	{
+		GainSpecialEffect CannotBePlayed
+	}
+}
+Text Cont:EXPERIENCE If you don't have "Remilia Scarlet", "Flandre Scarlet" and "Sakuya, Scarlet Sisters' Maid" in your level, you cannot play this card from your hand.
+Auto: OnPlay
+{
+	Message Choose a character to get +4 soul.
+	ChooseCharacter InLocation Stage
+	GainSoul 4
+}
+Text Auto:When this card is placed on your climax area from hand, choose 1 of your characters and that character gets +4 souls until end of turn.
+EndCard
+
+Character: TH/EoS-044
+Name Scarlet Sisters
+Color R
+Level 3
+Cost 3
+Trigger Soul
+Power 9000
+Soul 3
+Trait1 Vampire
+Trait2 Clone
+Combo Flandre & Remilia, The Scarlet Sisters
+Auto: OnPlay
+{
+	
+	If Climax Flandre & Remilia, The Scarlet Sisters && StageContains 1 Other && NameEquals Remilia Scarlet &&& StageContains 1 Other && NameEquals Flandre Scarlet &&& StageContains 1 Other && NameEquals Sakuya, Scarlet Sisters' Maid
+	{
+		Question Put all other characters from stage into waiting room to pay the cost ?
+		If Yes
+		{
+			TargetLocation AnyStage
+			NarrowTargets Other
+			MoveCard WaitingRoom
+			SetXValue ThisCardsSoul
+			Repeat X
+			{
+				Burn 1
+			}
+		}
+	}
+}
+Text Auto:[Put all other characters from stage into waiting room] When this card is placed on the stage from your hand, if "Flandre & Remilia, The Scarlet Sisters" is in your climax area, you have another "Remilia Scarlet", another "Flandre Scarlet" and another "Sakuya, Scarlet Sisters' Maid", you may pay the cost. If so, perform the following effect X times. "deal 1 damage to your opponent." X = # of souls this card card has. 
+EndCard
+
+Character: TH/EoS-057
+Name Flandre, Controlling the Eye
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 7000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Combo Taboo 「Forbidden Games」
+Auto: OnPlay
+{
+	If StageContains 4 Other && HasTrait Clone|Vampire
+	{
+		SearchLocationForTargets WaitingRoom 0 1 HasTrait Clone|Vampire
+		MoveCard Stock
+	}
+}
+Text Auto:When this card is placed on the stage from your hand, if you have 4 or more other «Clone» or «Vampire» characters, you may choose a «Clone» or «Vampire» character in your waiting room and put it into your stock.
+Auto: OnOpponentClimaxPlay
+{
+	If StageContains 3 Other &&& AllYourCharacters HasTrait Clone|Vampire &&& LocationContains Stock 3 Any &&& LocationContains Hand 1 NameEquals Taboo 「Forbidden Games」
+	{
+		Question Pay the cost ?
+		If Yes
+		{
+			Repeat 3
+			{
+				TargetTop Stock
+				MoveCard WaitingRoom
+			}
+			SearchLocationForTargets Hand 1 1 NameEquals Taboo 「Forbidden Games」
+			PlayClimax
+			TargetLocation OpponentClimax
+			MoveCard OpponentMemory
+			ScheduleEffect StartEncorePhase
+			{
+				Effect
+				{
+					TargetLocation OpponentMemory
+					ChooseCardsFromTargets 1 1 IsClimax
+					MoveCard WaitingRoom
+				}
+			}
+		}
+	}
+}
+Text Auto:[(3) Put a "Taboo 「Forbidden Games」" from your hand to your climax area, put a card from your hand to your waiting room] When your opponent's climax is placed in their climax area, if you have 3 or more other characters and all your other characters are either «Vampire» or «Clone», you may pay the cost. If you do, choose a climax in your opponent's climax area and put it in their memory. At the start of any player's end phase, choose a climax in your opponent's memory and put it in their waiting room.
+EndCard
+
+Character: TH/EoS-050
+Name Flandre, Thirsty for Blood
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Clone
+Combo Taboo 「Lævateinn」
+Auto: OnPlay|PlacedBy Flandre, Thirsty for Blood
+{
+	PayCost Discard 1 Any
+	{
+		*OptionalDraw
+		TargetLocation OpponentCenterStage
+		NarrowTargets CanBeChosen
+		If HasTarget
+		{
+			ChooseCharacterFromTargets Choose a character to give -2000 power.
+			LosePower 2000
+		}
+	}	
+}
+Text Auto:[Put 1 card from your hand into your waiting room] When this card is placed on the stage from your hand or by the Auto: effect of "Flandre, Thirsty for Blood", you may pay the cost. If you do, draw up to 1 card, choose 1 opponent's character in center stage and that character gets -2000 Power until end of turn.
+Auto: OnReverseOpponent
+{
+	If Climax Taboo 「Lævateinn」
+	{
+		PayCost 2 SendSelf Memory
+		{
+			SearchLocationForTargets WaitingRoom 0 1 NameEquals Flandre, Thirsty for Blood
+			If HasTarget
+			{
+				PlaceOnStage false true true false
+			}
+		}
+	}
+}
+Text Auto:[(2) Put this card into your memory] When this card's battle opponent becomes reversed, if you have "Taboo 「Lævateinn」" in your climax area, you may pay the cost. If you do, choose up to 1 "Flandre, Thirsty for Blood" in your waiting room and put it on any position of your stage.
+Auto: OnAttack
+{
+	If Climax Taboo 「Lævateinn」
+	{
+		TargetLocation Memory
+		NarrowTargets NameEquals Flandre, Thirsty for Blood
+		SetXValue TargetCount
+		Burn X
+	}
+}
+Text Auto:MEMORY When this card attacks, if "Taboo 「Lævateinn」" in your climax area, deal X damage to your opponent. X = # of "Flandre, Thirsty for Blood" in your memory.
+EndCard
+
+Character: TH/EoS-063
+Name Flandre, Invocating Swords
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Auto: StartClimaxPhase
+{
+	PayCost SendSelf WaitingRoom
+	{
+		*ChangeWaitingRoom(Remilia\, Invocating Spears)
+	}
+}
+Text Auto:CHANGE [Put this card into your waiting room] At the start of your climax phase, you may pay cost. If you do, choose 1 "Remilia, Invocating Spears" in your waiting room and put it in the position this card was in.
+EndCard
+
+Character: TH/EoS-046
+Name Flandre, Resident of the Mansion
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Auto: OnSentFromStageToWaitingRoom
+{
+	PayCost Discard 1 Any
+	{
+		*Check4Add1(Gensokyo)
+	}
+}
+Text Auto:[Put 1 card from your hand into your waiting room] When this card is placed in your waiting room from stage, you may pay cost. If you do, look at up to 4 cards from the top of your deck and choose up to 1 «Gensokyo» character among them, reveal it, put it in your hand and put the rest into your waiting room.
+EndCard
+
+Character: TH/EoS-070
+Name Flandre, Being Annoyed
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Auto: OnOtherPlacedOnStageFromWaitingRoom
+{
+	TargetOther
+	GainPower 500
+	GainEffect
+	{
+		*HandEncore
+	}
+}
+Text Auto:When your other character is placed to the stage from your waiting room, that character gets +500 power and the following ability until end of turn. "Auto:ENCORE [Discard a Character card from your hand to the Waiting Room]"
+Act: 1 Rest 2 Any
+{
+	Brainstorm 4
+	If Compare BrainstormedClimax 1 OrMore
+	{
+		SetXValue BrainstormedClimax
+		AIChoice AddToHand
+		SearchLocationForTargets WaitingRoom 0 X IsCharacter
+		RevealTargets
+		MoveCards Hand
+	}
+}
+Text Act:BRAINSTORM [(1) rest 2 of your Characters] Flip over 4 cards from the top of your deck and put them into the waiting room, for each climax revealed, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: TH/EoS-075
+Name Flandre, Fighting her Sister
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Combo Taboo 「Kagome, Kagome」
+Auto: OnAttack
+{
+	If Climax Taboo 「Kagome, Kagome」
+	{
+		PayCost Send 1 WaitingRoom NameContains Remilia
+		{
+			SearchWaitingRoom HasTrait Clone
+		}
+	}
+}
+Text Auto:[Put a character with "Remilia" in its card name from your stage into your waiting room] When this card attacks, if you have "Taboo 「Kagome, Kagome」" in your climax area you may pay the cost. If you do, you may choose a «Clone» character in your waiting room and return it to your hand.
+EndCard
+
+Character: TH/EoS-064
+Name Flandre, Cheerleading
+Color R
+Level 2
+Cost 1
+Power 3000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Backup 3000
+EndCard
+
+Character: TH/EoS-076
+Name Flandre, Married Style
+Color R
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Auto: OnPlacedOnStageFromWaitingRoom
+{
+	TargetSelf
+	UntilEndOfOpponentsTurn
+	GainPower 500
+	UntilEndOfOpponentsTurn
+	GainEffect
+	{
+		Auto: OnReverseOpponent
+		{
+			Question Put the top card of your deck into stock ?
+			If Yes
+			{
+				TargetTop Deck
+				MoveCard Stock
+			}
+		}
+		Text Auto:When this card's battle opponent becomes reversed, you may put the top card of your deck into your stock
+	}
+}
+Text Auto:When this card is placed from the waiting room to the stage, this card gets +500 power and the following ability until the end of your opponent's next turn. "Auto:When this card's battle opponent becomes reversed, you may put the top card of your deck into your stock"
+EndCard
+
+Character: TH/EoS-047
+Name Flandre, Free After 495 Years
+Color R
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Combo Q.E.D. 「Ripples of 495 Years」
+Auto: OnReverseOpponent
+{
+	If Climax Q.E.D. 「Ripples of 495 Years」
+	{
+		UntilEndOfOpponentsTurn
+		GainEffect
+		{
+			Auto: OnFrontalAttacked
+			{
+				TargetSelf
+				SaveTargets
+				TargetLocation Stage
+				NarrowTargets Other
+				ChooseCharacterFromTargets Choose a character to return to your hand.
+				AddSavedToCurrentTargets
+				MoveCard Hand
+			}
+			Text Auto: When this card is frontal attacked, you may choose 1 of your other characters and this card and return them to your hand.
+		}
+	}
+}
+Text Auto:When this card's battle opponent becomes reversed, if "Q.E.D. 「Ripples of 495 Years」" is in your climax area, this card gets the following ability until the end of your opponent's next turn. "Auto: When this card is frontal attacked, you may choose 1 of your other characters and this card and return them to your hand."
+Auto: StartClimaxPhase
+{
+	PayCost Discard 1 ColorIs Red && IsCharacter
+	{
+		TargetFacing
+		NarrowTargets CanBeChosen
+		If HasTarget
+		{
+			SaveTargets
+			TargetLocation OpponentStage
+			NarrowTargets CanBeChosen && Not InSavedTargets && Compare ThatCardsLevel 1 OrLess
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose a character to swap with the character facing this card.
+				AddSavedToCurrentTargets
+				Stand
+				Exchange
+			}
+		}
+	}
+}
+Text Auto:FORCE [Put 1 RED character from your hand to your waiting room] At the start of your climax phase, you may pay cost. If you do, choose the character facing this card and another level 1 or lower opponent's character exchange them as standing.
+EndCard
+
+Character: TH/EoS-051
+Name Flandre, Always Ready to Play
+Color R
+Level 0
+Cost 0
+Power 2000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Cont: GiveSelf
+{
+	If StageContains 2 Other && HasTrait Clone
+	{
+		GainPower 1500
+		GainLevel 1
+	}
+}
+Text Cont:If you have 2 or more other «Clone» characters, this card gets +1500 power and +1 level.
+EndCard
+
+Character: TH/EoS-058
+Name Flandre, Multiple Persona
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Clone
+*EarlyPlay2OrLessClimax
+Auto: OnPlay
+{
+	PayCost 4
+	{
+		SearchLocationForTargets WaitingRoom 0 1 NameContains Flandre && Compare ThatCardsLevel 3 Exactly
+		SaveTargets
+		SearchLocationForTargets WaitingRoom 0 1 NameContains Flandre && Compare ThatCardsLevel 2 Exactly
+		AddCurrentToSavedTargets
+		SearchLocationForTargets WaitingRoom 0 1 NameContains Flandre && Compare ThatCardsLevel 1 Exactly
+		AddCurrentToSavedTargets
+		SearchLocationForTargets WaitingRoom 0 1 NameContains Flandre && Compare ThatCardsLevel 0 Exactly
+		AddCurrentToSavedTargets
+		LoadTargets
+		PlaceOnStage false true true false
+	}
+}
+Text Auto:[(4)] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose up to 1 level 3 character with "Flandre" in its card name, up to 1 level 2 character with "Flandre" in its card name, up to 1 level 1 character with "Flandre" in its card name and up to 1 level 0 character with "Flandre" in its card name in your waiting room and put them on seperate position of your stage.
+EndCard
+
+Character: TH/EoS-066
+Name Flandre, Not Playing Alone
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Auto: OnTriggerCheckClimax
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character to give +1500 power.
+	GainPower 1500
+}
+Text Auto:When your character's trigger check reveals a climax, choose 1 of your character and that character gets +1500 power until end of turn.
+Auto: OnOpponentBrainstormSuccess
+{
+	PayCost 1
+	{
+		Burn 1
+	}
+}
+Text Auto:[(1)] When your opponent uses BRAINSTORM, if the effect puts at least 1 climax card into the waiting room, you may pay cost. If you do, deal 1 damage to your opponent.
+EndCard
+
+Character: TH/EoS-071
+Name Flandre, Lock in Her Room
+Color R
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+Cont: GiveAll
+{
+	If Other && InLocation MiddleCenterStage
+	{
+		GainPower 500
+	}
+}
+Text Cont:Your other character in the middle position of your center stage gets +500 power.
+Auto: OnTriggerCheckClimax
+{
+	IfOther HasTrigger Door
+	{
+		PayCost 1
+		{
+			TargetLocation OpponentCenterStage
+			NarrowTargets CanBeChosen && Compare ThatCardsLevel 1 OrLess
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose a character to send to waiting room.
+				MoveCard WaitingRoom
+			}
+		}
+	}
+}
+Text Auto:[(1)] When your character's trigger check reveals a climax, if it has a door icon, you may pay cost. If you do, choose 1 of your level 1 or lower opponent's character on their center stage and put it in the waiting room.
+EndCard
+
+Character: TH/EoS-067
+Name Flandre, Ready to Crush the Eye
+Color R
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Clone
+*GlobalPower(500, Clone)
+*500Assist
+EndCard
+
+Character: TH/EoS-023
+Name Sakuya, Manipulating Space and Time
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Auto: OnPlay
+{
+    PayCost 2
+    {
+        TargetLocation OpponentStage
+        MoveCard Memory
+        TargetLocation OpponentMemory
+        PlaceOnStage False True True False
+    }
+}
+Text Auto:[(2)] When this card is placed on the stage from your hand, you may pay the cost. If you do, send all of your opponent's characters to their memory and put those characters in separate slots on their stage.
+*RedLevel0Bomb
+EndCard
+
+Character: TH/EoS-024
+Name Sakuya, Retired Vampire Hunter
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Combo Buriallusion 「Phantomic Killer in Night Mist」
+Auto: OnAttack
+{
+    If Climax Buriallusion 「Phantomic Killer in Night Mist」
+    {
+        SearchLocationForTargets WaitingRoom 0 1 HasTrait Gensokyo
+        If HasTarget
+        {
+            MoveCard Stock
+        }
+        TargetSelf
+        GainPower 3000
+    }
+}
+Text Auto:When this card attacks, if "Buriallusion 「Phantomic Killer in Night Mist」" is in your climax area, choose up to 1 «Gensokyo» character in your waiting room, put it in stock and this gets +3000 power until end of turn.
+EndCard
+
+Character: TH/EoS-025
+Name Sakuya, Refined and Graceful
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 3000
+Soul 2
+Trait1 Gensokyo
+Trait2 Time
+Combo Illusion World 「The World」
+*Healer
+Cont: Assist
+{
+    If HasTrait Gensokyo
+    {
+        GainPower 1500
+    }
+}
+Text Cont:ASSIST Your «Gensokyo» characters in front of this get +1500 power.
+Auto: OnSpecificClimaxPlay Illusion World 「The World」
+{
+    PayCost 2
+    {
+        UntilEndOfOpponentsTurn
+        GainEffect
+        {
+            Cont: Assist
+            {
+            	LoseLevel 1
+                GainEffect
+                {
+                    Cont: GiveFacing
+                    {
+                        GainSpecialEffect CannotFrontalAttack
+                    }
+                    Text Cont:The Opposite Character cannot Front Attack.
+                }
+            }
+            Text Cont:ASSIST All your Characters in front of this gain -1 Level and the following ability. "Cont:The Opposite Character cannot Front Attack."
+        }
+    }
+}
+Text Auto:[(2)] When "Illusion World 「The World」" is placed in your climax area, you may pay the cost. If you do, this card gets the following ability until the end of your opponent's next turn. "Cont:ASSIST Your characters in front of this get -1 level and the following ability. 'Cont:The character facing this card cannot frontal attack.'"
+EndCard
+
+Character: TH/EoS-026
+Name Sakuya, New Fate
+Color G
+Level 0
+Cost 0
+Power 4000
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Auto: OnPlay
+{
+    Mill 2
+    NarrowTargets IsClimax
+    If HasTarget
+    {
+        TargetSelf
+        MoveCard Stock
+    }
+}
+Text Auto:When this card is placed on the stage from your hand, put 2 cards from the top of your deck into waiting room. If there is at least 1 climax among them, put this card into stock.
+EndCard
+
+Character: TH/EoS-027
+Name Sakuya, Stopping Time at Will
+Color G
+Level 1
+Cost 0
+Power 4500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Combo Time Sign 「Sakuya's Special Stopwatch」
+Auto: StartMyEncorePhase
+{
+    If Climax Time Sign 「Sakuya's Special Stopwatch」 && InLocation CenterStage && CardPosition Rest
+    {
+        PayCost 1
+        {
+            TargetSelf
+            MoveCard Memory
+            ScheduleEffectForTargets StartDrawPhase
+            {
+                Effect:
+                {
+                    If InLocation Memory
+                    {
+                        PlaceOnStage False True True False
+                        TargetLocation Stage
+                        GainPower 500
+                        GainLevel 1
+                    }
+                }
+            }
+        }
+    }
+}
+Text Auto:[(1)] At the beginning of your encore step, if "Time Sign 「Sakuya's Special Stopwatch」" is in your climax area and this is rest on your center stage, you may pay the cost. If you do, put this card into memory. At the beginning of your draw phase, choose a "Sakuya, Stopping Time at Will" from your memory and put it into any slot on stage and all your other «Time» characters get +1 level and +500 power until end of turn.
+EndCard
+
+Character: TH/EoS-028
+Name Sakuya, Way of Welcoming
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 7500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Combo Time Sign 「Tunnel Effect」
+Auto: OnAttack
+{
+    If Climax Time Sign 「Tunnel Effect」 && StageContains 3 Other && HasTrait Time
+    {
+		Question Do you want to frontal attack a character into opponent's back stage ?
+		If Yes
+		{
+			TargetLocation OpponentBackStage
+			NarrowTargets CanBeChosen
+			If HasTarget
+			{
+				ChooseCharacterFromTargets Choose a character to frontal attack.
+				BecomeNewBattleOpponent
+			}
+		}
+    }
+}
+Text Auto:When this card attacks, if "Time Sign 「Tunnel Effect」" is in your climax area and you have 3 or more other «Time» characters, you may instead choose a character in your opponent's back stage and have this frontal attack that character as the defending character.
+EndCard
+
+Character: TH/EoS-029
+Name Sakuya, Hate Intruders
+Color G
+Level 3
+Cost 2
+Trigger Soul
+Power 10000
+Soul 2
+Trait1 Gensokyo
+Trait2 Time
+Cont: GiveSelf
+{
+    If LocationContainsOrLess Level 0 Not HasTrait Time
+    {
+        GainPower 3000
+    }
+}
+Text Cont:EXPERIENCE If all cards in your level zone are «Time» characters, this gets +3000 Power.
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        TargetSelf
+        GainPower 1000
+        GainEffect
+        {
+            Auto: OnReverseOpponent
+            {
+                TargetBattleOpponent
+                IfTarget OnStage
+                {
+                    Question Put the battle opponent to clock ?
+                    If Yes
+                    {
+                        MoveCard OpponentClock
+                    }
+                }
+            }
+            Text Auto:When this card's battle opponent becomes reversed, you may put that character into clock.
+        }
+    }
+}
+Text Auto:[Put 1 card from your hand into your waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, this card gets +1000 Power and the following ability until end of turn. "Auto:When this card's battle opponent becomes reversed, you may put that character into clock." 
+EndCard
+
+Character: TH/EoS-030a
+Name Sakuya, Scarlet Sisters' Maid
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Auto: OnPlay
+{
+	TargetLocation Stage
+	If HasTarget
+	{
+		Message Choose a character to put into the waiting room.
+		ChooseCharacterFromTargets
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:When this card is placed on the stage from your hand, put 1 of your character into waiting room.
+*Bond1(Flandre Scarlet)
+*BondClock(Remilia Scarlet)
+EndCard
+
+Character: TH/EoS-031
+Name Sakuya, Placing her Knives
+Color G
+Level 1
+Cost 1
+Trigger Soul
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+*BackupBonus1000(Time)
+Backup 1500
+EndCard
+
+Character: TH/EoS-032
+Name Sakuya Izayoi
+Color G
+Level 2
+Cost 1
+Trigger Soul
+Power 2500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Auto: OnUseThisCardsBackup
+{
+    PayCost 2
+    {
+        TargetLocation WaitingRoom
+        MoveCard Deck
+        ShuffleLocation Deck
+    }
+}
+Text Auto:[(2)] When you use this card's BACKUP, you may pay cost. If you do, return all cards from your waiting room to your deck and shuffle your deck.
+Backup 2500
+EndCard
+
+Character: TH/EoS-036
+Name Sakuya, The Conjuring Knife Maid
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Auto: OnPlay
+{
+    PayCost Discard 1 Any
+    {
+        TargetLocation Clock
+        NarrowTargets HasTrait Gensokyo
+        If HasTarget
+        {
+            ChooseCardsFromTargets 1 1 HasTrait Gensokyo
+            MoveCard Hand
+            TargetTop Deck 1
+            MoveCard Clock
+        }
+    }
+}
+Text Auto:[Put 1 card from your hand into your waiting room] When this card is placed on the stage from your hand, you may pay cost. If you do, choose a «Gensokyo» character from your clock, return it to your hand and put the top card of your deck into your clock. 
+Act: 1 RestSelf
+{
+	Brainstorm 4
+	If Compare BrainstormedClimax 1 OrMore
+	{
+		SetXValue BrainstormedClimax
+		AIChoice AddToHand
+		SearchLocationForTargets WaitingRoom 0 X IsCharacter
+		RevealTargets
+		MoveCards Hand
+	}
+}
+Text Act:BRAINSTORM [(1) rest this card] Flip over 4 cards from the top of your deck and put them into the waiting room, for each climax revealed, choose up to 1 character in your waiting room and return it to your hand.
+EndCard
+
+Character: TH/EoS-035
+Name Fairy Maid
+Color G
+Level 0
+Cost 0
+Power 1500
+Soul 1
+Trait1 Gensokyo
+Army
+Auto: OnAttack
+{
+    //If Climax Spark of Life
+    //{
+    //    PayCost 1
+    //    {
+            GainEffect
+            {
+                Auto: OnThisTriggerCheck
+                {
+                    SetXValue ThisCardsSoul
+                    Repeat X
+                    {
+                        RevealExactly OpponentDeck 1
+                        IfTarget Not IsClimax
+                        {
+                            MoveCard Clock
+                        }
+                        Else
+                        {
+                            MoveCard WaitingRoom
+                        }
+                    }
+                    TargetSelf
+                    LoseSoul 999
+                }
+                Quick
+            }
+    //    }
+    //}
+}
+Cont: GiveSelf
+{
+    TargetLocation CenterStage
+    NarrowTargets Other && NameEquals Fairy Maid
+    SetXValue TargetCount
+    MultiplyXValue 2000
+    GainPower X
+}
+Text Cont:This card gets +2000 power for each other "Fairy Maid" in your center stage.
+EndCard
+
+Character: TH/EoS-033
+Name Fairy Maid
+Color G
+Level 0
+Cost 0
+Power 500
+Soul 1
+Trait1 Gensokyo
+Army
+Cont: GiveAll
+{
+    If Other && NameEquals Fairy Maid
+    {
+        GainPower 500
+    }
+}
+Text Cont:All your other "Fairy Maid" get +500 power.
+EndCard
+
+Character: TH/EoS-034
+Name Fairy Maid
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Army
+*YellowLevel0Bomb
+EndCard
+
+Character: TH/EoS-037
+Name Sakuya, Leader of the Fairy Maid
+Color G
+Level 1
+Cost 0
+Power 3500
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Combo Maid Secret 「Killing Doll」
+Auto: OnSpecificClimaxPlay Maid Secret 「Killing Doll」
+{
+    If InLocation CenterStage && StageContains 1 Other && HasTrait Time
+    {
+        PayCost 1
+        {
+            SearchLocationForTargets Deck 0 3 NameEquals Fairy Maid
+            PlaceOnStage false true true false
+            ShuffleLocation Deck
+        }
+    }
+}
+Text Auto:[(1)] When "Maid Secret 「Killing Doll」" is placed in your climax area, if this is in your center stage and you have another «Time» Character, you may pay cost. If you do, search your deck for up to 3 "Fairy Maid", put them in separate slots on the stage and shuffle your deck.
+EndCard
+
+Character: TH/EoS-038
+Name Sakuya, Waiting for Orders
+Color G
+Level 1
+Cost 0
+Power 5000
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Auto: OnReverseOpponent
+{
+    If StageContains 1 Other && NameContains Remilia
+    {
+        Question Put the top card of your library to stock ?
+        If Yes
+        {
+            TargetTop Deck
+            MoveCard Stock
+        }
+    }
+}
+Text Auto:When this card's battle opponent becomes reversed, if you have another chararcter with "Remilia" in its card name, you may put the top card of your deck into stock
+EndCard
+
+Climax: TH/EoS-039
+Name Illusion World 「The World」
+Color G
+*DrawClimax
+EndCard
+
+Climax: TH/EoS-040
+Name Time Sign 「Sakuya's Special Stopwatch」
+*GreenStockSoul
+EndCard
+
+Climax: TH/EoS-041
+Name Buriallusion 「Phantomic Killer in Night Mist」
+*BarClimax
+EndCard
+
+Climax: TH/EoS-042
+Name Maid Secret 「Killing Doll」
+*BagClimax
+EndCard
+
+Climax: TH/EoS-043
+Name Time Sign 「Tunnel Effect」
+Color G
+*2SoulClimax
+EndCard
+
+Character: TH/EoS-030b
+Name Sakuya, Scarlet Sisters' Maid
+Color G
+Level 0
+Cost 0
+Power 1000
+Soul 1
+Trait1 Gensokyo
+Trait2 Time
+Auto: OnPlay
+{
+	TargetLocation Stage
+	If HasTarget
+	{
+		Message Choose a character to put into the waiting room.
+		ChooseCharacterFromTargets
+		MoveCard WaitingRoom
+	}
+}
+Text Auto:When this card is placed on the stage from your hand, put 1 of your character into waiting room.
+*Bond1(Flandre Scarlet)
+*BondClock(Remilia Scarlet)
+EndCard

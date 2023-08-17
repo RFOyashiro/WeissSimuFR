@@ -1,0 +1,5 @@
+DLC: Seiyuufu
+Series: Seiyuufu
+Folder: Seiyuufu/AmiKoshimizu
+Prefix: AK/C01
+SetName: Ami Koshimizu
