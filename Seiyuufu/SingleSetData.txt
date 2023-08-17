@@ -3,3 +3,7 @@ Series: Seiyuufu
 Folder: Seiyuufu/AmiKoshimizu
 Prefix: AK/C01
 SetName: Ami Koshimizu
+
+Folder: Seiyuufu/MiyukiSawashiro
+Prefix: MS/C02
+SetName: Miyuki Sawashiro

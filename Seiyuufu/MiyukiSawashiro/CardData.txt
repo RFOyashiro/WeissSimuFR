@@ -1,0 +1,379 @@
+Character: MS/C02-001
+Name Getting out of Bath, Cal
+Color Y
+Level 0
+Cost 0
+Power 2500
+Trait1 Clock
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+Auto: OnPlay
+{
+	Peek OpponentDeck 2
+	EndPeek
+}
+Text Auto: When this card is placed on stage from your hand, look at up to 2 cards from the top of your opponent's deck and put them back in the original order.
+EndCard
+
+Character: MS/C02-002
+Name Aiming for Reiji, Drei
+Color R
+Level 1
+Cost 0
+Power 2000
+Trait1 Weapon
+Trait2 Clock
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*Revenge(1000)
+Auto: OnOtherSentFromStageToClock
+{
+	If CardPosition Stand
+	{
+		PayCost 1 RestSelf
+		{
+			Burn 1
+		}
+	}
+}
+Text Auto: [(1) Rest this card] When one of your other characters is placed to your clock from your stage, if this card is standing, you may pay the cost. If you do, deal 1 damage to your opponent.
+EndCard
+
+Event: MS/C02-003
+Name Praying, Drei
+Color R
+Level 1
+Cost 0
+Effect:
+{
+	PayCost Send 1 Clock Any
+	{
+		SearchLocationForTargets WaitingRoom 0 2 IsCharacter && HasTrait MiyukiSawashiro
+		RevealTargets
+		MoveCard Hand
+	}
+}
+Text Choose 1 of your characters and put it into your clock. If you do, choose up to 2 <Clock> characters in your waiting room and return them to your hand.
+EndCard
+
+Character: MS/C02-004
+Name "Brimming with Confidence" Saber of Red
+Color R
+Level 0
+Cost 0
+Power 2000
+Trait1 Servant
+Trait2 Royalty
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*OnPlayScry
+Auto: OnPlay
+{
+	PayCost 1 Clock
+	{
+		Message Choose a level 1 or lower character to return to your hand
+		SearchLocationForTargets WaitingRoom 1 1 Compare ThatCardsLevel 1 OrLess && IsCharacter
+		RevealTargets
+		MoveCard Hand
+	}
+}
+Text Auto: [(1) Put the top card of your deck into your clock] When this card is placed on the stage from your hand, you may pay the cost. If you do, choose a level 1 or lower character in your waiting room, and return it to your hand.
+EndCard
+
+Character: MS/C02-005
+Name "Final Flash" Saber of Red
+Color R
+Level 3
+Cost 2
+Trigger Soul
+Power 9500
+Soul 2
+Trait1 Servant
+Trait2 Royalty
+Combo Clarent
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*Healer
+Auto: OnAttack
+{
+	If Climax Clarent
+	{
+		PayCost 2 FlipCardsFaceDown 1 Level Any
+		{
+			TargetLocation Level
+			NarrowTargets FaceDown
+			SetXValue TargetCount
+			Burn X
+			TargetSelf
+			UntilEndOfOpponentsTurn
+			GainPower 3500
+		}
+	}
+}
+Text Auto: CxCombo [(2) Put a face up card in your level face down] When this card attacks, if a card named "Clarent" is in your climax area, you may pay the cost. If you do, deal X damage to your opponent, and this card gets +3500 power until the end of your opponent's next turn. X is equal to the number of face down cards in your level. 
+EndCard
+
+Character: MS/C02-006
+Name "Secret of Pedigree" Saber of Red
+Color R
+Level 0
+Cost 0
+Power 500
+Trait1 Servant
+Trait2 Royalty
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*HexProof
+*GiveMiddlePower(500,Any)
+*Act1RestSelfSalvageBrainstorm(Any)
+EndCard
+
+Character: MS/C02-007
+Name "Quick Judgment" Saber of Red
+Color R
+Level 0
+Cost 0
+Power 3000
+Trait1 Servant
+Trait2 Royalty
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*MoveOtherToBackstageOnReverse
+Auto: OnReversed
+{
+	MoveCardToBottom Deck
+}
+Text Auto: When this card becomes reversed in battle, put this card at the bottom of your deck.
+EndCard
+
+Character: MS/C02-008
+Name Petit Saber of Red
+Color R
+Level 2
+Cost 1
+Trigger Soul
+Power 5500
+Soul 2
+Trait1 Servant
+Trait2 Royalty
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*GainPowerForEachOther(1000,Master|Servant|MiyukiSawashiro)
+EndCard
+
+Character: MS/C02-009
+Name "ZHIEND's Vocalist" Sala Shane
+Color Y
+Level 0
+Cost 0
+Power 2000
+Trait1 Music
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+Cont: GiveAll
+{
+	If Other && InLocation MiddleCenterStage
+	{
+		GainEffect
+		{
+			*HandEncore
+		}
+	}
+}
+Text Cont: Your other character in the middle posiiton of your center stage "Auto: ENCORE [Discard a character]".
+EndCard
+
+Character: MS/C02-010
+Name "Treasure" Canaan & Maria
+Color Y
+Level 1
+Cost 0
+Power 2000
+Trait1 Weapon
+Trait2 Cat's Cradle
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+Auto: OnPlay
+{
+	PayCost Discard 1 Any
+	{
+		SearchDeck NameContains Canaan|MiyukiSawashiro && IsCharacter
+	}
+}
+Text Auto: [Discard a card] When this card is placed on stage from your hand, you may pay the cost. If you do, search your deck for up to 1 character with "Canaan" in it's card name and add it to your hand.
+EndCard
+
+Character: MS/C02-011
+Name Reliable Reinforcement, Sinon
+Color B
+Level 1
+Cost 0
+Power 4000
+Trait1 Avatar
+Trait2 Weapon
+Combo Dependable Marksmanship
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*GainPowerForEachOther(500,Avatar|Net)
+Auto: OnAttack
+{
+	If Climax Dependable Marksmanship
+	{
+		TargetTop Deck 1
+		Reveal
+		IfTarget HasTrait Avatar|Net|MiyukiSawashiro
+		{
+			MoveCard Hand
+		}
+	}
+}
+Text Auto: CxCombo When this card attacks, if a card named "Dependable Marksmanship" is in your climax area, reveal thte top card of your deck. If that card is an «Avatar» or «Net» character, put it into your hand. 
+EndCard
+
+Character: MS/C02-012
+Name Confrontation with PK Squadron, Sinon
+Color B
+Level 1
+Cost 0
+Power 4000
+Trait1 Avatar
+Trait2 Weapon
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+*OnPlayReorderTop2
+Auto: StartClimaxPhase
+{
+	If LocationContains WaitingRoom 1 NameEquals Reliable Reinforcement, Sinon
+	{
+		PayCost SendSelf WaitingRoom
+		{
+			*ChangeWaitingRoom(Reliable Reinforcement\, Sinon)
+		}
+	}
+}
+Text Auto: CHANGE [Put this card into your waiting room] At the beginning of your climax phase, you may pay the cost. If you do, choose 1 "Reliable Reinforcement, Sinon" in your waiting room, and put it on the stage position that this card was on.
+EndCard
+
+Character: MS/C02-013
+Name Labyrista, Crepe Shop Owner
+Color B
+Level 3
+Cost 2
+Power 9500
+Trait1 Landosol
+Trait2 Guild
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+Auto: OnPlay
+{
+    PayCost 1
+    {
+        StockSwap
+    }
+}
+Text Auto:[(1)] When this is placed from hand to the Stage, you may pay cost. If so, your Opponent places all of their Stock in their Waiting Room, then puts the same number of cards from the top of their Library to Stock.
+Auto: OnAttack
+{
+    PayCost 1 Discard 1 Any
+    {
+        UntilEndOfOpponentsTurn
+	GainPower 3500
+	GainSoul 1
+    }
+}
+Text Auto: When this attacks, you may pay cost. If so, this gains +2500 Power and +1 Soul until the next end of your Opponent's turn. 
+EndCard
+
+Event: MS/C02-014
+Name Protecting Your Back
+Color B
+Level 1
+Cost 0
+Effect:
+{
+	TargetLocation Stage
+	ChooseCharacterFromTargets Choose a character and the 3 effects
+	UntilEndOfOpponentsTurn
+	GainEffect
+	{
+		*CharacterFacingThisCannotMove
+	}
+	*GainBounceWhenFrontalAttacked
+	UntilEndOfOpponentsTurn
+	GainSpecialEffect NoBackupOnAttack
+}
+Text Choose 1 of your Characters, and until the next end of your Opponent's turn, this gains the following 3 abilities. "[C] The card Opposite cannot move to another Slot." "[C] During this card's battle, your Opponent cannot play BACKUP abilities." "[A] When this card is Front Attacked, you may return it to your hand." 
+EndCard
+
+Character: MS/C02-017
+Name Sinon Being Suspicious
+Color B
+Level 0
+Cost 0
+Power 2000
+Trait1 Avatar
+Trait2 Weapon
+Cont: GiveSelfEverywhere
+{
+   GainTrait MiyukiSawashiro
+   GainName MiyukiSawashiro 
+}
+Cont: GiveSelf
+{
+	If Compare CardsInStock 2 OrLess
+	{
+		GainPower 1500
+	}
+}
+Text [C] If there are 2 or fewer cards in your Stock, this gains +1500 Power.
+Auto: Encore Send 1 Clock HasTrait Avatar|Net|MiyukiSawashiro
+{
+}
+Text [A] ENCORE [Put a Character with either ::Avatar:: or ::Net:: from your Stage in your Clock] 
+EndCard
+
+Climax: MS/C02-015
+Name Dependable Marksmanship
+*GateClimax
+EndCard
+
+Climax: MS/C02-016
+Name Clarent
+*DoorClimax
+EndCard
