@@ -293,6 +293,7 @@ Color B
 Level 3
 Cost 2
 Power 9500
+Trigger Soul
 Trait1 Landosol
 Trait2 Guild
 Cont: GiveSelfEverywhere

@@ -621,14 +621,14 @@ Cont: GiveSelfEverywhere
 *CannotSideAttack
 Auto: OnPlay|PlacedBy Encounter with Senketsu, Ryuko
 {
-	Question Reveal the top card of your deck?
+	Question_Obvious Reveal the top card of your deck?
 	If Yes
 	{
 		TargetTop Deck 1
 		Reveal
-		If Compare TargetCardsLevel 0 OrLess
+		IfTarget Compare ThatCardsLevel 0 OrLess && IsCharacter
 		{
-			Question Put the revealed card into your stock?
+			Question_Obvious Put the revealed card into your stock?
 			If Yes
 			{
 				MoveCard Stock
